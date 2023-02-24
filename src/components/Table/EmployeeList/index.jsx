@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Chip from '@mui/material/Chip';
 import Table from '@mui/material/Table';
@@ -7,6 +7,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import ActionTableCell from './ActionTableCell';
 import ProjectListCell from './ProjectListCell';
@@ -183,25 +184,49 @@ const rows = [
   ),
 ];
 
-export default function index() {
+export default function Index() {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">Employee name</TableCell>
-            <TableCell align="center">Project allocated</TableCell>
-            <TableCell align="center">Availability</TableCell>
-            <TableCell align="center">Position</TableCell>
-            <TableCell align="center">Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.project_name} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Employee name</TableCell>
+              <TableCell align="center">Project allocated</TableCell>
+              <TableCell align="center">Availability</TableCell>
+              <TableCell align="center">Position</TableCell>
+              <TableCell align="center">Action</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <Row key={row.project_name} row={row} />
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </>
   );
 }
