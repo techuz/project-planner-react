@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -20,7 +20,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useAuth } from '../../providers/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -92,6 +92,7 @@ const Drawer = styled(MuiDrawer, {
 export default function MiniDrawer({ children }) {
   const theme = useTheme();
   const navigate = useNavigate();
+  const location = useLocation();
   const paths = [
     {
       name: 'Project list',
@@ -104,8 +105,8 @@ export default function MiniDrawer({ children }) {
   ];
 
   const { logout } = useAuth();
-  const [open, setOpen] = React.useState(false);
-  const [currentPage, setCurrentPage] = React.useState(paths[0].name);
+  const [open, setOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(paths[0].name);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -114,6 +115,15 @@ export default function MiniDrawer({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (location) {
+      const pageName = paths.filter((item) => item.path === location.pathname);
+      if (pageName.length > 0) {
+        setCurrentPage(pageName[0].name);
+      }
+    }
+  }, [location]);
 
   return (
     <Box sx={{ display: 'flex' }}>

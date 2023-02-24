@@ -17,11 +17,11 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ProjectLeadTableCell from './ProjectLeadTableCell';
 import ActionTableCell from './ActionTableCell';
 
-import team1 from '../../assets/images/team-1.jpg';
-import team2 from '../../assets/images/team-2.jpg';
-import team3 from '../../assets/images/team-3.jpg';
-import team4 from '../../assets/images/team-4.jpg';
-import team5 from '../../assets/images/team-5.jpg';
+import team1 from '../../../assets/images/team-1.jpg';
+import team2 from '../../../assets/images/team-2.jpg';
+import team3 from '../../../assets/images/team-3.jpg';
+import team4 from '../../../assets/images/team-4.jpg';
+import team5 from '../../../assets/images/team-5.jpg';
 
 function createData(
   project_name,
@@ -146,7 +146,8 @@ Row.propTypes = {
     milestone: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
+        startDate: PropTypes.string.isRequired,
+        endDate: PropTypes.string.isRequired,
         status: PropTypes.string.isRequired,
         checklist: PropTypes.string.isRequired,
       })
@@ -423,7 +424,7 @@ const rows = [
   ),
 ];
 
-export default function CollapsibleTable() {
+export default function index() {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
