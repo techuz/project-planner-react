@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import CollapsibleTable from '../../components/Table/CollapsibleTable';
 
 const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+  return <CollapsibleTable />;
+};
 
-export default Dashboard
+export default Dashboard;
