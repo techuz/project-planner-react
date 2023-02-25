@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Chip from '@mui/material/Chip';
+import { Button, Icon } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -17,6 +19,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ProjectLeadTableCell from './ProjectLeadTableCell';
 import ActionTableCell from './ActionTableCell';
+import AddIcon from '@mui/icons-material/Add';
 
 import team1 from '../../../assets/images/team-1.jpg';
 import team2 from '../../../assets/images/team-2.jpg';
@@ -46,6 +49,7 @@ function createData(
 
 function Row(props) {
   const { row } = props;
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -60,7 +64,12 @@ function Row(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell align="center" component="th" scope="row">
+        <TableCell
+          align="center"
+          component="th"
+          scope="row"
+          onClick={() => navigate('/project-detail', { state: { row } })}
+        >
           {row.project_name}
         </TableCell>
         <TableCell align="center">
@@ -426,6 +435,7 @@ const rows = [
 ];
 
 export default function Index() {
+  const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -440,6 +450,16 @@ export default function Index() {
   return (
     <>
       <TableContainer component={Paper}>
+        <Box sx={{ float: 'right' }} color="primary" px={2}>
+          <Button
+            onClick={() => navigate('/dashboard/create-new-project')}
+            variant="outgradientlined"
+            startIcon={<AddIcon />}
+            color="primary"
+          >
+            add new project
+          </Button>
+        </Box>
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>

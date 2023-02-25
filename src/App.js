@@ -6,6 +6,8 @@ import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { EmployeeList } from './pages/EmployeeList';
 import { AuthProvider } from './providers/AuthProvider';
+import { ProjectDetail } from './pages/ProjectDetail';
+import CreateProject from './components/ProjectForm/CreateProject';
 
 function App() {
   return (
@@ -25,6 +27,22 @@ function App() {
           element={
             <ProtectedRoute>
               <EmployeeList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/project-detail"
+          element={
+            <ProtectedRoute>
+              <ProjectDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/create-new-project"
+          element={
+            <ProtectedRoute>
+              <CreateProject />
             </ProtectedRoute>
           }
         />

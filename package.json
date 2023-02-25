@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.10",
+    "@mui/base": "latest",
     "@emotion/cache": "11.7.1",
     "@mui/styled-engine": "5.4.1",
     "@mui/x-date-pickers": "^5.0.20",
