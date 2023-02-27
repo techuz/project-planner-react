@@ -1,27 +1,32 @@
 import React from 'react';
-import {
-    createTheme,
-    ThemeProvider,
-    CssBaseline,
-  } from "@mui/material";
+import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
-  export const defaultTheme = createTheme({
-    // components: {
-    //     MuiButton: {
-    //         styleOverrides: {
-                
-    //         }
-    //     }
-    // }
-  });
+export const defaultTheme = createTheme({
+  components: {
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          background: 'red',
+        },
+      },
+    },
+    MuiFilledInput: {
+      styleOverrides: {
+        root: {
+          background: 'transparent !important',
+        },
+      },
+    },
+  },
+});
 
 const Provider = ({ children, ...props }) => {
   return (
     <ThemeProvider theme={defaultTheme} {...props}>
-        <CssBaseline />
-        {children}
+      <CssBaseline />
+      {children}
     </ThemeProvider>
-  )
-}
+  );
+};
 
 export default Provider;
