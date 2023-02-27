@@ -7,7 +7,9 @@ import { Dashboard } from './pages/Dashboard';
 import { EmployeeList } from './pages/EmployeeList';
 import { AuthProvider } from './providers/AuthProvider';
 import { ProjectDetail } from './pages/ProjectDetail';
+import { EmployeeDetail } from './pages/EmployeeDetail';
 import CreateProject from './components/Form/ProjectForm/CreateProject';
+import CreateEmployee from './components/Form/EmployeeForm/CreateEmployee';
 
 function App() {
   return (
@@ -39,10 +41,26 @@ function App() {
           }
         />
         <Route
+          path="/employee-detail"
+          element={
+            <ProtectedRoute>
+              <EmployeeDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/dashboard/create-new-project"
           element={
             <ProtectedRoute>
               <CreateProject />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/employee-list/create-new-employee"
+          element={
+            <ProtectedRoute>
+              <CreateEmployee />
             </ProtectedRoute>
           }
         />

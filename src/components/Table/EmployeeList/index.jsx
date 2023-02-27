@@ -11,6 +11,7 @@ import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import ActionTableCell from './ActionTableCell';
 import ProjectListCell from './ProjectListCell';
+import AddIcon from '@mui/icons-material/Add';
 
 import team1 from '../../../assets/images/team-1.jpg';
 import team2 from '../../../assets/images/team-2.jpg';
@@ -18,6 +19,8 @@ import team3 from '../../../assets/images/team-3.jpg';
 import team4 from '../../../assets/images/team-4.jpg';
 import team5 from '../../../assets/images/team-5.jpg';
 import EmployeeNameCell from './EmployeeNameCell';
+import { Box, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function createData(employee_name, project_allocated, availability, position) {
   return {
@@ -30,9 +33,13 @@ function createData(employee_name, project_allocated, availability, position) {
 
 function Row(props) {
   const { row } = props;
+  const navigate = useNavigate();
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow
+        sx={{ '& > *': { borderBottom: 'unset' } }}
+        onClick={() => navigate('/employee-detail', { state: { row } })}
+      >
         <TableCell align="center" component="th" scope="row">
           <EmployeeNameCell employee={row.employee_name} />
         </TableCell>
@@ -185,6 +192,7 @@ const rows = [
 ];
 
 export default function Index() {
+  const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -199,6 +207,16 @@ export default function Index() {
   return (
     <>
       <TableContainer component={Paper}>
+        <Box sx={{ float: 'right' }} color="primary" px={2}>
+          <Button
+            onClick={() => navigate('/employee-list/create-new-employee')}
+            variant="outgradientlined"
+            startIcon={<AddIcon />}
+            color="primary"
+          >
+            add new employee
+          </Button>
+        </Box>
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>

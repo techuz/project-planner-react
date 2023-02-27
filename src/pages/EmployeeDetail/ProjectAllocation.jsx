@@ -4,20 +4,15 @@ import {
   Button,
   TextField,
   Collapse,
-  FormControl,
-  FormControlLabel,
-  Switch,
-  FormLabel,
+  MenuItem,
   List,
   ListItem,
   Typography,
   Card,
-  Chip,
   Divider,
   ButtonGroup,
   ListSubheader,
 } from '@mui/material';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 import SaveIcon from '@mui/icons-material/Save';
 import AddIcon from '@mui/icons-material/Add';
@@ -26,16 +21,28 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 
-export default function Milestones(props) {
+export default function ProjectAllocation(props) {
   const { data } = props;
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [isActive, setActive] = useState(false);
-  const [checkLists, setCheckLists] = useState('');
-  const [milestones, setMilestones] = useState([]);
+  const [hours, setHours] = useState('');
+  const [projectName, setProjectName] = useState('');
+  const [allocatedProjectList, setAllocatedProjectList] = useState([]);
+
+  const projectList = [
+    {
+      name: 'Frozen yoghurt',
+      value: 'Frozen yoghurt',
+    },
+    {
+      name: 'Temple run',
+      value: 'Temple run',
+    },
+    {
+      name: 'Fury ukraine',
+      value: 'Fury ukraine',
+    },
+  ];
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,37 +50,31 @@ export default function Milestones(props) {
   };
 
   useEffect(() => {
-    setMilestones(data.milestone);
+    setAllocatedProjectList(data.project_allocated);
   }, [data]);
 
-  const createMilestone = () => {
+  const createAllocaton = () => {
     setOpen(!open);
-    setName('');
-    setStartDate('');
-    setEndDate('');
-    setActive(false);
-    setCheckLists('');
+    setProjectName('');
+    setHours('');
   };
 
-  const editMilestone = (item) => {
+  const editAllocation = (item) => {
     setOpen(true);
-    setName(item.name);
-    setStartDate(item.startDate);
-    setEndDate(item.endDate);
-    setActive(item.status === 'completed' ? true : false);
-    setCheckLists(item.checklist);
+    setProjectName(item.project_name);
+    setHours(item.hours);
   };
 
   return (
     <Box>
       <Box color="primary" px={1}>
         <Button
-          onClick={createMilestone}
+          onClick={createAllocaton}
           variant="outgradientlined"
           startIcon={open ? <CloseIcon /> : <AddIcon />}
           color="primary"
         >
-          {open ? 'close' : 'add new milestone'}
+          {open ? 'close' : 'add new allocation'}
         </Button>
       </Box>
       <Collapse in={open} timeout="auto" unmountOnExit>
@@ -88,55 +89,29 @@ export default function Milestones(props) {
           >
             <Box sx={{ display: 'flex' }}>
               <TextField
-                label="Milestone name"
+                id="filled-select-currency"
+                select
+                label="Projects"
+                value={projectName}
+                variant="filled"
+                onChange={(e) => setProjectName(e.target.value)}
+              >
+                {projectList.map((option) => (
+                  <MenuItem key={option.name} value={option.value}>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Typography ml={1}>{option?.name}</Typography>
+                    </Box>
+                  </MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                label="Hours"
                 variant="filled"
                 // fullWidth
                 margin="normal"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
+                value={hours}
+                onChange={(event) => setHours(event.target.value)}
               />
-              <TextField
-                id="date"
-                label="Start date"
-                type="date"
-                variant="filled"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-              <TextField
-                id="date"
-                label="End date"
-                type="date"
-                variant="filled"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-              <FormControl sx={{ m: 2 }}>
-                <FormControlLabel
-                  control={<Switch checked={isActive} />}
-                  onChange={(e) => setActive(e.target.checked)}
-                  label="Status"
-                />
-              </FormControl>
-            </Box>
-            <Box>
-              <FormControl sx={{ m: 2 }}>
-                <FormLabel>Checklists</FormLabel>
-                <TextareaAutosize
-                  aria-label="minimum height"
-                  minRows={3}
-                  value={checkLists}
-                  onChange={(e) => setCheckLists(e.target.value)}
-                  placeholder="Minimum 3 rows"
-                  style={{ width: 600 }}
-                />
-              </FormControl>
             </Box>
             <Button variant="outlined" startIcon={<SaveIcon />}>
               Save
@@ -155,7 +130,7 @@ export default function Milestones(props) {
           aria-labelledby="nested-list-subheader"
           subheader={
             <ListSubheader component="div" id="nested-list-subheader">
-              Milestones list
+              Project allocation list
             </ListSubheader>
           }
         >
@@ -176,35 +151,14 @@ export default function Milestones(props) {
                   width: '20%',
                 }}
               >
-                Name
+                Project name
               </Typography>
               <Typography
                 sx={{
                   width: '20%',
                 }}
               >
-                Start date
-              </Typography>
-              <Typography
-                sx={{
-                  width: '20%',
-                }}
-              >
-                End date
-              </Typography>
-              <Typography
-                sx={{
-                  width: '20%',
-                }}
-              >
-                Status
-              </Typography>
-              <Typography
-                sx={{
-                  width: '20%',
-                }}
-              >
-                Checklists
+                Allocated hours
               </Typography>
               <Typography
                 sx={{
@@ -221,7 +175,7 @@ export default function Milestones(props) {
               width: '100%',
             }}
           >
-            {milestones.map((item) => (
+            {allocatedProjectList.map((item) => (
               <ListItem
                 sx={{
                   width: '100%',
@@ -234,38 +188,14 @@ export default function Milestones(props) {
                     width: '20%',
                   }}
                 >
-                  {item.name}
+                  {item.project_name}
                 </Typography>
                 <Typography
                   sx={{
                     width: '20%',
                   }}
                 >
-                  {item.startDate}
-                </Typography>
-                <Typography
-                  sx={{
-                    width: '20%',
-                  }}
-                >
-                  {item.endDate}
-                </Typography>
-                <Typography
-                  sx={{
-                    width: '20%',
-                  }}
-                >
-                  <Chip
-                    label={item.status}
-                    color={item.status === 'completed' ? 'success' : 'warning'}
-                  />
-                </Typography>
-                <Typography
-                  sx={{
-                    width: '20%',
-                  }}
-                >
-                  {item.checklist}
+                  {item.hours}
                 </Typography>
                 <Typography
                   sx={{
@@ -273,7 +203,7 @@ export default function Milestones(props) {
                   }}
                 >
                   <ButtonGroup variant="text" aria-label="text button group">
-                    <Button onClick={() => editMilestone(item)}>
+                    <Button onClick={() => editAllocation(item)}>
                       <EditIcon />
                     </Button>
                     <Button>
