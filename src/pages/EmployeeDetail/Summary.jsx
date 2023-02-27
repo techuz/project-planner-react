@@ -4,7 +4,6 @@ import {
   Button,
   TextField,
   MenuItem,
-  Avatar,
   Typography,
   Chip,
   Select,
@@ -17,56 +16,48 @@ import {
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 
-import team1 from '../../assets/images/team-1.jpg';
-import team2 from '../../assets/images/team-2.jpg';
-import team3 from '../../assets/images/team-3.jpg';
-import team4 from '../../assets/images/team-4.jpg';
-import team5 from '../../assets/images/team-5.jpg';
 import { useNavigate } from 'react-router-dom';
 
-export default function CreateProject() {
+export default function Summary(props) {
+  const { data } = props;
   const navigate = useNavigate();
   const [name, setName] = useState('');
-  const [projectLead, setProjectLead] = useState('');
-  const [budget, setBudget] = useState('');
-  const [date, setDate] = useState('');
+  const [position, setPosition] = useState('');
   const [isActive, setActive] = useState(false);
 
-  const projectLeads = [
+  const projectAllocated = [
     {
-      name: 'Ryan Tompson',
-      value: 'Ryan Tompson',
-      image: team1,
+      name: 'Frozen yoghurt',
+      value: 'Frozen yoghurt',
     },
     {
-      name: 'Romina Hadid',
-      value: 'Romina Hadid',
-      image: team2,
+      name: 'Temple run',
+      value: 'Temple run',
     },
     {
-      name: 'Alexander Smith',
-      value: 'Alexander Smith',
-      image: team3,
-    },
-    {
-      name: 'Jessica Doe',
-      value: 'Jessica Doe',
-      image: team4,
-    },
-    {
-      name: 'Bruce Banner',
-      value: 'Bruce Banner',
-      image: team5,
+      name: 'Fury ukraine',
+      value: 'Fury ukraine',
     },
   ];
 
-  const [members, setMembers] = useState([]);
+  const positions = [
+    {
+      name: 'sr.developer',
+      value: 'sr.developer',
+    },
+    {
+      name: 'jr.developer',
+      value: 'jr.developer',
+    },
+  ];
+
+  const [projects, setProjects] = useState([]);
 
   const handleMemberChange = (event) => {
     const {
       target: { value },
     } = event;
-    setMembers(
+    setProjects(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     );
@@ -75,6 +66,18 @@ export default function CreateProject() {
     event.preventDefault();
     console.log('Submitted');
   };
+  useEffect(() => {
+    console.log(data, '******');
+    setName(data.employee_name[0].name);
+    setPosition(data.position);
+    // setBudget(data.budget);
+    const projectsName = data.project_allocated.map(
+      (item) => item.project_name
+    );
+    setProjects([...projectsName]);
+    // setDate(data.date);
+    setActive(data.availability === 'available' ? true : false);
+  }, [data]);
 
   return (
     <Paper sx={{ padding: 3 }}>
@@ -90,7 +93,7 @@ export default function CreateProject() {
           >
             <Box sx={{ display: 'flex' }}>
               <TextField
-                label="Project name"
+                label="Employee name"
                 variant="filled"
                 // fullWidth
                 margin="normal"
@@ -100,19 +103,14 @@ export default function CreateProject() {
               <TextField
                 id="filled-select-currency"
                 select
-                label="Project lead"
-                value={projectLead}
+                label="Position"
+                value={position}
                 variant="filled"
-                onChange={(e) => setProjectLead(e.target.value)}
+                onChange={(e) => setPosition(e.target.value)}
               >
-                {projectLeads.map((option) => (
+                {positions.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Avatar
-                        src={option?.image}
-                        alt="name"
-                        sx={{ width: 20, height: 20 }}
-                      />
                       <Typography ml={1}>{option?.name}</Typography>
                     </Box>
                   </MenuItem>
@@ -120,14 +118,14 @@ export default function CreateProject() {
               </TextField>
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-chip-label">
-                  Developers
+                  Project allocated
                 </InputLabel>
                 <Select
                   labelId="demo-multiple-chip-label"
                   id="demo-multiple-chip"
                   multiple
                   input={<FilledInput />}
-                  value={members}
+                  value={projects}
                   onChange={handleMemberChange}
                   renderValue={(selected) => (
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -137,14 +135,9 @@ export default function CreateProject() {
                     </Box>
                   )}
                 >
-                  {projectLeads.map((option) => (
+                  {projectAllocated.map((option) => (
                     <MenuItem key={option.name} value={option.name}>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Avatar
-                          src={option?.image}
-                          alt="name"
-                          sx={{ width: 20, height: 20 }}
-                        />
                         <Typography ml={1}>{option?.name}</Typography>
                       </Box>
                     </MenuItem>
@@ -153,25 +146,6 @@ export default function CreateProject() {
               </FormControl>
             </Box>
             <Box sx={{ display: 'flex' }}>
-              <TextField
-                id="date"
-                label="Date"
-                type="date"
-                variant="filled"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-              <TextField
-                label="Budget"
-                variant="filled"
-                // fullWidth
-                margin="normal"
-                value={budget}
-                onChange={(event) => setBudget(event.target.value)}
-              />
               <FormControl sx={{ m: 2 }}>
                 <FormControlLabel
                   control={<Switch checked={isActive} />}

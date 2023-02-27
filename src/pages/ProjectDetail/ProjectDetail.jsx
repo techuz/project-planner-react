@@ -8,6 +8,7 @@ import { Paper } from '@mui/material';
 import Summary from './Summary';
 import { useLocation } from 'react-router-dom';
 import Milestones from './MileStones';
+import DailyStanup from './DailyStanup';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -73,7 +74,7 @@ export default function ProjectDetail() {
           <Milestones data={row} />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Daily standup/ meetings
+          <DailyStanup data={row} />
         </TabPanel>
         <TabPanel value={value} index={3}>
           Risks

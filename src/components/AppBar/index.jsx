@@ -102,10 +102,6 @@ export default function MiniDrawer({ children }) {
       name: 'Employee list',
       path: '/employee-list',
     },
-    {
-      name: 'Project detail',
-      path: '/project-detail',
-    },
   ];
 
   const { logout } = useAuth();

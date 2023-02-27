@@ -7,7 +7,7 @@ import { Dashboard } from './pages/Dashboard';
 import { EmployeeList } from './pages/EmployeeList';
 import { AuthProvider } from './providers/AuthProvider';
 import { ProjectDetail } from './pages/ProjectDetail';
-import CreateProject from './components/ProjectForm/CreateProject';
+import CreateProject from './components/Form/ProjectForm/CreateProject';
 
 function App() {
   return (

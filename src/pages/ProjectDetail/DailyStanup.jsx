@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Button,
   TextField,
   Collapse,
   FormControl,
-  FormControlLabel,
-  Switch,
-  FormLabel,
   List,
   ListItem,
   Typography,
@@ -16,54 +13,107 @@ import {
   Divider,
   ButtonGroup,
   ListSubheader,
+  InputLabel,
+  Select,
+  MenuItem,
+  FilledInput,
+  Avatar,
 } from '@mui/material';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 import SaveIcon from '@mui/icons-material/Save';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
+
+import team1 from '../../assets/images/team-1.jpg';
+import team2 from '../../assets/images/team-2.jpg';
+import team3 from '../../assets/images/team-3.jpg';
+import team4 from '../../assets/images/team-4.jpg';
+import team5 from '../../assets/images/team-5.jpg';
 import { useNavigate } from 'react-router-dom';
 
-export default function Milestones(props) {
+export default function DailyStanup(props) {
   const { data } = props;
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [isActive, setActive] = useState(false);
-  const [checkLists, setCheckLists] = useState('');
-  const [milestones, setMilestones] = useState([]);
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
 
+  const attendees = [
+    {
+      name: 'Ryan Tompson',
+      value: 'Ryan Tompson',
+      image: team1,
+    },
+    {
+      name: 'Romina Hadid',
+      value: 'Romina Hadid',
+      image: team2,
+    },
+    {
+      name: 'Alexander Smith',
+      value: 'Alexander Smith',
+      image: team3,
+    },
+    {
+      name: 'Jessica Doe',
+      value: 'Jessica Doe',
+      image: team4,
+    },
+    {
+      name: 'Bruce Banner',
+      value: 'Bruce Banner',
+      image: team5,
+    },
+  ];
+
+  const [members, setMembers] = useState([]);
+
+  const handleMemberChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setMembers(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value
+    );
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('Submitted');
   };
-  console.log(data);
-
-  useEffect(() => {
-    setMilestones(data.milestone);
-  }, [data]);
 
   const createMilestone = () => {
     setOpen(!open);
     setName('');
-    setStartDate('');
-    setEndDate('');
-    setActive(false);
-    setCheckLists('');
+    setDate('');
   };
 
   const editMilestone = (item) => {
     setOpen(true);
-    setName(item.name);
-    setStartDate(item.startDate);
-    setEndDate(item.endDate);
-    setActive(item.status === 'completed' ? true : false);
-    setCheckLists(item.checklist);
+    setName(item.standupName);
+    setDate(item.date);
+    setTime(item.time);
+    const developersName = item.developers.map((item) => item.name);
+    setMembers([...developersName]);
   };
+
+  const standupLists = [
+    {
+      standupName: 'Morning scrum',
+      date: '2023-01-02',
+      time: '10:00',
+      developers: [attendees[2], attendees[3], attendees[1]],
+    },
+    {
+      standupName: 'EOD status call',
+      date: '2023-01-02',
+      time: '07:00',
+      developers: [attendees[0], attendees[2], attendees[1], attendees[3]],
+    },
+  ];
 
   return (
     <Box>
@@ -74,7 +124,7 @@ export default function Milestones(props) {
           startIcon={open ? <CloseIcon /> : <AddIcon />}
           color="primary"
         >
-          {open ? 'close' : 'add new milestone'}
+          {open ? 'close' : 'add new standup'}
         </Button>
       </Box>
       <Collapse in={open} timeout="auto" unmountOnExit>
@@ -89,7 +139,7 @@ export default function Milestones(props) {
           >
             <Box sx={{ display: 'flex' }}>
               <TextField
-                label="Milestone name"
+                label="Daily standup name"
                 variant="filled"
                 // fullWidth
                 margin="normal"
@@ -98,45 +148,61 @@ export default function Milestones(props) {
               />
               <TextField
                 id="date"
-                label="Start date"
+                label="Date"
                 type="date"
                 variant="filled"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
               <TextField
-                id="date"
-                label="End date"
-                type="date"
+                id="time"
+                label="Time"
+                type="time"
                 variant="filled"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
               />
-              <FormControl sx={{ m: 2 }}>
-                <FormControlLabel
-                  control={<Switch checked={isActive} />}
-                  onChange={(e) => setActive(e.target.checked)}
-                  label="Status"
-                />
-              </FormControl>
-            </Box>
-            <Box>
-              <FormControl sx={{ m: 2 }}>
-                <FormLabel>Checklists</FormLabel>
-                <TextareaAutosize
-                  aria-label="minimum height"
-                  minRows={3}
-                  value={checkLists}
-                  onChange={(e) => setCheckLists(e.target.value)}
-                  placeholder="Minimum 3 rows"
-                  style={{ width: 600 }}
-                />
+              <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-chip-label">
+                  Developers
+                </InputLabel>
+                <Select
+                  labelId="demo-multiple-chip-label"
+                  id="demo-multiple-chip"
+                  multiple
+                  input={<FilledInput />}
+                  value={members}
+                  onChange={handleMemberChange}
+                  renderValue={(selected) => (
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      {selected.map((value) => (
+                        <Chip key={value} label={value} />
+                      ))}
+                    </Box>
+                  )}
+                >
+                  {attendees.map((option) => (
+                    <MenuItem key={option.name} value={option.name}>
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Avatar
+                          src={option?.image}
+                          alt="name"
+                          sx={{ width: 20, height: 20 }}
+                        />
+                        <Typography ml={1}>{option?.name}</Typography>
+                      </Box>
+                    </MenuItem>
+                  ))}
+                </Select>
               </FormControl>
             </Box>
             <Button variant="outlined" startIcon={<SaveIcon />}>
@@ -156,7 +222,7 @@ export default function Milestones(props) {
           aria-labelledby="nested-list-subheader"
           subheader={
             <ListSubheader component="div" id="nested-list-subheader">
-              Milestones list
+              Daily standup's list
             </ListSubheader>
           }
         >
@@ -177,35 +243,28 @@ export default function Milestones(props) {
                   width: '20%',
                 }}
               >
-                Name
+                Stanup name
               </Typography>
               <Typography
                 sx={{
                   width: '20%',
                 }}
               >
-                Start date
+                Date
               </Typography>
               <Typography
                 sx={{
                   width: '20%',
                 }}
               >
-                End date
+                Time
               </Typography>
               <Typography
                 sx={{
                   width: '20%',
                 }}
               >
-                Status
-              </Typography>
-              <Typography
-                sx={{
-                  width: '20%',
-                }}
-              >
-                Checklists
+                Developers
               </Typography>
               <Typography
                 sx={{
@@ -222,7 +281,7 @@ export default function Milestones(props) {
               width: '100%',
             }}
           >
-            {milestones.map((item) => (
+            {standupLists.map((item) => (
               <ListItem
                 sx={{
                   width: '100%',
@@ -235,39 +294,48 @@ export default function Milestones(props) {
                     width: '20%',
                   }}
                 >
-                  {item.name}
+                  {item.standupName}
                 </Typography>
                 <Typography
                   sx={{
                     width: '20%',
                   }}
                 >
-                  {item.startDate}
+                  {item.date}
                 </Typography>
                 <Typography
                   sx={{
                     width: '20%',
                   }}
                 >
-                  {item.endDate}
+                  {item.time}
                 </Typography>
-                <Typography
+                <Box
                   sx={{
                     width: '20%',
+                    display: 'flex',
+                    flexDirection: 'column',
                   }}
                 >
-                  <Chip
-                    label={item.status}
-                    color={item.status === 'completed' ? 'success' : 'warning'}
-                  />
-                </Typography>
-                <Typography
-                  sx={{
-                    width: '20%',
-                  }}
-                >
-                  {item.checklist}
-                </Typography>
+                  {item.developers.map((dev) => (
+                    <Typography sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Avatar
+                        src={dev.image}
+                        alt="name"
+                        size="xs"
+                        sx={{
+                          width: 20,
+                          height: 20,
+                          border: '2px solid #FFF',
+                          cursor: 'pointer',
+                          position: 'relative',
+                          mr: 1,
+                        }}
+                      />
+                      {dev.name}
+                    </Typography>
+                  ))}
+                </Box>
                 <Typography
                   sx={{
                     width: '20%',
