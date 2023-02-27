@@ -9,6 +9,7 @@ import Summary from './Summary';
 import { useLocation } from 'react-router-dom';
 import Milestones from './MileStones';
 import DailyStanup from './DailyStanup';
+import Risk from './Risk';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -77,7 +78,7 @@ export default function ProjectDetail() {
           <DailyStanup data={row} />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          Risks
+          <Risk data={row} />
         </TabPanel>
       </Box>
     </Paper>
