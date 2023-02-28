@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Chip from '@mui/material/Chip';
-import { Button } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -26,7 +26,9 @@ import team2 from '../../../../assets/images/team-2.jpg';
 import team3 from '../../../../assets/images/team-3.jpg';
 import team4 from '../../../../assets/images/team-4.jpg';
 import team5 from '../../../../assets/images/team-5.jpg';
+import xcel from '../../../../assets/images/xcel.jpeg';
 import StatusTableCell from './StausTableCell';
+import Link from '@mui/material/Link';
 
 function createData(
   project_name,
@@ -64,6 +66,22 @@ function Row(props) {
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
+        </TableCell>
+        <TableCell align="center" component="th" scope="row">
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Avatar
+              src={xcel}
+              alt="name"
+              sx={{ width: 20, height: 20, mr: 1 }}
+              variant="square"
+            />
+            <Link
+              href="https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing"
+              target="_blank"
+            >
+              {row.project_name}
+            </Link>
+          </Box>
         </TableCell>
         <TableCell
           align="center"
@@ -553,6 +571,7 @@ export default function Index() {
           <TableHead>
             <TableRow>
               <TableCell />
+              <TableCell align="center">Links</TableCell>
               <TableCell align="center">Project name</TableCell>
               <TableCell align="center">Project lead</TableCell>
               <TableCell align="center">Users</TableCell>

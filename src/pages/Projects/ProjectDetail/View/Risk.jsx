@@ -3,7 +3,7 @@ import RisksTable from '../../../../components/Table/Project/Risks';
 
 export default function Risk(props) {
   const { data } = props;
-
+  console.log(data);
   const riskLists = [
     {
       risk: 'risk 1',

@@ -1,8 +1,6 @@
 import { Box, ButtonGroup, Button } from '@mui/material';
 
-const ActionTableCell = (props) => {
-  const { row } = props;
-
+const ActionTableCell = () => {
   return (
     <Box
       sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}

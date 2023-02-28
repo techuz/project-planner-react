@@ -19,8 +19,7 @@ import {
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
-export default function GlobalDailyStandups(props) {
-  const { data } = props;
+export default function GlobalDailyStandups() {
   const [message, setMessage] = React.useState('');
   const [dailyStanups, setDailyStandups] = React.useState([
     {
@@ -150,7 +149,7 @@ export default function GlobalDailyStandups(props) {
               <TimelineItem>
                 <TimelineOppositeContent
                   sx={{ m: 'auto 0' }}
-                  align={(index + 1) % 2 === 0 ? 'right' : 'left'}
+                  align={index % 2 === 0 ? 'right' : 'left'}
                   variant="body2"
                   color="text.secondary"
                 >
