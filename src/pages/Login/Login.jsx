@@ -27,7 +27,6 @@ export default function SignIn() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log("values", values);
       login(values);
     },
   });
