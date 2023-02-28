@@ -110,7 +110,7 @@ export default function DailyStanup(props) {
       });
     }, 10);
   }, [dailyStanups]);
-
+  console.log(data);
   return (
     <Box>
       <FormLabel>Daily standups/ meetings</FormLabel>
@@ -137,7 +137,7 @@ export default function DailyStanup(props) {
               <TimelineItem>
                 <TimelineOppositeContent
                   sx={{ m: 'auto 0' }}
-                  align={(index + 1) % 2 === 0 ? 'right' : 'left'}
+                  align={index % 2 === 0 ? 'right' : 'left'}
                   variant="body2"
                   color="text.secondary"
                 >
