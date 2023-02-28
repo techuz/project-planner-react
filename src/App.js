@@ -3,13 +3,14 @@ import { Routes, Route } from 'react-router-dom';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
 import { Login } from './pages/Login';
-import { Dashboard } from './pages/Dashboard';
-import { EmployeeList } from './pages/EmployeeList';
+import { Dashboard } from './pages/Projects/Dashboard';
+import { EmployeeList } from './pages/Employee/EmployeeList';
 import { AuthProvider } from './providers/AuthProvider';
-import { ProjectDetail } from './pages/ProjectDetail';
-import { EmployeeDetail } from './pages/EmployeeDetail';
-import CreateProject from './components/Form/ProjectForm/CreateProject';
-import CreateEmployee from './components/Form/EmployeeForm/CreateEmployee';
+import { ProjectDetail } from './pages/Projects/ProjectDetail';
+import { EmployeeDetail } from './pages/Employee/EmployeeDetail';
+import CreateProject from './components/Form/Project/CreateProject';
+import CreateEmployee from './components/Form/Employee/CreateEmployee';
+import { GlobalDailyStandups } from './pages/GlobalDailyStandups';
 
 function App() {
   return (
@@ -29,6 +30,14 @@ function App() {
           element={
             <ProtectedRoute>
               <EmployeeList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/global-daily-standups"
+          element={
+            <ProtectedRoute>
+              <GlobalDailyStandups />
             </ProtectedRoute>
           }
         />

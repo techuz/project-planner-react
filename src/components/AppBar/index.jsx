@@ -102,6 +102,10 @@ export default function MiniDrawer({ children }) {
       name: 'Employee list',
       path: '/employee-list',
     },
+    {
+      name: 'Global Daily standups',
+      path: '/global-daily-standups',
+    },
   ];
 
   const { logout } = useAuth();

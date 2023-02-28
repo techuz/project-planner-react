@@ -17,6 +17,13 @@ export const defaultTheme = createTheme({
         },
       },
     },
+    MuiTimelineItem: {
+      styleOverrides: {
+        root: {
+          minHeight: 'initial !important',
+        },
+      },
+    },
   },
 });
 
