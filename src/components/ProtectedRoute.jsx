@@ -1,5 +1,6 @@
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../providers/AuthProvider";
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../providers/AuthProvider';
+import AppBar from './AppBar';
 
 export const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -7,5 +8,5 @@ export const ProtectedRoute = ({ children }) => {
     // user is not authenticated
     return <Navigate to="/" />;
   }
-  return children;
+  return <AppBar>{children}</AppBar>;
 };
