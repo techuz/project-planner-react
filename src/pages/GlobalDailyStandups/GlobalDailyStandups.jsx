@@ -185,8 +185,8 @@ export default function GlobalDailyStandups() {
           }}
         >
           <TextField
-            variant="filled"
-            fullWidth
+            sx={{ padding: '8px 16px 8px 16px', width: '90%' }}
+            placeholder="Create new standup..."
             margin="normal"
             value={message}
             onChange={(event) => setMessage(event.target.value)}

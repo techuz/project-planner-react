@@ -129,7 +129,7 @@ export default function DailyStanup(props) {
           <Timeline
             position="alternate"
             sx={{
-              maxHeight: 450,
+              maxHeight: 350,
               overflowY: 'scroll',
             }}
           >
@@ -172,10 +172,10 @@ export default function DailyStanup(props) {
           }}
         >
           <TextField
-            variant="filled"
-            fullWidth
+            sx={{ padding: '8px 16px 8px 16px', width: '90%' }}
             margin="normal"
             value={message}
+            placeholder="Create new standup..."
             onChange={(event) => setMessage(event.target.value)}
           />
           <Button
