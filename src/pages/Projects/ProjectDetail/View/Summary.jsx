@@ -1,4 +1,4 @@
-import { Box, Avatar, FormLabel, Typography } from '@mui/material';
+import { Box, Avatar, FormLabel, Typography, Chip } from '@mui/material';
 
 import ProjectLeadTableCell from '../../../../components/Table/Project/List/ProjectLeadTableCell';
 
@@ -12,7 +12,13 @@ export default function Summary(props) {
         <Typography>Project name: {data.project_name}</Typography>
       </Box>
       <Box sx={{ margin: 1 }}>
-        <Typography>Upcoming deadline: {data.date}</Typography>
+        <Typography>
+          Upcoming deadline:{' '}
+          <Chip
+            label={data.date}
+            color={data.date === 'completed' ? 'success' : 'warning'}
+          />
+        </Typography>
       </Box>
       <Box sx={{ margin: 1 }}>
         <Typography sx={{ display: 'flex' }}>

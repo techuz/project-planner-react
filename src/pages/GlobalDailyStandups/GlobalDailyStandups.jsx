@@ -9,111 +9,93 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
-import {
-  Button,
-  ButtonGroup,
-  Divider,
-  FormLabel,
-  Paper,
-  TextField,
-} from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import { Paper } from '@mui/material';
 
 export default function GlobalDailyStandups() {
-  const [message, setMessage] = React.useState('');
-  const [dailyStanups, setDailyStandups] = React.useState([
-    {
-      heading: 'Mysql',
-      project: 'Mysql',
-      description: 'Because you need strength',
-      date: '12:30',
-    },
-    {
-      heading: 'Node js',
-      project: 'Mysql',
-      description: 'Because you need strength',
-      date: '12:00',
-    },
-    {
-      heading: 'Reactjs',
-      project: 'Mysql',
-      description: 'Some UI changes need to done',
-      date: '11:30',
-    },
-    {
-      heading: 'Angular',
-      project: 'Mysql',
-      description: 'Need to  configure authentication api',
-      date: '11:30',
-    },
-    {
-      heading: 'Mysql',
-      project: 'Mysql',
-      description: 'Configure the tables',
-      date: '10:30',
-    },
-    {
-      heading: 'Mysql',
-      project: 'Mysql',
-      description: 'Because you need strength',
-      date: '09:30',
-    },
-    {
-      heading: 'Mysql',
-      project: 'Mysql',
-      description: 'Because you need strength',
-      date: '09:30',
-    },
-    {
-      heading: 'Mysql',
-      project: 'Mysql',
-      description: 'Because you need strength',
-      date: '09:30',
-    },
-    {
-      heading: 'Mysql',
-      project: 'Mysql',
-      description: 'Because you need strength',
-      date: '09:30',
-    },
-    {
-      heading: 'react js',
-      project: 'Mysql',
-      description: 'Because you need strength',
-      date: '09:30',
-    },
-    {
-      heading: 'node js',
-      project: 'Mysql',
-      description: 'Because you need strength',
-      date: '09:30',
-    },
-    {
-      heading: 'Mysql',
-      project: 'Mysql',
-      description: 'Because you need strength',
-      date: '09:30',
-    },
-    {
-      heading: 'php',
-      project: 'Mysql',
-      description: 'Because you need strength',
-      date: '09:30',
-    },
-  ]);
+  const dailyStanups = React.useMemo(
+    () => [
+      {
+        createdBy: 'Ryan thompsan',
+        project: 'Cupcake',
+        description: 'Because you need strength',
+        date: '12:30',
+      },
+      {
+        createdBy: 'Jessica doe',
+        project: 'Frozen yoghurt',
+        description: 'Because you need strength',
+        date: '12:00',
+      },
+      {
+        createdBy: 'Ramina hadid',
+        project: 'Frozen yoghurt',
+        description: 'Some UI changes need to done',
+        date: '11:30',
+      },
+      {
+        createdBy: 'Ramina hadid ',
+        project: 'Frozen yoghurt',
+        description: 'Need to  configure authentication api',
+        date: '11:30',
+      },
+      {
+        createdBy: 'Ryan thompsan',
+        project: 'Ice cream sandwich',
+        description: 'Configure the tables',
+        date: '10:30',
+      },
+      {
+        createdBy: 'Ryan thompsan',
+        project: 'Eclair',
+        description: 'Because you need strength',
+        date: '09:30',
+      },
+      {
+        createdBy: 'Ryan thompsan',
+        project: 'Eclair',
+        description: 'Because you need strength',
+        date: '09:30',
+      },
+      {
+        createdBy: 'Ryan thompsan',
+        project: 'Ice cream sandwich',
+        description: 'Because you need strength',
+        date: '09:30',
+      },
+      {
+        createdBy: 'Ryan thompsan',
+        project: 'Cupcake',
+        description: 'Because you need strength',
+        date: '09:30',
+      },
+      {
+        createdBy: 'Ramina hadid ',
+        project: 'Ice cream sandwich',
+        description: 'Because you need strength',
+        date: '09:30',
+      },
+      {
+        createdBy: 'Jessica doe',
+        project: 'Cupcake',
+        description: 'Because you need strength',
+        date: '09:30',
+      },
+      {
+        createdBy: 'Ryan thompsan',
+        project: 'Frozen yoghurt',
+        description: 'Because you need strength',
+        date: '09:30',
+      },
+      {
+        createdBy: 'Ramina hadid ',
+        project: 'Frozen yoghurt',
+        description: 'Because you need strength',
+        date: '09:30',
+      },
+    ],
+    []
+  );
   const bottomElement = React.useRef(null);
-
-  const handleSubmit = () => {
-    const obj = {
-      heading: 'php',
-      description: message,
-      date: '09:30',
-    };
-    let fk = dailyStanups;
-    fk.push(obj);
-    setDailyStandups([...fk]);
-    setMessage('');
-  };
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -125,23 +107,12 @@ export default function GlobalDailyStandups() {
 
   return (
     <Box>
-      <FormLabel>Global daily standups/ meetings</FormLabel>
-      <Paper elevation={4} sx={{ mt: 2 }}>
+      <Paper elevation={4} sx={{ mt: 2, padding: 2 }}>
         <Box>
-          <ButtonGroup
-            variant="text"
-            color="primary"
-            aria-label="medium secondary button group"
-          >
-            <Button key="one">Last 2 months</Button>
-            <Button key="two">Last months</Button>
-            <Button key="three">Last week</Button>
-          </ButtonGroup>
-          <Divider />
           <Timeline
             position="alternate"
             sx={{
-              maxHeight: 450,
+              maxHeight: 560,
               overflowY: 'scroll',
             }}
           >
@@ -165,8 +136,8 @@ export default function GlobalDailyStandups() {
                 </TimelineSeparator>
                 <TimelineContent sx={{ py: '12px', px: 2 }}>
                   <Paper elevation={3} sx={{ padding: '6px 16px' }}>
-                    <Typography variant="h6" component="span">
-                      {item.heading}
+                    <Typography variant="caption" component="span">
+                      {item.createdBy}
                     </Typography>
                     <Typography>{item.description}</Typography>
                   </Paper>
@@ -176,33 +147,6 @@ export default function GlobalDailyStandups() {
             <div className="bottom" ref={bottomElement} />
           </Timeline>
         </Box>
-        <Paper
-          elevation={4}
-          sx={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-around',
-            padding: '8px 16px 8px 16px',
-          }}
-        >
-          <TextField
-            sx={{ width: '90%' }}
-            id="outlined-multiline-flexible"
-            placeholder="Create new standup..."
-            value={message}
-            onChange={(event) => setMessage(event.target.value)}
-            multiline
-            maxRows={4}
-          />
-          <Button
-            variant="contained"
-            endIcon={<SendIcon />}
-            onClick={handleSubmit}
-          >
-            Send
-          </Button>
-        </Paper>
       </Paper>
     </Box>
   );
