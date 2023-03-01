@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -90,20 +90,23 @@ const Drawer = styled(MuiDrawer, {
 export default function MiniDrawer({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const paths = [
-    {
-      name: 'Project list',
-      path: '/dashboard',
-    },
-    {
-      name: 'Employee list',
-      path: '/employee-list',
-    },
-    {
-      name: 'Global Daily standups',
-      path: '/global-daily-standups',
-    },
-  ];
+  const paths = useMemo(
+    () => [
+      {
+        name: 'Project list',
+        path: '/dashboard',
+      },
+      {
+        name: 'Employee list',
+        path: '/employee-list',
+      },
+      {
+        name: 'Global Daily standups',
+        path: '/global-daily-standups',
+      },
+    ],
+    []
+  );
 
   const { logout } = useAuth();
   const [open, setOpen] = useState(false);
@@ -124,8 +127,7 @@ export default function MiniDrawer({ children }) {
         setCurrentPage(pageName[0].name);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
+  }, [location, paths]);
 
   return (
     <Box sx={{ display: 'flex' }}>
