@@ -106,7 +106,7 @@ export default function DailyStanup(props) {
   console.log(data);
   return (
     <Box>
-      <Paper elevation={4} sx={{ mt: 2 }}>
+      <Paper elevation={4}>
         <Box>
           <ButtonGroup
             variant="text"

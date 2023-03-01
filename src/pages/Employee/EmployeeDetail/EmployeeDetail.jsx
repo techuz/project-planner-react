@@ -53,7 +53,7 @@ export default function EmployeeDetail() {
   };
 
   return (
-    <Paper>
+    <Paper elevation={4}>
       {permissions === 'View' ? (
         <Box sx={{ width: '100%' }}>
           <ViewSummary data={row} />

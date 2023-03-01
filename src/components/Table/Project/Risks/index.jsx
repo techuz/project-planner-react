@@ -123,7 +123,7 @@ export default function Index(props) {
           </Box>
         </form>
       </Collapse>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} elevation={4}>
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>

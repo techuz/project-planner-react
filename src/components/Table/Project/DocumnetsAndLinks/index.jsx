@@ -7,21 +7,18 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
-import ActionTableCell from './ActionTableCell';
+import LinkTableCell from './LinkTableCell';
 
 function Row(props) {
-  const { row, editAllocation } = props;
+  const { row } = props;
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell align="center" component="th" scope="row">
-          {row.project_name}
+          {row.name}
         </TableCell>
-        <TableCell align="center" component="th" scope="row">
-          {row.hours}
-        </TableCell>
-        <TableCell align="center" component="th" scope="row">
-          <ActionTableCell row={row} editAllocation={editAllocation} />
+        <TableCell align="center">
+          <LinkTableCell link={row} />
         </TableCell>
       </TableRow>
     </React.Fragment>
@@ -29,7 +26,7 @@ function Row(props) {
 }
 
 export default function Index(props) {
-  const { rows, editAllocation } = props;
+  const { rows } = props;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -41,22 +38,22 @@ export default function Index(props) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
   return (
     <>
       <TableContainer component={Paper} elevation={4}>
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
-              <TableCell align="center">Project name</TableCell>
-              <TableCell align="center">Hours</TableCell>
-              <TableCell align="center">Actions</TableCell>
+              <TableCell align="center">Name</TableCell>
+              <TableCell align="center">Link</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
-                <Row key={row.risk} row={row} editAllocation={editAllocation} />
+                <Row key={row.name} row={row} />
               ))}
           </TableBody>
         </Table>
