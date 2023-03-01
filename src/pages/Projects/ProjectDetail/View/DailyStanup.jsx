@@ -9,7 +9,14 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
-import { Button, ButtonGroup, Divider, FormLabel, Paper } from '@mui/material';
+import {
+  Button,
+  ButtonGroup,
+  Divider,
+  FormLabel,
+  Paper,
+  TextField,
+} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function DailyStanup(props) {
@@ -166,11 +173,14 @@ export default function DailyStanup(props) {
             padding: '8px 16px 8px 16px',
           }}
         >
-          <textarea
+          <TextField
+            sx={{ width: '90%' }}
+            id="outlined-multiline-flexible"
             placeholder="Create new standup..."
-            style={{ padding: '8px 16px 8px 16px', width: '90%' }}
             value={message}
             onChange={(event) => setMessage(event.target.value)}
+            multiline
+            maxRows={4}
           />
           <Button
             variant="contained"
