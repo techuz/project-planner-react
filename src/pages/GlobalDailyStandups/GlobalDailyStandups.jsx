@@ -9,14 +9,7 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
-import {
-  Button,
-  ButtonGroup,
-  Divider,
-  FormLabel,
-  Paper,
-  TextField,
-} from '@mui/material';
+import { Button, ButtonGroup, Divider, FormLabel, Paper } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function GlobalDailyStandups() {
@@ -141,7 +134,7 @@ export default function GlobalDailyStandups() {
           <Timeline
             position="alternate"
             sx={{
-              maxHeight: 450,
+              maxHeight: 470,
               overflowY: 'scroll',
             }}
           >
@@ -182,12 +175,13 @@ export default function GlobalDailyStandups() {
             width: '100%',
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'space-around',
+            padding: '8px 16px 8px 16px',
           }}
         >
-          <TextField
-            sx={{ padding: '8px 16px 8px 16px', width: '90%' }}
+          <textarea
             placeholder="Create new standup..."
-            margin="normal"
+            style={{ padding: '8px 16px 8px 16px', width: '90%' }}
             value={message}
             onChange={(event) => setMessage(event.target.value)}
           />
