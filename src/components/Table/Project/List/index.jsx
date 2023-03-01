@@ -18,7 +18,6 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ProjectLeadTableCell from './ProjectLeadTableCell';
-import ActionTableCell from './ActionTableCell';
 import AddIcon from '@mui/icons-material/Add';
 
 import team1 from '../../../../assets/images/team-1.jpg';
@@ -106,9 +105,6 @@ function Row(props) {
         <TableCell align="center">{row.budget}</TableCell>
         <TableCell align="center">
           <StatusTableCell statuses={row.status} />
-        </TableCell>
-        <TableCell align="center">
-          <ActionTableCell />
         </TableCell>
       </TableRow>
       <TableRow>
@@ -578,7 +574,6 @@ export default function Index() {
               <TableCell align="center">Upcoming deadline</TableCell>
               <TableCell align="center">Type</TableCell>
               <TableCell align="center">Status</TableCell>
-              <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

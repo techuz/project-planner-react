@@ -1,12 +1,13 @@
 import { Box, ButtonGroup, Button } from '@mui/material';
 
-const ActionTableCell = () => {
+const ActionTableCell = (props) => {
+  const { shouldEdit } = props;
   return (
     <Box
       sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
     >
       <ButtonGroup variant="text" aria-label="text button group">
-        <Button>Edit</Button>
+        <Button onClick={shouldEdit}>Edit</Button>
       </ButtonGroup>
     </Box>
   );
