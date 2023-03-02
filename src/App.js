@@ -7,11 +7,13 @@ import { Dashboard } from './pages/Projects/Dashboard';
 import { EmployeeList } from './pages/Employee/EmployeeList';
 import { AuthProvider } from './providers/AuthProvider';
 import { ProjectDetail } from './pages/Projects/ProjectDetail';
+import { ProjectExperimentDetail } from './pages/ProjectExperiment/ProjectExperimentDetail';
 import { EmployeeDetail } from './pages/Employee/EmployeeDetail';
 import CreateProject from './components/Form/Project/CreateProject';
 import CreateEmployee from './components/Form/Employee/CreateEmployee';
 import { GlobalDailyStandups } from './pages/GlobalDailyStandups';
 import { ContentPlan } from './pages/ContentPlan';
+import { ProjectExperimentList } from './pages/ProjectExperiment/ProjectExperimentList';
 
 function App() {
   return (
@@ -51,6 +53,14 @@ function App() {
           }
         />
         <Route
+          path="/project-experiment"
+          element={
+            <ProtectedRoute>
+              <ProjectExperimentList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/project-detail"
           element={
             <ProtectedRoute>
@@ -63,6 +73,14 @@ function App() {
           element={
             <ProtectedRoute>
               <EmployeeDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/project-experiment-detail"
+          element={
+            <ProtectedRoute>
+              <ProjectExperimentDetail />
             </ProtectedRoute>
           }
         />
