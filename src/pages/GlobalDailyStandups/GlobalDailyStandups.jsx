@@ -18,79 +18,79 @@ export default function GlobalDailyStandups() {
         createdBy: 'Ryan thompsan',
         project: 'Cupcake',
         description: 'Because you need strength',
-        date: '12:30',
+        time: '12:30',
       },
       {
         createdBy: 'Jessica doe',
         project: 'Frozen yoghurt',
         description: 'Because you need strength',
-        date: '12:00',
+        time: '12:00',
       },
       {
         createdBy: 'Ramina hadid',
         project: 'Frozen yoghurt',
         description: 'Some UI changes need to done',
-        date: '11:30',
+        time: '11:30',
       },
       {
         createdBy: 'Ramina hadid ',
         project: 'Frozen yoghurt',
         description: 'Need to  configure authentication api',
-        date: '11:30',
+        time: '11:30',
       },
       {
         createdBy: 'Ryan thompsan',
         project: 'Ice cream sandwich',
         description: 'Configure the tables',
-        date: '10:30',
+        time: '10:30',
       },
       {
         createdBy: 'Ryan thompsan',
         project: 'Eclair',
         description: 'Because you need strength',
-        date: '09:30',
+        time: '09:30',
       },
       {
         createdBy: 'Ryan thompsan',
         project: 'Eclair',
         description: 'Because you need strength',
-        date: '09:30',
+        time: '09:30',
       },
       {
         createdBy: 'Ryan thompsan',
         project: 'Ice cream sandwich',
         description: 'Because you need strength',
-        date: '09:30',
+        time: '09:30',
       },
       {
         createdBy: 'Ryan thompsan',
         project: 'Cupcake',
         description: 'Because you need strength',
-        date: '09:30',
+        time: '09:30',
       },
       {
         createdBy: 'Ramina hadid ',
         project: 'Ice cream sandwich',
         description: 'Because you need strength',
-        date: '09:30',
+        time: '09:30',
       },
       {
         createdBy: 'Jessica doe',
         project: 'Cupcake',
         description: 'Because you need strength',
-        date: '09:30',
+        time: '09:30',
       },
       {
         createdBy: 'Ryan thompsan',
         project: 'Frozen yoghurt',
         description: 'Because you need strength',
-        date: '09:30',
+        time: '09:30',
       },
       {
         createdBy: 'Ramina hadid ',
         project: 'Frozen yoghurt',
         description: 'Because you need strength',
-        date: '09:30',
+        time: '09:30',
       },
     ],
     []
@@ -124,7 +124,7 @@ export default function GlobalDailyStandups() {
                   variant="body2"
                   color="text.secondary"
                 >
-                  <Typography>{item.date}</Typography>
+                  <Typography>{item.time}</Typography>
                   <Typography>{item.project}</Typography>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
