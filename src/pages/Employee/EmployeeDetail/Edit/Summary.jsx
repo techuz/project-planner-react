@@ -34,7 +34,6 @@ export default function Summary(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submitted');
   };
   useEffect(() => {
     setName(data.employee_name[0].name);

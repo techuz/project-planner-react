@@ -104,6 +104,10 @@ export default function MiniDrawer({ children }) {
         name: 'Global Daily standups',
         path: '/global-daily-standups',
       },
+      {
+        name: 'Content plan',
+        path: '/content-plan',
+      },
     ],
     []
   );

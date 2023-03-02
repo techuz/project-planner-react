@@ -11,6 +11,7 @@ import { EmployeeDetail } from './pages/Employee/EmployeeDetail';
 import CreateProject from './components/Form/Project/CreateProject';
 import CreateEmployee from './components/Form/Employee/CreateEmployee';
 import { GlobalDailyStandups } from './pages/GlobalDailyStandups';
+import { ContentPlan } from './pages/ContentPlan';
 
 function App() {
   return (
@@ -38,6 +39,14 @@ function App() {
           element={
             <ProtectedRoute>
               <GlobalDailyStandups />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/content-plan"
+          element={
+            <ProtectedRoute>
+              <ContentPlan />
             </ProtectedRoute>
           }
         />

@@ -102,7 +102,6 @@ export default function DailyStanup(props) {
       });
     }, 10);
   }, [dailyStanups]);
-
   return (
     <Box>
       <Paper elevation={4}>

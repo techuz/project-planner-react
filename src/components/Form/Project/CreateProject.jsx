@@ -73,7 +73,6 @@ export default function CreateProject() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submitted');
   };
 
   return (
