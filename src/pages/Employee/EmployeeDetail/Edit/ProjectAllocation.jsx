@@ -39,7 +39,6 @@ export default function ProjectAllocation(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submitted');
   };
 
   useEffect(() => {
