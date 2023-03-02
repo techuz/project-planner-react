@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-const API_URL = process.env.REACT_APP_API_URL;
 const statusCode = [401, 422, 400, 500, 404];
 
 axios.interceptors.response.use(
@@ -17,8 +16,7 @@ axios.interceptors.response.use(
   }
 );
 
-const getHeaders = (isAuthorized, isFormWithImg) => {
-  let authToken = useLocalStorage("token", null);
+const getHeaders = (isAuthorized, authToken, isFormWithImg) => {
   let config = {
     headers: {
       Accept: "application/json",
@@ -33,16 +31,18 @@ const getHeaders = (isAuthorized, isFormWithImg) => {
   return config;
 };
 
-export const requestToServer = (
+export const useRequestToServer = (
   url,
   data,
   method,
   isAuthorized = false,
   isFormWithImg = false
 ) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   let requestUrl = `${API_URL}${url}`;
-  let headers = getHeaders(isAuthorized, isFormWithImg);
+  let authToken = useLocalStorage("token", null);
+  let headers = getHeaders(isAuthorized, authToken, isFormWithImg);
 
   return new Promise((resolve, reject) => {
     axios({ method, requestUrl, headers, data })
@@ -57,3 +57,5 @@ export const requestToServer = (
       });
   });
 };
+
+export default useRequestToServer;
