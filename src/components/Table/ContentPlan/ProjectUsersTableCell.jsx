@@ -12,7 +12,6 @@ import { useState } from 'react';
 
 const ProjectUsersTableCell = (props) => {
   const { members } = props;
-  console.log(members);
   const [anchorEl, setAnchorEl] = useState(null);
   const [hoveredUser, setHoveredUser] = useState(null);
   return (

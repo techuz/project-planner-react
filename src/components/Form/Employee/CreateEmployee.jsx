@@ -63,7 +63,6 @@ export default function CreateEmployee() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submitted');
   };
 
   return (
