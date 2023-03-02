@@ -13,7 +13,6 @@ import { Button, ButtonGroup, Divider, Paper, TextField } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function DailyStanup(props) {
-  const { data } = props;
   const [message, setMessage] = React.useState('');
   const [dailyStanups, setDailyStandups] = React.useState([
     {
@@ -103,10 +102,10 @@ export default function DailyStanup(props) {
       });
     }, 10);
   }, [dailyStanups]);
-  console.log(data);
+
   return (
     <Box>
-      <Paper elevation={4} sx={{ mt: 2 }}>
+      <Paper elevation={4}>
         <Box>
           <ButtonGroup
             variant="text"

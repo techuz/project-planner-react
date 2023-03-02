@@ -10,6 +10,7 @@ import { useLocation } from 'react-router-dom';
 import Milestones from './View/MileStones';
 import DailyStanup from './View/DailyStanup';
 import Risk from './View/Risk';
+import DocumentsAndLinks from './View/DocumentsAndLinks';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,7 +55,7 @@ export default function ProjectDetail() {
   };
 
   return (
-    <Paper>
+    <Paper elevation={4}>
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs
@@ -65,6 +66,7 @@ export default function ProjectDetail() {
             <Tab label="Summary" {...a11yProps(0)} />
             <Tab label="Daily standup/ meetings" {...a11yProps(1)} />
             <Tab label="Risks" {...a11yProps(2)} />
+            <Tab label="Documents & links" {...a11yProps(3)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
@@ -87,6 +89,11 @@ export default function ProjectDetail() {
         <TabPanel value={value} index={2}>
           <Box>
             <Risk data={row} />
+          </Box>
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <Box>
+            <DocumentsAndLinks data={row} />
           </Box>
         </TabPanel>
       </Box>

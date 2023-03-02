@@ -43,7 +43,7 @@ export default function Summary(props) {
   }, [data]);
 
   return (
-    <Paper sx={{ padding: 3 }}>
+    <Paper sx={{ padding: 3 }} elevation={4}>
       <Box>
         <form onSubmit={handleSubmit}>
           <Box

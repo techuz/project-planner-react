@@ -317,7 +317,7 @@ export default function Index() {
           add new employee
         </Button>
       </Box>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} elevation={4}>
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
