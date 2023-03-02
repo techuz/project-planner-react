@@ -32,6 +32,7 @@ function createData(
   employee_name,
   project_allocated,
   availability,
+  totalHours,
   position,
   tech_skills
 ) {
@@ -39,6 +40,7 @@ function createData(
     employee_name,
     project_allocated,
     availability,
+    totalHours,
     position,
     tech_skills,
   };
@@ -63,7 +65,10 @@ function Row(props) {
           <EmployeeNameCell employee={row.employee_name} />
         </TableCell>
         <TableCell align="center">
-          <ProjectListCell projects={row.project_allocated} />
+          <ProjectListCell
+            projects={row.project_allocated}
+            totalHours={row.totalHours}
+          />
         </TableCell>
         <TableCell align="center">
           <Chip
@@ -98,6 +103,7 @@ Row.propTypes = {
       })
     ).isRequired,
     availability: PropTypes.string.isRequired,
+    totalHours: PropTypes.string.isRequired,
     position: PropTypes.string.isRequired,
     tech_skills: PropTypes.arrayOf(
       PropTypes.shape({
@@ -119,18 +125,19 @@ const rows = [
     [
       {
         project_name: 'Frozen yoghurt',
-        hours: '10 hrs/weak',
+        hours: '10 hrs/week',
       },
       {
         project_name: 'Temple run',
-        hours: '30 hrs/weak',
+        hours: '12 hrs/week',
       },
       {
         project_name: 'Fury ukraine',
-        hours: '27 hrs/weak',
+        hours: '8 hrs/week',
       },
     ],
-    '10 hrs/weak',
+    '10 hrs/week',
+    '30 hrs/week',
     'jr.developer',
     [
       {
@@ -157,18 +164,19 @@ const rows = [
     [
       {
         project_name: 'Frozen yoghurt',
-        hours: '20 hrs/weak',
+        hours: '14 hrs/week',
       },
       {
         project_name: 'Temple run',
-        hours: '30 hrs/weak',
+        hours: '12 hrs/week',
       },
       {
         project_name: 'Fury ukraine',
-        hours: '27 hrs/weak',
+        hours: '8 hrs/week',
       },
     ],
-    '22 hrs/weak',
+    '06 hrs/week',
+    '34 hrs/week',
     'sr.developer',
     [
       {
@@ -191,10 +199,11 @@ const rows = [
     [
       {
         project_name: 'Frozen yoghurt',
-        hours: '10 hrs/weak',
+        hours: '20 hrs/week',
       },
     ],
-    '14 hrs/weak',
+    '20 hrs/week',
+    '20 hrs/week',
     'jr.developer',
     [
       {
@@ -217,18 +226,19 @@ const rows = [
     [
       {
         project_name: 'Frozen yoghurt',
-        hours: '10 hrs/weak',
+        hours: '10 hrs/week',
       },
       {
         project_name: 'Temple run',
-        hours: '30 hrs/weak',
+        hours: '10 hrs/week',
       },
       {
         project_name: 'Fury ukraine',
-        hours: '27 hrs/weak',
+        hours: '10 hrs/week',
       },
     ],
-    '23 hrs/weak',
+    '10 hrs/week',
+    '30 hrs/week',
     'jr.developer',
     [
       {
@@ -255,14 +265,15 @@ const rows = [
     [
       {
         project_name: 'Frozen yoghurt',
-        hours: '10 hrs/weak',
+        hours: '22 hrs/week',
       },
       {
         project_name: 'Temple run',
-        hours: '30 hrs/weak',
+        hours: '13 hrs/week',
       },
     ],
-    '20 hrs/weak',
+    '5 hrs/week',
+    '35 hrs/week',
     'sr.developer',
     [
       {

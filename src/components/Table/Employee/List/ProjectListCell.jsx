@@ -10,7 +10,7 @@ import {
 import { useState } from 'react';
 
 const ProjectListCell = (props) => {
-  const { projects } = props;
+  const { projects, totalHours } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   return (
     <Box
@@ -21,7 +21,7 @@ const ProjectListCell = (props) => {
           setAnchorEl(event.currentTarget);
         }}
         onMouseLeave={() => setAnchorEl(null)}
-        label={'30 hrs/weak'}
+        label={totalHours}
         color={'success'}
       />
       <Popover

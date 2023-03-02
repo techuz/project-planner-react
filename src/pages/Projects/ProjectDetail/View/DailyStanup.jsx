@@ -9,14 +9,7 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
-import {
-  Button,
-  ButtonGroup,
-  Divider,
-  FormLabel,
-  Paper,
-  TextField,
-} from '@mui/material';
+import { Button, ButtonGroup, Divider, Paper, TextField } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function DailyStanup(props) {
@@ -24,67 +17,67 @@ export default function DailyStanup(props) {
   const [message, setMessage] = React.useState('');
   const [dailyStanups, setDailyStandups] = React.useState([
     {
-      heading: 'Mysql',
+      createdBy: 'Ryan thompsan',
       description: 'Because you need strength',
       date: '27-02-2023',
     },
     {
-      heading: 'Node js',
+      createdBy: 'Ramina hadid',
       description: 'Because you need strength',
       date: '27-02-2023',
     },
     {
-      heading: 'Reactjs',
+      createdBy: 'Alexander smith',
       description: 'Some UI changes need to done',
       date: '28-02-2023',
     },
     {
-      heading: 'Angular',
+      createdBy: 'Ramina hadid',
       description: 'Need to  configure authentication api',
       date: '28-02-2023',
     },
     {
-      heading: 'Mysql',
+      createdBy: 'Ryan thompsan',
       description: 'Configure the tables',
       date: '24-02-2023',
     },
     {
-      heading: 'Mysql',
+      createdBy: 'Ryan thompsan',
       description: 'Because you need strength',
       date: '27-02-2023',
     },
     {
-      heading: 'Mysql',
+      createdBy: 'Alexander smith',
       description: 'Because you need strength',
       date: '27-02-2023',
     },
     {
-      heading: 'Mysql',
+      createdBy: 'Alexander smith',
       description: 'Because you need strength',
       date: '27-02-2023',
     },
     {
-      heading: 'Mysql',
+      createdBy: 'Jessica doe',
       description: 'Because you need strength',
       date: '27-02-2023',
     },
     {
-      heading: 'react js',
+      createdBy: 'Ramina hadid',
       description: 'Because you need strength',
       date: '27-02-2023',
     },
     {
-      heading: 'node js',
+      createdBy: 'Ramina hadid ',
       description: 'Because you need strength',
       date: '27-02-2023',
     },
     {
-      heading: 'Mysql',
+      createdBy: 'Jessica doe',
       description: 'Because you need strength',
       date: '27-02-2023',
     },
     {
-      heading: 'php',
+      createdBy: 'Ryan thompsan',
       description: 'Because you need strength',
       date: '27-02-2023',
     },
@@ -93,7 +86,7 @@ export default function DailyStanup(props) {
 
   const handleSubmit = () => {
     const obj = {
-      heading: 'php',
+      createdBy: 'Ryan thompsan',
       description: message,
       date: '27-02-2023',
     };
@@ -113,7 +106,6 @@ export default function DailyStanup(props) {
   console.log(data);
   return (
     <Box>
-      <FormLabel>Daily standups/ meetings</FormLabel>
       <Paper elevation={4} sx={{ mt: 2 }}>
         <Box>
           <ButtonGroup
@@ -129,7 +121,7 @@ export default function DailyStanup(props) {
           <Timeline
             position="alternate"
             sx={{
-              maxHeight: 450,
+              maxHeight: 410,
               overflowY: 'scroll',
             }}
           >
@@ -152,8 +144,8 @@ export default function DailyStanup(props) {
                 </TimelineSeparator>
                 <TimelineContent sx={{ py: '12px', px: 2 }}>
                   <Paper elevation={3} sx={{ padding: '6px 16px' }}>
-                    <Typography variant="h6" component="span">
-                      {item.heading}
+                    <Typography variant="caption" component="span">
+                      {item.createdBy}
                     </Typography>
                     <Typography>{item.description}</Typography>
                   </Paper>
@@ -169,14 +161,18 @@ export default function DailyStanup(props) {
             width: '100%',
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'space-around',
+            padding: '8px 16px 8px 16px',
           }}
         >
           <TextField
-            variant="filled"
-            fullWidth
-            margin="normal"
+            sx={{ width: '90%' }}
+            id="outlined-multiline-flexible"
+            placeholder="Create new standup..."
             value={message}
             onChange={(event) => setMessage(event.target.value)}
+            multiline
+            maxRows={4}
           />
           <Button
             variant="contained"
