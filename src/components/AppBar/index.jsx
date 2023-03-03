@@ -149,7 +149,8 @@ export default function MiniDrawer({ children }) {
             sx={{
               marginRight: 5,
               ...(open && { display: 'none' })
-            }}>
+            }}
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
@@ -176,19 +177,22 @@ export default function MiniDrawer({ children }) {
               onClick={() => {
                 setCurrentPage(path.name);
                 navigate(path.path);
-              }}>
+              }}
+            >
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5
-                }}>
+                }}
+              >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center'
-                  }}>
+                  }}
+                >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
                 <ListItemText primary={path.name} sx={{ opacity: open ? 1 : 0 }} />
@@ -204,13 +208,15 @@ export default function MiniDrawer({ children }) {
                 minHeight: 48,
                 justifyContent: open ? 'initial' : 'center',
                 px: 2.5
-              }}>
+              }}
+            >
               <ListItemIcon
                 sx={{
                   minWidth: 0,
                   mr: open ? 3 : 'auto',
                   justifyContent: 'center'
-                }}>
+                }}
+              >
                 <AccountCircle />
               </ListItemIcon>
               <ListItemText primary={'Logout'} sx={{ opacity: open ? 1 : 0 }} />

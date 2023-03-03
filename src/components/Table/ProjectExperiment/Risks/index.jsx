@@ -80,7 +80,8 @@ export default function Index(props) {
               '& .MuiTextField-root': { m: 1, width: '25ch' }
             }}
             noValidate
-            autoComplete="off">
+            autoComplete="off"
+          >
             <Box sx={{ display: 'flex' }}>
               <TextField
                 id="filled-select-currency"
@@ -88,7 +89,8 @@ export default function Index(props) {
                 label="Stutus"
                 value={status}
                 variant="filled"
-                onChange={(e) => setStatus(e.target.value)}>
+                onChange={(e) => setStatus(e.target.value)}
+              >
                 {statuses.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
