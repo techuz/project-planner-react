@@ -32,7 +32,8 @@ function Row(props) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
-            }}>
+            }}
+          >
             <Avatar src={xcel} alt="name" sx={{ width: 20, height: 20, mr: 1 }} variant="square" />
             <Link href={row.docs[0].link} target="_blank">
               {row.docs[0].name}
@@ -43,7 +44,8 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/content-plan-detail/${row.id}`)}>
+          onClick={() => navigate(`/content-plan-detail/${row.id}`)}
+        >
           {row.topic}
         </TableCell>
         <TableCell align="center">{row.category}</TableCell>
@@ -112,7 +114,8 @@ export default function Index() {
           // onClick={() => navigate('/dashboard/create-new-project')}
           variant="contained"
           startIcon={<AddIcon />}
-          color="primary">
+          color="primary"
+        >
           add new content
         </Button>
       </Box>

@@ -56,14 +56,16 @@ export default function DailyStanup(props) {
             sx={{
               maxHeight: 410,
               overflowY: 'scroll'
-            }}>
+            }}
+          >
             {dailyStanups.map((item, index) => (
               <TimelineItem key={index}>
                 <TimelineOppositeContent
                   sx={{ m: 'auto 0' }}
                   align={index % 2 === 0 ? 'right' : 'left'}
                   variant="body2"
-                  color="text.secondary">
+                  color="text.secondary"
+                >
                   {item.date}
                 </TimelineOppositeContent>
                 <TimelineSeparator>
@@ -94,7 +96,8 @@ export default function DailyStanup(props) {
             alignItems: 'center',
             justifyContent: 'space-around',
             padding: '8px 16px 8px 16px'
-          }}>
+          }}
+        >
           <TextField
             sx={{ width: '90%' }}
             id="outlined-multiline-flexible"

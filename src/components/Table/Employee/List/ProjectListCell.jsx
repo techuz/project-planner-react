@@ -29,7 +29,8 @@ const ProjectListCell = (props) => {
         transformOrigin={{
           vertical: 'top',
           horizontal: 'left'
-        }}>
+        }}
+      >
         <Card sx={{ minWidth: 275 }}>
           {projects.map((project, index) => (
             <div key={index}>

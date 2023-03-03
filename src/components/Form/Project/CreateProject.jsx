@@ -85,7 +85,8 @@ export default function CreateProject() {
               '& .MuiTextField-root': { m: 1, width: '25ch' }
             }}
             noValidate
-            autoComplete="off">
+            autoComplete="off"
+          >
             <Box sx={{ display: 'flex' }}>
               <TextField
                 label="Project name"
@@ -101,7 +102,8 @@ export default function CreateProject() {
                 label="Project lead"
                 value={projectLead}
                 variant="filled"
-                onChange={(e) => setProjectLead(e.target.value)}>
+                onChange={(e) => setProjectLead(e.target.value)}
+              >
                 {projectLeads.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -126,7 +128,8 @@ export default function CreateProject() {
                         <Chip key={value} label={value} />
                       ))}
                     </Box>
-                  )}>
+                  )}
+                >
                   {projectLeads.map((option) => (
                     <MenuItem key={option.name} value={option.name}>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
