@@ -13,15 +13,14 @@ import employeeList from '../../../StaticData/employeeList.json';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  const a = '';
   return (
     <div
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
+      {...other}>
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
@@ -74,8 +73,7 @@ export default function EmployeeDetail() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
-            }}
-          >
+            }}>
             <Typography>No record found!</Typography>
           </Box>
         )
