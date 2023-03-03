@@ -24,8 +24,7 @@ const LinkTableCell = (props) => {
         />
         <Link
           href="https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing"
-          target="_blank"
-        >
+          target="_blank">
           {link.name}
         </Link>
       </Typography>

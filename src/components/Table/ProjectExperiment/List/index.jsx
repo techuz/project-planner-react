@@ -43,8 +43,7 @@ function Row(props) {
             <Avatar src={xcel} alt="name" sx={{ width: 20, height: 20, mr: 1 }} variant="square" />
             <Link
               href="https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing"
-              target="_blank"
-            >
+              target="_blank">
               {row.project_name}
             </Link>
           </Box>
@@ -53,8 +52,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/project-experiment-detail/${row.id}`)}
-        >
+          onClick={() => navigate(`/project-experiment-detail/${row.id}`)}>
           {row.project_name}
         </TableCell>
         <TableCell align="center">
@@ -175,8 +173,7 @@ export default function Index() {
           onClick={() => navigate('/dashboard/create-new-project')}
           variant="contained"
           startIcon={<AddIcon />}
-          color="primary"
-        >
+          color="primary">
           add new project
         </Button>
       </Box>

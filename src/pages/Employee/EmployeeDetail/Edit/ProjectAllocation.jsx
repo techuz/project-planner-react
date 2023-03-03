@@ -57,8 +57,7 @@ export default function ProjectAllocation(props) {
           onClick={createAllocaton}
           variant="outgradientlined"
           startIcon={open ? <CloseIcon /> : <AddIcon />}
-          color="primary"
-        >
+          color="primary">
           {open ? 'close' : 'add new allocation'}
         </Button>
       </Box>
@@ -70,8 +69,7 @@ export default function ProjectAllocation(props) {
               '& .MuiTextField-root': { m: 1, width: '25ch' }
             }}
             noValidate
-            autoComplete="off"
-          >
+            autoComplete="off">
             <Box sx={{ display: 'flex' }}>
               <TextField
                 id="filled-select-currency"
@@ -79,8 +77,7 @@ export default function ProjectAllocation(props) {
                 label="Projects"
                 value={projectName}
                 variant="filled"
-                onChange={(e) => setProjectName(e.target.value)}
-              >
+                onChange={(e) => setProjectName(e.target.value)}>
                 {projectList.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>

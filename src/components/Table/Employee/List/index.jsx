@@ -29,8 +29,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/employee-detail/${row.id}`)}
-        >
+          onClick={() => navigate(`/employee-detail/${row.id}`)}>
           <EmployeeNameCell employee={row.employee_name} />
         </TableCell>
         <TableCell align="center">
@@ -103,8 +102,7 @@ export default function Index() {
           onClick={() => navigate('/employee-list/create-new-employee')}
           variant="contained"
           startIcon={<AddIcon />}
-          color="primary"
-        >
+          color="primary">
           add new employee
         </Button>
       </Box>
