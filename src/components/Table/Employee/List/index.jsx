@@ -42,7 +42,7 @@ function createData(
     availability,
     totalHours,
     position,
-    tech_skills,
+    tech_skills
   };
 }
 
@@ -58,17 +58,13 @@ function Row(props) {
           scope="row"
           onClick={() =>
             navigate('/employee-detail', {
-              state: { row, permissions: 'View' },
+              state: { row, permissions: 'View' }
             })
-          }
-        >
+          }>
           <EmployeeNameCell employee={row.employee_name} />
         </TableCell>
         <TableCell align="center">
-          <ProjectListCell
-            projects={row.project_allocated}
-            totalHours={row.totalHours}
-          />
+          <ProjectListCell projects={row.project_allocated} totalHours={row.totalHours} />
         </TableCell>
         <TableCell align="center">
           <Chip
@@ -93,13 +89,13 @@ Row.propTypes = {
     employee_name: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired
       })
     ).isRequired,
     project_allocated: PropTypes.arrayOf(
       PropTypes.shape({
         project_name: PropTypes.string.isRequired,
-        hours: PropTypes.string.isRequired,
+        hours: PropTypes.string.isRequired
       })
     ).isRequired,
     availability: PropTypes.string.isRequired,
@@ -108,10 +104,10 @@ Row.propTypes = {
     tech_skills: PropTypes.arrayOf(
       PropTypes.shape({
         skill_name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired
       })
-    ).isRequired,
-  }).isRequired,
+    ).isRequired
+  }).isRequired
 };
 
 const rows = [
@@ -119,22 +115,22 @@ const rows = [
     [
       {
         name: 'Ryan Tompson',
-        image: team1,
-      },
+        image: team1
+      }
     ],
     [
       {
         project_name: 'Frozen yoghurt',
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         project_name: 'Temple run',
-        hours: '12 hrs/week',
+        hours: '12 hrs/week'
       },
       {
         project_name: 'Fury ukraine',
-        hours: '8 hrs/week',
-      },
+        hours: '8 hrs/week'
+      }
     ],
     '10 hrs/week',
     '30 hrs/week',
@@ -142,38 +138,38 @@ const rows = [
     [
       {
         skill_name: 'React js',
-        image: react,
+        image: react
       },
       {
         skill_name: 'Node js',
-        image: node,
+        image: node
       },
       {
         skill_name: 'Mysql',
-        image: mysql,
-      },
+        image: mysql
+      }
     ]
   ),
   createData(
     [
       {
         name: 'Romina Hadid',
-        image: team2,
-      },
+        image: team2
+      }
     ],
     [
       {
         project_name: 'Frozen yoghurt',
-        hours: '14 hrs/week',
+        hours: '14 hrs/week'
       },
       {
         project_name: 'Temple run',
-        hours: '12 hrs/week',
+        hours: '12 hrs/week'
       },
       {
         project_name: 'Fury ukraine',
-        hours: '8 hrs/week',
-      },
+        hours: '8 hrs/week'
+      }
     ],
     '06 hrs/week',
     '34 hrs/week',
@@ -181,26 +177,26 @@ const rows = [
     [
       {
         skill_name: 'Php',
-        image: php,
+        image: php
       },
       {
         skill_name: 'Mysql',
-        image: mysql,
-      },
+        image: mysql
+      }
     ]
   ),
   createData(
     [
       {
         name: 'Alexander Smith',
-        image: team3,
-      },
+        image: team3
+      }
     ],
     [
       {
         project_name: 'Frozen yoghurt',
-        hours: '20 hrs/week',
-      },
+        hours: '20 hrs/week'
+      }
     ],
     '20 hrs/week',
     '20 hrs/week',
@@ -208,34 +204,34 @@ const rows = [
     [
       {
         skill_name: 'Node js',
-        image: node,
+        image: node
       },
       {
         skill_name: 'Mysql',
-        image: mysql,
-      },
+        image: mysql
+      }
     ]
   ),
   createData(
     [
       {
         name: 'Jessica Doe',
-        image: team4,
-      },
+        image: team4
+      }
     ],
     [
       {
         project_name: 'Frozen yoghurt',
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         project_name: 'Temple run',
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         project_name: 'Fury ukraine',
-        hours: '10 hrs/week',
-      },
+        hours: '10 hrs/week'
+      }
     ],
     '10 hrs/week',
     '30 hrs/week',
@@ -243,34 +239,34 @@ const rows = [
     [
       {
         skill_name: 'Angular js',
-        image: node,
+        image: node
       },
       {
         skill_name: 'Mysql',
-        image: mysql,
+        image: mysql
       },
       {
         skill_name: 'Node js',
-        image: node,
-      },
+        image: node
+      }
     ]
   ),
   createData(
     [
       {
         name: 'Tony stark',
-        image: team5,
-      },
+        image: team5
+      }
     ],
     [
       {
         project_name: 'Frozen yoghurt',
-        hours: '22 hrs/week',
+        hours: '22 hrs/week'
       },
       {
         project_name: 'Temple run',
-        hours: '13 hrs/week',
-      },
+        hours: '13 hrs/week'
+      }
     ],
     '5 hrs/week',
     '35 hrs/week',
@@ -278,18 +274,18 @@ const rows = [
     [
       {
         skill_name: 'React js',
-        image: angular,
+        image: angular
       },
       {
         skill_name: 'Node js',
-        image: node,
+        image: node
       },
       {
         skill_name: 'Mysql',
-        image: mysql,
-      },
+        image: mysql
+      }
     ]
-  ),
+  )
 ];
 
 export default function Index() {
@@ -312,8 +308,7 @@ export default function Index() {
           onClick={() => navigate('/employee-list/create-new-employee')}
           variant="contained"
           startIcon={<AddIcon />}
-          color="primary"
-        >
+          color="primary">
           add new employee
         </Button>
       </Box>
@@ -330,11 +325,9 @@ export default function Index() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <Row key={row.project_name} row={row} />
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <Row key={row.project_name} row={row} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

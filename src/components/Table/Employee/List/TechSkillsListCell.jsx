@@ -7,9 +7,7 @@ const TechSkillsListCell = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [hoveredUser, setHoveredUser] = useState(null);
   return (
-    <Box
-      sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
       {techSkills.map((skill, index) => (
         <div key={index}>
           <Avatar
@@ -28,8 +26,8 @@ const TechSkillsListCell = (props) => {
               objectFit: 'contain',
 
               '&:hover, &:focus': {
-                zIndex: '10',
-              },
+                zIndex: '10'
+              }
             }}
           />
           <Popover
@@ -37,22 +35,19 @@ const TechSkillsListCell = (props) => {
             anchorEl={anchorEl}
             id="mouse-over-popover"
             sx={{
-              pointerEvents: 'none',
+              pointerEvents: 'none'
             }}
             anchorOrigin={{
               vertical: 'bottom',
-              horizontal: 'left',
+              horizontal: 'left'
             }}
             transformOrigin={{
               vertical: 'top',
-              horizontal: 'left',
-            }}
-          >
+              horizontal: 'left'
+            }}>
             <Card sx={{ minWidth: 275 }}>
               <CardHeader
-                avatar={
-                  <Avatar src={hoveredUser?.image} alt="name" size="xs" />
-                }
+                avatar={<Avatar src={hoveredUser?.image} alt="name" size="xs" />}
                 title={hoveredUser?.skill_name}
               />
             </Card>

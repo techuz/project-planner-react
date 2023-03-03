@@ -23,15 +23,7 @@ import xcel from '../../../assets/images/xcel.jpeg';
 import Link from '@mui/material/Link';
 import ProjectUsersTableCell from './ProjectUsersTableCell';
 
-function createData(
-  docs,
-  topic,
-  category,
-  deadline,
-  users,
-  allocatedBy,
-  status
-) {
+function createData(docs, topic, category, deadline, users, allocatedBy, status) {
   return {
     docs,
     topic,
@@ -39,7 +31,7 @@ function createData(
     deadline,
     users,
     allocatedBy,
-    status,
+    status
   };
 }
 
@@ -55,15 +47,9 @@ function Row(props) {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Avatar
-              src={xcel}
-              alt="name"
-              sx={{ width: 20, height: 20, mr: 1 }}
-              variant="square"
-            />
+              justifyContent: 'center'
+            }}>
+            <Avatar src={xcel} alt="name" sx={{ width: 20, height: 20, mr: 1 }} variant="square" />
             <Link href={row.docs[0].link} target="_blank">
               {row.docs[0].name}
             </Link>
@@ -73,16 +59,12 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate('/content-plan-detail', { state: { row } })}
-        >
+          onClick={() => navigate('/content-plan-detail', { state: { row } })}>
           {row.topic}
         </TableCell>
         <TableCell align="center">{row.category}</TableCell>
         <TableCell align="center">
-          <Chip
-            label={row.deadline}
-            color={row.deadline === 'completed' ? 'success' : 'warning'}
-          />
+          <Chip label={row.deadline} color={row.deadline === 'completed' ? 'success' : 'warning'} />
         </TableCell>
         <TableCell align="center">
           <ProjectUsersTableCell members={row.users} />
@@ -91,10 +73,7 @@ function Row(props) {
           <ProjectUsersTableCell members={row.allocatedBy} />
         </TableCell>
         <TableCell align="center">
-          <Chip
-            label={row.status}
-            color={row.status === 'completed' ? 'success' : 'warning'}
-          />
+          <Chip label={row.status} color={row.status === 'completed' ? 'success' : 'warning'} />
         </TableCell>
       </TableRow>
     </React.Fragment>
@@ -106,7 +85,7 @@ Row.propTypes = {
     docs: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired,
+        link: PropTypes.string.isRequired
       })
     ).isRequired,
     topic: PropTypes.string.isRequired,
@@ -116,15 +95,15 @@ Row.propTypes = {
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-        hours: PropTypes.string.isRequired,
+        hours: PropTypes.string.isRequired
       })
     ).isRequired,
     allocatedBy: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired
     }).isRequired,
-    status: PropTypes.string.isRequired,
-  }).isRequired,
+    status: PropTypes.string.isRequired
+  }).isRequired
 };
 
 const rows = [
@@ -132,8 +111,8 @@ const rows = [
     [
       {
         name: 'Document 1',
-        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing',
-      },
+        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing'
+      }
     ],
     'Topic 1',
     'Category 1',
@@ -142,29 +121,29 @@ const rows = [
       {
         name: 'Ryan Tompson',
         image: team2,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Romina Hadid',
         image: team3,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Alexander Smith',
         image: team4,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Jessica Doe',
         image: team5,
-        hours: '10 hrs/week',
-      },
+        hours: '10 hrs/week'
+      }
     ],
     [
       {
         name: 'Ryan Tompson',
-        image: team1,
-      },
+        image: team1
+      }
     ],
     'completed'
   ),
@@ -172,8 +151,8 @@ const rows = [
     [
       {
         name: 'Document 2',
-        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing',
-      },
+        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing'
+      }
     ],
     'Topic 2',
     'Category 2',
@@ -182,29 +161,29 @@ const rows = [
       {
         name: 'Ryan Tompson',
         image: team1,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Romina Hadid',
         image: team3,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Alexander Smith',
         image: team4,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Jessica Doe',
         image: team5,
-        hours: '10 hrs/week',
-      },
+        hours: '10 hrs/week'
+      }
     ],
     [
       {
         name: 'Romina Hadid',
-        image: team2,
-      },
+        image: team2
+      }
     ],
     'pending'
   ),
@@ -212,8 +191,8 @@ const rows = [
     [
       {
         name: 'Document 3',
-        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing',
-      },
+        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing'
+      }
     ],
     'Topic 3',
     'Category 3',
@@ -222,29 +201,29 @@ const rows = [
       {
         name: 'Ryan Tompson',
         image: team1,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Romina Hadid',
         image: team3,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Alexander Smith',
         image: team4,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Jessica Doe',
         image: team5,
-        hours: '10 hrs/week',
-      },
+        hours: '10 hrs/week'
+      }
     ],
     [
       {
         name: 'Alexander Smith',
-        image: team3,
-      },
+        image: team3
+      }
     ],
     'pending'
   ),
@@ -252,8 +231,8 @@ const rows = [
     [
       {
         name: 'Document 4',
-        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing',
-      },
+        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing'
+      }
     ],
     'Topic 4',
     'Category 4',
@@ -262,32 +241,32 @@ const rows = [
       {
         name: 'Ryan Tompson',
         image: team1,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Romina Hadid',
         image: team3,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Alexander Smith',
         image: team4,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Jessica Doe',
         image: team5,
-        hours: '10 hrs/week',
-      },
+        hours: '10 hrs/week'
+      }
     ],
     [
       {
         name: 'Jessica Doe',
-        image: team4,
-      },
+        image: team4
+      }
     ],
     'completed'
-  ),
+  )
 ];
 
 export default function Index() {
@@ -310,8 +289,7 @@ export default function Index() {
           // onClick={() => navigate('/dashboard/create-new-project')}
           variant="contained"
           startIcon={<AddIcon />}
-          color="primary"
-        >
+          color="primary">
           add new content
         </Button>
       </Box>
@@ -329,11 +307,9 @@ export default function Index() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <Row key={row.topic} row={row} />
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <Row key={row.topic} row={row} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

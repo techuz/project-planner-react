@@ -1,12 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  Box,
-  Button,
-  TextField,
-  Collapse,
-  MenuItem,
-  Typography,
-} from '@mui/material';
+import { Box, Button, TextField, Collapse, MenuItem, Typography } from '@mui/material';
 
 import SaveIcon from '@mui/icons-material/Save';
 import AddIcon from '@mui/icons-material/Add';
@@ -25,16 +18,16 @@ export default function ProjectAllocation(props) {
   const projectList = [
     {
       name: 'Frozen yoghurt',
-      value: 'Frozen yoghurt',
+      value: 'Frozen yoghurt'
     },
     {
       name: 'Temple run',
-      value: 'Temple run',
+      value: 'Temple run'
     },
     {
       name: 'Fury ukraine',
-      value: 'Fury ukraine',
-    },
+      value: 'Fury ukraine'
+    }
   ];
 
   const handleSubmit = (event) => {
@@ -64,8 +57,7 @@ export default function ProjectAllocation(props) {
           onClick={createAllocaton}
           variant="outgradientlined"
           startIcon={open ? <CloseIcon /> : <AddIcon />}
-          color="primary"
-        >
+          color="primary">
           {open ? 'close' : 'add new allocation'}
         </Button>
       </Box>
@@ -74,11 +66,10 @@ export default function ProjectAllocation(props) {
           <Box
             component="form"
             sx={{
-              '& .MuiTextField-root': { m: 1, width: '25ch' },
+              '& .MuiTextField-root': { m: 1, width: '25ch' }
             }}
             noValidate
-            autoComplete="off"
-          >
+            autoComplete="off">
             <Box sx={{ display: 'flex' }}>
               <TextField
                 id="filled-select-currency"
@@ -86,8 +77,7 @@ export default function ProjectAllocation(props) {
                 label="Projects"
                 value={projectName}
                 variant="filled"
-                onChange={(e) => setProjectName(e.target.value)}
-              >
+                onChange={(e) => setProjectName(e.target.value)}>
                 {projectList.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -116,10 +106,7 @@ export default function ProjectAllocation(props) {
         </form>
       </Collapse>
       <Box>
-        <ProjectAllocationTable
-          rows={allocatedProjectList}
-          editAllocation={editAllocation}
-        />
+        <ProjectAllocationTable rows={allocatedProjectList} editAllocation={editAllocation} />
         {/* <List
           sx={{ width: '100%', bgcolor: 'background.paper' }}
           component="nav"

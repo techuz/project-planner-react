@@ -29,15 +29,7 @@ import xcel from '../../../../assets/images/xcel.jpeg';
 import StatusTableCell from './StausTableCell';
 import Link from '@mui/material/Link';
 
-function createData(
-  project_name,
-  project_lead,
-  developers,
-  date,
-  budget,
-  status,
-  milestone
-) {
+function createData(project_name, project_lead, developers, date, budget, status, milestone) {
   return {
     project_name,
     project_lead,
@@ -45,7 +37,7 @@ function createData(
     date,
     budget,
     status,
-    milestone,
+    milestone
   };
 }
 
@@ -58,26 +50,16 @@ function Row(props) {
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
+          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
         <TableCell align="center" component="th" scope="row">
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Avatar
-              src={xcel}
-              alt="name"
-              sx={{ width: 20, height: 20, mr: 1 }}
-              variant="square"
-            />
+            <Avatar src={xcel} alt="name" sx={{ width: 20, height: 20, mr: 1 }} variant="square" />
             <Link
               href="https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing"
-              target="_blank"
-            >
+              target="_blank">
               {row.project_name}
             </Link>
           </Box>
@@ -86,10 +68,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() =>
-            navigate('/project-experiment-detail', { state: { row } })
-          }
-        >
+          onClick={() => navigate('/project-experiment-detail', { state: { row } })}>
           {row.project_name}
         </TableCell>
         <TableCell align="center">
@@ -99,10 +78,7 @@ function Row(props) {
           <ProjectLeadTableCell members={row.developers} />
         </TableCell>
         <TableCell align="center">
-          <Chip
-            label={row.date}
-            color={row.date === 'completed' ? 'success' : 'warning'}
-          />
+          <Chip label={row.date} color={row.date === 'completed' ? 'success' : 'warning'} />
         </TableCell>
         <TableCell align="center">{row.budget}</TableCell>
         <TableCell align="center">
@@ -137,9 +113,7 @@ function Row(props) {
                       <TableCell align="center">
                         <Chip
                           label={mRow.status}
-                          color={
-                            mRow.status === 'completed' ? 'success' : 'warning'
-                          }
+                          color={mRow.status === 'completed' ? 'success' : 'warning'}
                         />
                       </TableCell>
                       <TableCell align="center">{mRow.checklist}</TableCell>
@@ -160,14 +134,14 @@ Row.propTypes = {
     project_lead: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired
       })
     ).isRequired,
     developers: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-        hours: PropTypes.string.isRequired,
+        hours: PropTypes.string.isRequired
       })
     ).isRequired,
     type: PropTypes.string.isRequired,
@@ -178,7 +152,7 @@ Row.propTypes = {
         startDate: PropTypes.string.isRequired,
         endDate: PropTypes.string.isRequired,
         status: PropTypes.string.isRequired,
-        checklist: PropTypes.string.isRequired,
+        checklist: PropTypes.string.isRequired
       })
     ).isRequired,
     project_name: PropTypes.string.isRequired,
@@ -186,10 +160,10 @@ Row.propTypes = {
       PropTypes.shape({
         initial: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
-        flag: PropTypes.string.isRequired,
+        flag: PropTypes.string.isRequired
       })
-    ).isRequired,
-  }).isRequired,
+    ).isRequired
+  }).isRequired
 };
 
 const rows = [
@@ -198,30 +172,30 @@ const rows = [
     [
       {
         name: 'Ryan Tompson',
-        image: team1,
-      },
+        image: team1
+      }
     ],
     [
       {
         name: 'Ryan Tompson',
         image: team2,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Romina Hadid',
         image: team3,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Alexander Smith',
         image: team4,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Jessica Doe',
         image: team5,
-        hours: '10 hrs/week',
-      },
+        hours: '10 hrs/week'
+      }
     ],
     '2023-01-02',
     'FIX',
@@ -229,18 +203,18 @@ const rows = [
       {
         name: 'Risk',
         initial: 'R',
-        flag: true,
+        flag: true
       },
       {
         name: 'Daily meetings',
         initial: 'DM',
-        flag: false,
+        flag: false
       },
       {
         name: 'Milestones',
         initial: 'ML',
-        flag: true,
-      },
+        flag: true
+      }
     ],
     [
       {
@@ -248,15 +222,15 @@ const rows = [
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'completed',
-        checklist: 'this is milestone 1',
+        checklist: 'this is milestone 1'
       },
       {
         name: 'M2',
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'pending',
-        checklist: 'this is milestone 2',
-      },
+        checklist: 'this is milestone 2'
+      }
     ]
   ),
   createData(
@@ -264,30 +238,30 @@ const rows = [
     [
       {
         name: 'Romina Hadid',
-        image: team2,
-      },
+        image: team2
+      }
     ],
     [
       {
         name: 'Ryan Tompson',
         image: team1,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Romina Hadid',
         image: team3,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Alexander Smith',
         image: team4,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Jessica Doe',
         image: team5,
-        hours: '10 hrs/week',
-      },
+        hours: '10 hrs/week'
+      }
     ],
     '2023-01-02',
     'TM',
@@ -295,18 +269,18 @@ const rows = [
       {
         name: 'Risk',
         initial: 'R',
-        flag: true,
+        flag: true
       },
       {
         name: 'Daily meetings',
         initial: 'DM',
-        flag: false,
+        flag: false
       },
       {
         name: 'Milestones',
         initial: 'ML',
-        flag: true,
-      },
+        flag: true
+      }
     ],
     [
       {
@@ -314,15 +288,15 @@ const rows = [
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'pending',
-        checklist: 'this is milestone 1',
+        checklist: 'this is milestone 1'
       },
       {
         name: 'M2',
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'completed',
-        checklist: 'this is milestone 2',
-      },
+        checklist: 'this is milestone 2'
+      }
     ]
   ),
   createData(
@@ -330,30 +304,30 @@ const rows = [
     [
       {
         name: 'Alexander Smith',
-        image: team3,
-      },
+        image: team3
+      }
     ],
     [
       {
         name: 'Ryan Tompson',
         image: team2,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Romina Hadid',
         image: team1,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Alexander Smith',
         image: team4,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Jessica Doe',
         image: team5,
-        hours: '10 hrs/week',
-      },
+        hours: '10 hrs/week'
+      }
     ],
     '2022-05-12',
     'TM',
@@ -361,18 +335,18 @@ const rows = [
       {
         name: 'Risk',
         initial: 'R',
-        flag: true,
+        flag: true
       },
       {
         name: 'Daily meetings',
         initial: 'DM',
-        flag: false,
+        flag: false
       },
       {
         name: 'Milestones',
         initial: 'ML',
-        flag: true,
-      },
+        flag: true
+      }
     ],
     [
       {
@@ -380,15 +354,15 @@ const rows = [
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'completed',
-        checklist: 'this is milestone 1',
+        checklist: 'this is milestone 1'
       },
       {
         name: 'M2',
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'completed',
-        checklist: 'this is milestone 2',
-      },
+        checklist: 'this is milestone 2'
+      }
     ]
   ),
   createData(
@@ -396,30 +370,30 @@ const rows = [
     [
       {
         name: 'Jessica Doe',
-        image: team4,
-      },
+        image: team4
+      }
     ],
     [
       {
         name: 'Ryan Tompson',
         image: team2,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Romina Hadid',
         image: team3,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Alexander Smith',
         image: team1,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Jessica Doe',
         image: team5,
-        hours: '10 hrs/week',
-      },
+        hours: '10 hrs/week'
+      }
     ],
     '2021-07-27',
     'FIX',
@@ -427,18 +401,18 @@ const rows = [
       {
         name: 'Risk',
         initial: 'R',
-        flag: true,
+        flag: true
       },
       {
         name: 'Daily meetings',
         initial: 'DM',
-        flag: false,
+        flag: false
       },
       {
         name: 'Milestones',
         initial: 'ML',
-        flag: true,
-      },
+        flag: true
+      }
     ],
     [
       {
@@ -446,29 +420,29 @@ const rows = [
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'completed',
-        checklist: 'this is milestone 1',
+        checklist: 'this is milestone 1'
       },
       {
         name: 'M2',
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'pending',
-        checklist: 'this is milestone 2',
+        checklist: 'this is milestone 2'
       },
       {
         name: 'M3',
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'pending',
-        checklist: 'this is milestone 3',
+        checklist: 'this is milestone 3'
       },
       {
         name: 'M4',
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'pending',
-        checklist: 'this is milestone 4',
-      },
+        checklist: 'this is milestone 4'
+      }
     ]
   ),
   createData(
@@ -476,30 +450,30 @@ const rows = [
     [
       {
         name: 'John Doe',
-        image: team5,
-      },
+        image: team5
+      }
     ],
     [
       {
         name: 'Ryan Tompson',
         image: team2,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Romina Hadid',
         image: team3,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Alexander Smith',
         image: team4,
-        hours: '10 hrs/week',
+        hours: '10 hrs/week'
       },
       {
         name: 'Jessica Doe',
         image: team1,
-        hours: '10 hrs/week',
-      },
+        hours: '10 hrs/week'
+      }
     ],
     '2022-11-20',
     'TM',
@@ -507,18 +481,18 @@ const rows = [
       {
         name: 'Risk',
         initial: 'R',
-        flag: true,
+        flag: true
       },
       {
         name: 'Daily meetings',
         initial: 'DM',
-        flag: false,
+        flag: false
       },
       {
         name: 'Milestones',
         initial: 'ML',
-        flag: true,
-      },
+        flag: true
+      }
     ],
     [
       {
@@ -526,17 +500,17 @@ const rows = [
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'pending',
-        checklist: 'this is milestone 1',
+        checklist: 'this is milestone 1'
       },
       {
         name: 'M2',
         startDate: '2023-01-02',
         endDate: '2023-01-02',
         status: 'completed',
-        checklist: 'this is milestone 2',
-      },
+        checklist: 'this is milestone 2'
+      }
     ]
-  ),
+  )
 ];
 
 export default function Index() {
@@ -559,8 +533,7 @@ export default function Index() {
           onClick={() => navigate('/dashboard/create-new-project')}
           variant="contained"
           startIcon={<AddIcon />}
-          color="primary"
-        >
+          color="primary">
           add new project
         </Button>
       </Box>
@@ -579,11 +552,9 @@ export default function Index() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <Row key={row.project_name} row={row} />
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <Row key={row.project_name} row={row} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

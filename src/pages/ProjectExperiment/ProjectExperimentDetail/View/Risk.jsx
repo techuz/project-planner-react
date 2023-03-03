@@ -11,22 +11,22 @@ export default function Risk(props) {
       status: 'pending',
       raisedBy: {
         name: 'Ryan Thompsan',
-        image: image1,
+        image: image1
       },
-      resolvedBy: {},
+      resolvedBy: {}
     },
     {
       risk: 'risk 2',
       status: 'resolved',
       raisedBy: {
         name: 'Ramina hadid',
-        image: image2,
+        image: image2
       },
       resolvedBy: {
         name: 'Alexander smith',
-        image: image3,
-      },
-    },
+        image: image3
+      }
+    }
   ];
 
   return (

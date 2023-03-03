@@ -13,7 +13,7 @@ import {
   InputLabel,
   FormControlLabel,
   Switch,
-  Paper,
+  Paper
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 
@@ -36,35 +36,35 @@ export default function CreateProject() {
     {
       name: 'Ryan Tompson',
       value: 'Ryan Tompson',
-      image: team1,
+      image: team1
     },
     {
       name: 'Romina Hadid',
       value: 'Romina Hadid',
-      image: team2,
+      image: team2
     },
     {
       name: 'Alexander Smith',
       value: 'Alexander Smith',
-      image: team3,
+      image: team3
     },
     {
       name: 'Jessica Doe',
       value: 'Jessica Doe',
-      image: team4,
+      image: team4
     },
     {
       name: 'Bruce Banner',
       value: 'Bruce Banner',
-      image: team5,
-    },
+      image: team5
+    }
   ];
 
   const [members, setMembers] = useState([]);
 
   const handleMemberChange = (event) => {
     const {
-      target: { value },
+      target: { value }
     } = event;
     setMembers(
       // On autofill we get a stringified value.
@@ -82,11 +82,10 @@ export default function CreateProject() {
           <Box
             component="form"
             sx={{
-              '& .MuiTextField-root': { m: 1, width: '25ch' },
+              '& .MuiTextField-root': { m: 1, width: '25ch' }
             }}
             noValidate
-            autoComplete="off"
-          >
+            autoComplete="off">
             <Box sx={{ display: 'flex' }}>
               <TextField
                 label="Project name"
@@ -102,25 +101,18 @@ export default function CreateProject() {
                 label="Project lead"
                 value={projectLead}
                 variant="filled"
-                onChange={(e) => setProjectLead(e.target.value)}
-              >
+                onChange={(e) => setProjectLead(e.target.value)}>
                 {projectLeads.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Avatar
-                        src={option?.image}
-                        alt="name"
-                        sx={{ width: 20, height: 20 }}
-                      />
+                      <Avatar src={option?.image} alt="name" sx={{ width: 20, height: 20 }} />
                       <Typography ml={1}>{option?.name}</Typography>
                     </Box>
                   </MenuItem>
                 ))}
               </TextField>
               <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel id="demo-multiple-chip-label">
-                  Developers
-                </InputLabel>
+                <InputLabel id="demo-multiple-chip-label">Developers</InputLabel>
                 <Select
                   labelId="demo-multiple-chip-label"
                   id="demo-multiple-chip"
@@ -134,16 +126,11 @@ export default function CreateProject() {
                         <Chip key={value} label={value} />
                       ))}
                     </Box>
-                  )}
-                >
+                  )}>
                   {projectLeads.map((option) => (
                     <MenuItem key={option.name} value={option.name}>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Avatar
-                          src={option?.image}
-                          alt="name"
-                          sx={{ width: 20, height: 20 }}
-                        />
+                        <Avatar src={option?.image} alt="name" sx={{ width: 20, height: 20 }} />
                         <Typography ml={1}>{option?.name}</Typography>
                       </Box>
                     </MenuItem>
@@ -160,7 +147,7 @@ export default function CreateProject() {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               />
               <TextField

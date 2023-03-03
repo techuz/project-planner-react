@@ -19,10 +19,7 @@ export default function Summary(props) {
       <Box sx={{ margin: 1 }}>
         <Typography sx={{ display: 'flex', alignItems: 'center' }}>
           Allocation: &nbsp;
-          <ProjectListCell
-            projects={data.project_allocated}
-            totalHours={data.totalHours}
-          />
+          <ProjectListCell projects={data.project_allocated} totalHours={data.totalHours} />
         </Typography>
       </Box>
       <Box sx={{ margin: 1 }}>

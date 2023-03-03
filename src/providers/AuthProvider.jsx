@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
     () => ({
       user,
       login,
-      logout,
+      logout
     }),
     [user, login, logout]
   );

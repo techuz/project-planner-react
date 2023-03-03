@@ -12,7 +12,7 @@ import {
   InputLabel,
   FormControlLabel,
   Switch,
-  Paper,
+  Paper
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 
@@ -27,34 +27,34 @@ export default function CreateEmployee() {
   const projectAllocated = [
     {
       name: 'Frozen yoghurt',
-      value: 'Frozen yoghurt',
+      value: 'Frozen yoghurt'
     },
     {
       name: 'Temple run',
-      value: 'Temple run',
+      value: 'Temple run'
     },
     {
       name: 'Fury ukraine',
-      value: 'Fury ukraine',
-    },
+      value: 'Fury ukraine'
+    }
   ];
 
   const positions = [
     {
       name: 'Sr. developer',
-      value: 'Sr. developer',
+      value: 'Sr. developer'
     },
     {
       name: 'Jr. developer',
-      value: 'Jr. developer',
-    },
+      value: 'Jr. developer'
+    }
   ];
 
   const [projects, setProjects] = useState([]);
 
   const handleMemberChange = (event) => {
     const {
-      target: { value },
+      target: { value }
     } = event;
     setProjects(
       // On autofill we get a stringified value.
@@ -72,11 +72,10 @@ export default function CreateEmployee() {
           <Box
             component="form"
             sx={{
-              '& .MuiTextField-root': { m: 1, width: '25ch' },
+              '& .MuiTextField-root': { m: 1, width: '25ch' }
             }}
             noValidate
-            autoComplete="off"
-          >
+            autoComplete="off">
             <Box sx={{ display: 'flex' }}>
               <TextField
                 label="Employee name"
@@ -92,8 +91,7 @@ export default function CreateEmployee() {
                 label="Position"
                 value={position}
                 variant="filled"
-                onChange={(e) => setPosition(e.target.value)}
-              >
+                onChange={(e) => setPosition(e.target.value)}>
                 {positions.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -103,9 +101,7 @@ export default function CreateEmployee() {
                 ))}
               </TextField>
               <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel id="demo-multiple-chip-label">
-                  Project allocated
-                </InputLabel>
+                <InputLabel id="demo-multiple-chip-label">Project allocated</InputLabel>
                 <Select
                   labelId="demo-multiple-chip-label"
                   id="demo-multiple-chip"
@@ -119,8 +115,7 @@ export default function CreateEmployee() {
                         <Chip key={value} label={value} />
                       ))}
                     </Box>
-                  )}
-                >
+                  )}>
                   {projectAllocated.map((option) => (
                     <MenuItem key={option.name} value={option.name}>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>

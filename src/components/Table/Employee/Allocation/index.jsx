@@ -53,11 +53,9 @@ export default function Index(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <Row key={row.risk} row={row} editAllocation={editAllocation} />
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <Row key={row.risk} row={row} editAllocation={editAllocation} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

@@ -6,9 +6,7 @@ const EmployeeNameCell = (props) => {
     return;
   }
   return (
-    <Box
-      sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
       <Typography sx={{ display: 'flex', alignItems: 'center' }}>
         <Avatar
           src={employee.image}
@@ -18,7 +16,7 @@ const EmployeeNameCell = (props) => {
             border: '2px solid #FFF',
             cursor: 'pointer',
             position: 'relative',
-            mr: 1,
+            mr: 1
           }}
         />
         {employee.name}

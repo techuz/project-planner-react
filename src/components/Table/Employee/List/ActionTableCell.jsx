@@ -6,17 +6,14 @@ const ActionTableCell = (props) => {
   const navigate = useNavigate();
 
   return (
-    <Box
-      sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
       <ButtonGroup variant="text" aria-label="text button group">
         <Button
           onClick={() =>
             navigate('/employee-detail', {
-              state: { row, permissions: 'Edit' },
+              state: { row, permissions: 'Edit' }
             })
-          }
-        >
+          }>
           Edit
         </Button>
         {/* <Button>View</Button> */}
