@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -7,8 +7,9 @@ import Typography from '@mui/material/Typography';
 import { Paper } from '@mui/material';
 import ViewSummary from './View/Summary';
 import EditSummary from './Edit/Summary';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ProjectAllocation from './Edit/ProjectAllocation';
+import employeeList from '../../../StaticData/employeeList.json';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,20 +44,39 @@ function a11yProps(index) {
 }
 
 export default function EmployeeDetail() {
-  const { state } = useLocation();
-  const { row, permissions } = state;
-  const [value, setValue] = React.useState(0);
+  const params = useParams();
+  const { id } = params;
+  const [row, setRow] = useState({});
+  const permissions = 'View';
+  const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_event, newValue) => {
     setValue(newValue);
   };
+  useEffect(() => {
+    const details = employeeList.filter((item) => item.id === id);
+    if (details.length > 0) setRow(details[0]);
+  }, [id]);
 
   return (
     <Paper elevation={4}>
       {permissions === 'View' ? (
-        <Box sx={{ width: '100%' }}>
-          <ViewSummary data={row} />
-        </Box>
+        Object.keys(row).length > 0 ? (
+          <Box sx={{ width: '100%' }}>
+            <ViewSummary data={row} />
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              width: '100%',
+              minHeight: 500,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+            <Typography>No record found!</Typography>
+          </Box>
+        )
       ) : (
         <Box sx={{ width: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

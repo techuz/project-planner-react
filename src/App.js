@@ -62,7 +62,7 @@ function App() {
           }
         />
         <Route
-          path="/project-detail"
+          path="/project-detail/:id"
           element={
             <ProtectedRoute>
               <ProjectDetail />
@@ -70,7 +70,7 @@ function App() {
           }
         />
         <Route
-          path="/employee-detail"
+          path="/employee-detail/:id"
           element={
             <ProtectedRoute>
               <EmployeeDetail />
@@ -78,7 +78,7 @@ function App() {
           }
         />
         <Route
-          path="/project-experiment-detail"
+          path="/project-experiment-detail/:id"
           element={
             <ProtectedRoute>
               <ProjectExperimentDetail />
@@ -86,7 +86,7 @@ function App() {
           }
         />
         <Route
-          path="/content-plan-detail"
+          path="/content-plan-detail/:id"
           element={
             <ProtectedRoute>
               <ContentPlanDetail />

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -13,75 +13,10 @@ import { Button, ButtonGroup, Divider, Paper, TextField } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function DailyStanup(props) {
-  const [message, setMessage] = React.useState('');
-  const [dailyStanups, setDailyStandups] = React.useState([
-    {
-      createdBy: 'Ryan thompsan',
-      description: 'Because you need strength',
-      date: '27-02-2023'
-    },
-    {
-      createdBy: 'Ramina hadid',
-      description: 'Because you need strength',
-      date: '27-02-2023'
-    },
-    {
-      createdBy: 'Alexander smith',
-      description: 'Some UI changes need to done',
-      date: '28-02-2023'
-    },
-    {
-      createdBy: 'Ramina hadid',
-      description: 'Need to  configure authentication api',
-      date: '28-02-2023'
-    },
-    {
-      createdBy: 'Ryan thompsan',
-      description: 'Configure the tables',
-      date: '24-02-2023'
-    },
-    {
-      createdBy: 'Ryan thompsan',
-      description: 'Because you need strength',
-      date: '27-02-2023'
-    },
-    {
-      createdBy: 'Alexander smith',
-      description: 'Because you need strength',
-      date: '27-02-2023'
-    },
-    {
-      createdBy: 'Alexander smith',
-      description: 'Because you need strength',
-      date: '27-02-2023'
-    },
-    {
-      createdBy: 'Jessica doe',
-      description: 'Because you need strength',
-      date: '27-02-2023'
-    },
-    {
-      createdBy: 'Ramina hadid',
-      description: 'Because you need strength',
-      date: '27-02-2023'
-    },
-    {
-      createdBy: 'Ramina hadid ',
-      description: 'Because you need strength',
-      date: '27-02-2023'
-    },
-    {
-      createdBy: 'Jessica doe',
-      description: 'Because you need strength',
-      date: '27-02-2023'
-    },
-    {
-      createdBy: 'Ryan thompsan',
-      description: 'Because you need strength',
-      date: '27-02-2023'
-    }
-  ]);
-  const bottomElement = React.useRef(null);
+  const { data } = props;
+  const [message, setMessage] = useState('');
+  const [dailyStanups, setDailyStandups] = useState([]);
+  const bottomElement = useRef(null);
 
   const handleSubmit = () => {
     const obj = {
@@ -95,13 +30,18 @@ export default function DailyStanup(props) {
     setMessage('');
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       bottomElement.current.scrollIntoView({
         behavior: 'smooth'
       });
     }, 10);
   }, [dailyStanups]);
+
+  useEffect(() => {
+    setDailyStandups(data.dailyStanups);
+  }, [data]);
+
   return (
     <Box>
       <Paper elevation={4}>

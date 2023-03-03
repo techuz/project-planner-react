@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -10,94 +10,13 @@ import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
 import { Paper } from '@mui/material';
+import globalDailyStandupsList from '../../StaticData/globalDailyStandupsList.json';
 
 export default function GlobalDailyStandups() {
-  const dailyStanups = React.useMemo(
-    () => [
-      {
-        createdBy: 'Ryan thompsan',
-        project: 'Cupcake',
-        description: 'Because you need strength',
-        time: '12:30'
-      },
-      {
-        createdBy: 'Jessica doe',
-        project: 'Frozen yoghurt',
-        description: 'Because you need strength',
-        time: '12:00'
-      },
-      {
-        createdBy: 'Ramina hadid',
-        project: 'Frozen yoghurt',
-        description: 'Some UI changes need to done',
-        time: '11:30'
-      },
-      {
-        createdBy: 'Ramina hadid ',
-        project: 'Frozen yoghurt',
-        description: 'Need to  configure authentication api',
-        time: '11:30'
-      },
-      {
-        createdBy: 'Ryan thompsan',
-        project: 'Ice cream sandwich',
-        description: 'Configure the tables',
-        time: '10:30'
-      },
-      {
-        createdBy: 'Ryan thompsan',
-        project: 'Eclair',
-        description: 'Because you need strength',
-        time: '09:30'
-      },
-      {
-        createdBy: 'Ryan thompsan',
-        project: 'Eclair',
-        description: 'Because you need strength',
-        time: '09:30'
-      },
-      {
-        createdBy: 'Ryan thompsan',
-        project: 'Ice cream sandwich',
-        description: 'Because you need strength',
-        time: '09:30'
-      },
-      {
-        createdBy: 'Ryan thompsan',
-        project: 'Cupcake',
-        description: 'Because you need strength',
-        time: '09:30'
-      },
-      {
-        createdBy: 'Ramina hadid ',
-        project: 'Ice cream sandwich',
-        description: 'Because you need strength',
-        time: '09:30'
-      },
-      {
-        createdBy: 'Jessica doe',
-        project: 'Cupcake',
-        description: 'Because you need strength',
-        time: '09:30'
-      },
-      {
-        createdBy: 'Ryan thompsan',
-        project: 'Frozen yoghurt',
-        description: 'Because you need strength',
-        time: '09:30'
-      },
-      {
-        createdBy: 'Ramina hadid ',
-        project: 'Frozen yoghurt',
-        description: 'Because you need strength',
-        time: '09:30'
-      }
-    ],
-    []
-  );
-  const bottomElement = React.useRef(null);
+  const dailyStanups = globalDailyStandupsList;
+  const bottomElement = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       bottomElement.current.scrollIntoView({
         behavior: 'smooth'

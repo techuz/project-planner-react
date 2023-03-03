@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -6,11 +6,12 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { Paper, Tab } from '@mui/material';
 import Summary from './View/Summary';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Milestones from './View/MileStones';
 import DailyStanup from './View/DailyStanup';
 import Risk from './View/Risk';
 import DocumentsAndLinks from './View/DocumentsAndLinks';
+import experimentProjectList from '../../../StaticData/experimentProjectList.json';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,53 +46,72 @@ function a11yProps(index) {
 }
 
 export default function ProjectExperimentDetail() {
-  const { state } = useLocation();
-  const { row } = state;
-  const [value, setValue] = React.useState(0);
+  const params = useParams();
+  const { id } = params;
+  const [row, setRow] = useState({});
+  const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_event, newValue) => {
     setValue(newValue);
   };
 
+  useEffect(() => {
+    const details = experimentProjectList.filter((item) => item.id === id);
+    if (details.length > 0) setRow(details[0]);
+  }, [id]);
+
   return (
     <Paper elevation={4}>
-      <Box sx={{ width: '100%' }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChange} aria-label="project detail">
-            <Tab label="Summary" {...a11yProps(0)} />
-            <Tab label="Daily standup/ meetings" {...a11yProps(1)} />
-            <Tab label="Risks" {...a11yProps(2)} />
-            <Tab label="Documents & links" {...a11yProps(3)} />
-          </Tabs>
+      {Object.keys(row).length > 0 ? (
+        <Box sx={{ width: '100%' }}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs value={value} onChange={handleChange} aria-label="project detail">
+              <Tab label="Summary" {...a11yProps(0)} />
+              <Tab label="Daily standup/ meetings" {...a11yProps(1)} />
+              <Tab label="Risks" {...a11yProps(2)} />
+              <Tab label="Documents & links" {...a11yProps(3)} />
+            </Tabs>
+          </Box>
+          <TabPanel value={value} index={0}>
+            <Box sx={{ paddingBottom: 3 }}>
+              <Card>
+                <Summary data={row} />
+              </Card>
+            </Box>
+            <Box sx={{ paddingBottom: 3 }}>
+              <Card>
+                <Milestones data={row} />
+              </Card>
+            </Box>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <Box>
+              <DailyStanup data={row} />
+            </Box>
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <Box>
+              <Risk data={row} />
+            </Box>
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            <Box>
+              <DocumentsAndLinks data={row} />
+            </Box>
+          </TabPanel>
         </Box>
-        <TabPanel value={value} index={0}>
-          <Box sx={{ paddingBottom: 3 }}>
-            <Card>
-              <Summary data={row} />
-            </Card>
-          </Box>
-          <Box sx={{ paddingBottom: 3 }}>
-            <Card>
-              <Milestones data={row} />
-            </Card>
-          </Box>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <Box>
-            <DailyStanup data={row} />
-          </Box>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <Box>
-            <Risk data={row} />
-          </Box>
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          <Box>
-            <DocumentsAndLinks data={row} />
-          </Box>
-        </TabPanel>
-      </Box>
+      ) : (
+        <Box
+          sx={{
+            width: '100%',
+            minHeight: 500,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+          <Typography>No record found!</Typography>
+        </Box>
+      )}
     </Paper>
   );
 }
