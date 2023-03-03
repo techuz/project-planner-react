@@ -66,7 +66,7 @@ export default function Index(props) {
     },
   ];
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (_event, newPage) => {
     setPage(newPage);
   };
 

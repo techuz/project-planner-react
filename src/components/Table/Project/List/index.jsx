@@ -20,39 +20,15 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ProjectLeadTableCell from './ProjectLeadTableCell';
 import AddIcon from '@mui/icons-material/Add';
 
-import team1 from '../../../../assets/images/team-1.jpg';
-import team2 from '../../../../assets/images/team-2.jpg';
-import team3 from '../../../../assets/images/team-3.jpg';
-import team4 from '../../../../assets/images/team-4.jpg';
-import team5 from '../../../../assets/images/team-5.jpg';
 import xcel from '../../../../assets/images/xcel.jpeg';
 import StatusTableCell from './StausTableCell';
 import Link from '@mui/material/Link';
-
-function createData(
-  project_name,
-  project_lead,
-  developers,
-  date,
-  budget,
-  status,
-  milestone
-) {
-  return {
-    project_name,
-    project_lead,
-    developers,
-    date,
-    budget,
-    status,
-    milestone,
-  };
-}
+import projectList from '../../../../StaticData/projectList.json';
 
 function Row(props) {
   const { row } = props;
   const navigate = useNavigate();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <React.Fragment>
@@ -86,7 +62,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate('/project-detail', { state: { row } })}
+          onClick={() => navigate(`/project-detail/${row.id}`)}
         >
           {row.project_name}
         </TableCell>
@@ -155,6 +131,7 @@ function Row(props) {
 
 Row.propTypes = {
   row: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     project_lead: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
@@ -190,359 +167,14 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const rows = [
-  createData(
-    'Frozen yoghurt',
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team1,
-      },
-    ],
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team2,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Romina Hadid',
-        image: team3,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Alexander Smith',
-        image: team4,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Jessica Doe',
-        image: team5,
-        hours: '10 hrs/week',
-      },
-    ],
-    '2023-01-02',
-    'FIX',
-    [
-      {
-        name: 'Risk',
-        initial: 'R',
-        flag: true,
-      },
-      {
-        name: 'Daily meetings',
-        initial: 'DM',
-        flag: false,
-      },
-      {
-        name: 'Milestones',
-        initial: 'ML',
-        flag: true,
-      },
-    ],
-    [
-      {
-        name: 'M1',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'completed',
-        checklist: 'this is milestone 1',
-      },
-      {
-        name: 'M2',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'pending',
-        checklist: 'this is milestone 2',
-      },
-    ]
-  ),
-  createData(
-    'Ice cream sandwich',
-    [
-      {
-        name: 'Romina Hadid',
-        image: team2,
-      },
-    ],
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team1,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Romina Hadid',
-        image: team3,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Alexander Smith',
-        image: team4,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Jessica Doe',
-        image: team5,
-        hours: '10 hrs/week',
-      },
-    ],
-    '2023-01-02',
-    'TM',
-    [
-      {
-        name: 'Risk',
-        initial: 'R',
-        flag: true,
-      },
-      {
-        name: 'Daily meetings',
-        initial: 'DM',
-        flag: false,
-      },
-      {
-        name: 'Milestones',
-        initial: 'ML',
-        flag: true,
-      },
-    ],
-    [
-      {
-        name: 'M1',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'pending',
-        checklist: 'this is milestone 1',
-      },
-      {
-        name: 'M2',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'completed',
-        checklist: 'this is milestone 2',
-      },
-    ]
-  ),
-  createData(
-    'Eclair',
-    [
-      {
-        name: 'Alexander Smith',
-        image: team3,
-      },
-    ],
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team2,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Romina Hadid',
-        image: team1,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Alexander Smith',
-        image: team4,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Jessica Doe',
-        image: team5,
-        hours: '10 hrs/week',
-      },
-    ],
-    '2022-05-12',
-    'TM',
-    [
-      {
-        name: 'Risk',
-        initial: 'R',
-        flag: true,
-      },
-      {
-        name: 'Daily meetings',
-        initial: 'DM',
-        flag: false,
-      },
-      {
-        name: 'Milestones',
-        initial: 'ML',
-        flag: true,
-      },
-    ],
-    [
-      {
-        name: 'M1',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'completed',
-        checklist: 'this is milestone 1',
-      },
-      {
-        name: 'M2',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'completed',
-        checklist: 'this is milestone 2',
-      },
-    ]
-  ),
-  createData(
-    'Cupcake',
-    [
-      {
-        name: 'Jessica Doe',
-        image: team4,
-      },
-    ],
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team2,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Romina Hadid',
-        image: team3,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Alexander Smith',
-        image: team1,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Jessica Doe',
-        image: team5,
-        hours: '10 hrs/week',
-      },
-    ],
-    '2021-07-27',
-    'FIX',
-    [
-      {
-        name: 'Risk',
-        initial: 'R',
-        flag: true,
-      },
-      {
-        name: 'Daily meetings',
-        initial: 'DM',
-        flag: false,
-      },
-      {
-        name: 'Milestones',
-        initial: 'ML',
-        flag: true,
-      },
-    ],
-    [
-      {
-        name: 'M1',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'completed',
-        checklist: 'this is milestone 1',
-      },
-      {
-        name: 'M2',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'pending',
-        checklist: 'this is milestone 2',
-      },
-      {
-        name: 'M3',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'pending',
-        checklist: 'this is milestone 3',
-      },
-      {
-        name: 'M4',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'pending',
-        checklist: 'this is milestone 4',
-      },
-    ]
-  ),
-  createData(
-    'Gingerbread',
-    [
-      {
-        name: 'John Doe',
-        image: team5,
-      },
-    ],
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team2,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Romina Hadid',
-        image: team3,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Alexander Smith',
-        image: team4,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Jessica Doe',
-        image: team1,
-        hours: '10 hrs/week',
-      },
-    ],
-    '2022-11-20',
-    'TM',
-    [
-      {
-        name: 'Risk',
-        initial: 'R',
-        flag: true,
-      },
-      {
-        name: 'Daily meetings',
-        initial: 'DM',
-        flag: false,
-      },
-      {
-        name: 'Milestones',
-        initial: 'ML',
-        flag: true,
-      },
-    ],
-    [
-      {
-        name: 'M1',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'pending',
-        checklist: 'this is milestone 1',
-      },
-      {
-        name: 'M2',
-        startDate: '2023-01-02',
-        endDate: '2023-01-02',
-        status: 'completed',
-        checklist: 'this is milestone 2',
-      },
-    ]
-  ),
-];
+const rows = projectList;
 
 export default function Index() {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (_event, newPage) => {
     setPage(newPage);
   };
 

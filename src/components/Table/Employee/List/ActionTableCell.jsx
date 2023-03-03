@@ -10,13 +10,7 @@ const ActionTableCell = (props) => {
       sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
     >
       <ButtonGroup variant="text" aria-label="text button group">
-        <Button
-          onClick={() =>
-            navigate('/employee-detail', {
-              state: { row, permissions: 'Edit' },
-            })
-          }
-        >
+        <Button onClick={() => navigate(`/employee-detail/${row.id}`)}>
           Edit
         </Button>
         {/* <Button>View</Button> */}
