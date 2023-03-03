@@ -11,7 +11,7 @@ import Milestones from './View/MileStones';
 import DailyStanup from './View/DailyStanup';
 import Risk from './View/Risk';
 import DocumentsAndLinks from './View/DocumentsAndLinks';
-import projectList from '../../../StaticData/projectList.json';
+import experimentProjectList from '../../../StaticData/experimentProjectList.json';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,7 +46,7 @@ function a11yProps(index) {
   };
 }
 
-export default function ProjectDetail() {
+export default function ProjectExperimentDetail() {
   const params = useParams();
   const { id } = params;
   const [row, setRow] = useState({});
@@ -57,7 +57,7 @@ export default function ProjectDetail() {
   };
 
   useEffect(() => {
-    const details = projectList.filter((item) => item.id === id);
+    const details = experimentProjectList.filter((item) => item.id === id);
     if (details.length > 0) setRow(details[0]);
   }, [id]);
 

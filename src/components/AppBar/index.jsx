@@ -108,6 +108,10 @@ export default function MiniDrawer({ children }) {
         name: 'Content plan',
         path: '/content-plan',
       },
+      {
+        name: 'Project experiment',
+        path: '/project-experiment',
+      },
     ],
     []
   );

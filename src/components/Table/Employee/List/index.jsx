@@ -13,38 +13,11 @@ import ActionTableCell from './ActionTableCell';
 import ProjectListCell from './ProjectListCell';
 import AddIcon from '@mui/icons-material/Add';
 
-import team1 from '../../../../assets/images/team-1.jpg';
-import team2 from '../../../../assets/images/team-2.jpg';
-import team3 from '../../../../assets/images/team-3.jpg';
-import team4 from '../../../../assets/images/team-4.jpg';
-import team5 from '../../../../assets/images/team-5.jpg';
-import react from '../../../../assets/images/react.png';
-import angular from '../../../../assets/images/angular.png';
-import node from '../../../../assets/images/node.png';
-import mysql from '../../../../assets/images/mysql.png';
-import php from '../../../../assets/images/php.png';
 import EmployeeNameCell from './EmployeeNameCell';
 import { Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import TechSkillsListCell from './TechSkillsListCell';
-
-function createData(
-  employee_name,
-  project_allocated,
-  availability,
-  totalHours,
-  position,
-  tech_skills
-) {
-  return {
-    employee_name,
-    project_allocated,
-    availability,
-    totalHours,
-    position,
-    tech_skills,
-  };
-}
+import employeeList from '../../../../StaticData/employeeList.json';
 
 function Row(props) {
   const { row } = props;
@@ -56,11 +29,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() =>
-            navigate('/employee-detail', {
-              state: { row, permissions: 'View' },
-            })
-          }
+          onClick={() => navigate(`/employee-detail/${row.id}`)}
         >
           <EmployeeNameCell employee={row.employee_name} />
         </TableCell>
@@ -90,6 +59,7 @@ function Row(props) {
 
 Row.propTypes = {
   row: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     employee_name: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
@@ -114,190 +84,14 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const rows = [
-  createData(
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team1,
-      },
-    ],
-    [
-      {
-        project_name: 'Frozen yoghurt',
-        hours: '10 hrs/week',
-      },
-      {
-        project_name: 'Temple run',
-        hours: '12 hrs/week',
-      },
-      {
-        project_name: 'Fury ukraine',
-        hours: '8 hrs/week',
-      },
-    ],
-    '10 hrs/week',
-    '30 hrs/week',
-    'jr.developer',
-    [
-      {
-        skill_name: 'React js',
-        image: react,
-      },
-      {
-        skill_name: 'Node js',
-        image: node,
-      },
-      {
-        skill_name: 'Mysql',
-        image: mysql,
-      },
-    ]
-  ),
-  createData(
-    [
-      {
-        name: 'Romina Hadid',
-        image: team2,
-      },
-    ],
-    [
-      {
-        project_name: 'Frozen yoghurt',
-        hours: '14 hrs/week',
-      },
-      {
-        project_name: 'Temple run',
-        hours: '12 hrs/week',
-      },
-      {
-        project_name: 'Fury ukraine',
-        hours: '8 hrs/week',
-      },
-    ],
-    '06 hrs/week',
-    '34 hrs/week',
-    'sr.developer',
-    [
-      {
-        skill_name: 'Php',
-        image: php,
-      },
-      {
-        skill_name: 'Mysql',
-        image: mysql,
-      },
-    ]
-  ),
-  createData(
-    [
-      {
-        name: 'Alexander Smith',
-        image: team3,
-      },
-    ],
-    [
-      {
-        project_name: 'Frozen yoghurt',
-        hours: '20 hrs/week',
-      },
-    ],
-    '20 hrs/week',
-    '20 hrs/week',
-    'jr.developer',
-    [
-      {
-        skill_name: 'Node js',
-        image: node,
-      },
-      {
-        skill_name: 'Mysql',
-        image: mysql,
-      },
-    ]
-  ),
-  createData(
-    [
-      {
-        name: 'Jessica Doe',
-        image: team4,
-      },
-    ],
-    [
-      {
-        project_name: 'Frozen yoghurt',
-        hours: '10 hrs/week',
-      },
-      {
-        project_name: 'Temple run',
-        hours: '10 hrs/week',
-      },
-      {
-        project_name: 'Fury ukraine',
-        hours: '10 hrs/week',
-      },
-    ],
-    '10 hrs/week',
-    '30 hrs/week',
-    'jr.developer',
-    [
-      {
-        skill_name: 'Angular js',
-        image: node,
-      },
-      {
-        skill_name: 'Mysql',
-        image: mysql,
-      },
-      {
-        skill_name: 'Node js',
-        image: node,
-      },
-    ]
-  ),
-  createData(
-    [
-      {
-        name: 'Tony stark',
-        image: team5,
-      },
-    ],
-    [
-      {
-        project_name: 'Frozen yoghurt',
-        hours: '22 hrs/week',
-      },
-      {
-        project_name: 'Temple run',
-        hours: '13 hrs/week',
-      },
-    ],
-    '5 hrs/week',
-    '35 hrs/week',
-    'sr.developer',
-    [
-      {
-        skill_name: 'React js',
-        image: angular,
-      },
-      {
-        skill_name: 'Node js',
-        image: node,
-      },
-      {
-        skill_name: 'Mysql',
-        image: mysql,
-      },
-    ]
-  ),
-];
+const rows = employeeList;
 
 export default function Index() {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (_event, newPage) => {
     setPage(newPage);
   };
 

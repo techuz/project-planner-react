@@ -23,7 +23,7 @@ import AddIcon from '@mui/icons-material/Add';
 import xcel from '../../../../assets/images/xcel.jpeg';
 import StatusTableCell from './StausTableCell';
 import Link from '@mui/material/Link';
-import projectList from '../../../../StaticData/projectList.json';
+import experimentProjectList from '../../../../StaticData/experimentProjectList.json';
 
 function Row(props) {
   const { row } = props;
@@ -62,7 +62,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/project-detail/${row.id}`)}
+          onClick={() => navigate(`/project-experiment-detail/${row.id}`)}
         >
           {row.project_name}
         </TableCell>
@@ -167,7 +167,7 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const rows = projectList;
+const rows = experimentProjectList;
 
 export default function Index() {
   const navigate = useNavigate();

@@ -31,16 +31,17 @@ export default function DailyStanup(props) {
   };
 
   useEffect(() => {
-    setDailyStandups(data.dailyStanups);
-  }, [data]);
-
-  useEffect(() => {
     setTimeout(() => {
       bottomElement.current.scrollIntoView({
         behavior: 'smooth',
       });
     }, 10);
   }, [dailyStanups]);
+
+  useEffect(() => {
+    setDailyStandups(data.dailyStanups);
+  }, [data]);
+
   return (
     <Box>
       <Paper elevation={4}>

@@ -1,19 +1,13 @@
 import { Box, ButtonGroup, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 const ActionTableCell = (props) => {
-  const { row } = props;
-  const navigate = useNavigate();
-
+  const { shouldEdit } = props;
   return (
     <Box
       sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
     >
       <ButtonGroup variant="text" aria-label="text button group">
-        <Button onClick={() => navigate(`/employee-detail/${row.id}`)}>
-          Edit
-        </Button>
-        {/* <Button>View</Button> */}
+        <Button onClick={shouldEdit}>Edit</Button>
       </ButtonGroup>
     </Box>
   );

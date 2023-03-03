@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -14,38 +14,14 @@ import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import AddIcon from '@mui/icons-material/Add';
 
-import team1 from '../../../assets/images/team-1.jpg';
-import team2 from '../../../assets/images/team-2.jpg';
-import team3 from '../../../assets/images/team-3.jpg';
-import team4 from '../../../assets/images/team-4.jpg';
-import team5 from '../../../assets/images/team-5.jpg';
 import xcel from '../../../assets/images/xcel.jpeg';
 import Link from '@mui/material/Link';
 import ProjectUsersTableCell from './ProjectUsersTableCell';
-
-function createData(
-  docs,
-  topic,
-  category,
-  deadline,
-  users,
-  allocatedBy,
-  status
-) {
-  return {
-    docs,
-    topic,
-    category,
-    deadline,
-    users,
-    allocatedBy,
-    status,
-  };
-}
+import contentPlanList from '../../../StaticData/contentPlanList.json';
 
 function Row(props) {
   const { row } = props;
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <React.Fragment>
@@ -73,7 +49,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          // onClick={() => navigate('/project-detail', { state: { row } })}
+          onClick={() => navigate(`/content-plan-detail/${row.id}`)}
         >
           {row.topic}
         </TableCell>
@@ -127,175 +103,14 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const rows = [
-  createData(
-    [
-      {
-        name: 'Document 1',
-        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing',
-      },
-    ],
-    'Topic 1',
-    'Category 1',
-    '02-12-2023',
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team2,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Romina Hadid',
-        image: team3,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Alexander Smith',
-        image: team4,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Jessica Doe',
-        image: team5,
-        hours: '10 hrs/week',
-      },
-    ],
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team1,
-      },
-    ],
-    'completed'
-  ),
-  createData(
-    [
-      {
-        name: 'Document 2',
-        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing',
-      },
-    ],
-    'Topic 2',
-    'Category 2',
-    '05-10-2023',
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team1,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Romina Hadid',
-        image: team3,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Alexander Smith',
-        image: team4,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Jessica Doe',
-        image: team5,
-        hours: '10 hrs/week',
-      },
-    ],
-    [
-      {
-        name: 'Romina Hadid',
-        image: team2,
-      },
-    ],
-    'pending'
-  ),
-  createData(
-    [
-      {
-        name: 'Document 3',
-        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing',
-      },
-    ],
-    'Topic 3',
-    'Category 3',
-    '15-09-2023',
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team1,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Romina Hadid',
-        image: team3,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Alexander Smith',
-        image: team4,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Jessica Doe',
-        image: team5,
-        hours: '10 hrs/week',
-      },
-    ],
-    [
-      {
-        name: 'Alexander Smith',
-        image: team3,
-      },
-    ],
-    'pending'
-  ),
-  createData(
-    [
-      {
-        name: 'Document 4',
-        link: 'https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing',
-      },
-    ],
-    'Topic 4',
-    'Category 4',
-    '25-08-2023',
-    [
-      {
-        name: 'Ryan Tompson',
-        image: team1,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Romina Hadid',
-        image: team3,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Alexander Smith',
-        image: team4,
-        hours: '10 hrs/week',
-      },
-      {
-        name: 'Jessica Doe',
-        image: team5,
-        hours: '10 hrs/week',
-      },
-    ],
-    [
-      {
-        name: 'Jessica Doe',
-        image: team4,
-      },
-    ],
-    'completed'
-  ),
-];
+const rows = contentPlanList;
 
 export default function Index() {
   // const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (_event, newPage) => {
     setPage(newPage);
   };
 
