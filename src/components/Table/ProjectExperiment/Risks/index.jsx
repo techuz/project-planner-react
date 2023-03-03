@@ -77,7 +77,6 @@ export default function Index(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submitted');
   };
 
   return (

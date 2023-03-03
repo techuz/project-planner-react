@@ -13,7 +13,6 @@ import { Button, ButtonGroup, Divider, Paper, TextField } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function DailyStanup(props) {
-  const { data } = props;
   const [message, setMessage] = React.useState('');
   const [dailyStanups, setDailyStandups] = React.useState([
     {
@@ -103,7 +102,6 @@ export default function DailyStanup(props) {
       });
     }, 10);
   }, [dailyStanups]);
-  console.log(data);
   return (
     <Box>
       <Paper elevation={4}>
@@ -113,9 +111,9 @@ export default function DailyStanup(props) {
             color="primary"
             aria-label="medium secondary button group"
           >
-            <Button key="one">Last 2 months</Button>
-            <Button key="two">Last months</Button>
-            <Button key="three">Last week</Button>
+            <Button key="one">Last 3 months</Button>
+            <Button key="two">Last 2 months</Button>
+            <Button key="three">Last months</Button>
           </ButtonGroup>
           <Divider />
           <Timeline

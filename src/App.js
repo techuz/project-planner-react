@@ -8,11 +8,12 @@ import { EmployeeList } from './pages/Employee/EmployeeList';
 import { AuthProvider } from './providers/AuthProvider';
 import { ProjectDetail } from './pages/Projects/ProjectDetail';
 import { ProjectExperimentDetail } from './pages/ProjectExperiment/ProjectExperimentDetail';
+import { ContentPlanDetail } from './pages/ContentPlan/ContentPlanDetail';
 import { EmployeeDetail } from './pages/Employee/EmployeeDetail';
 import CreateProject from './components/Form/Project/CreateProject';
 import CreateEmployee from './components/Form/Employee/CreateEmployee';
 import { GlobalDailyStandups } from './pages/GlobalDailyStandups';
-import { ContentPlan } from './pages/ContentPlan';
+import { ContentPlan } from './pages/ContentPlan/ContentPlanList';
 import { ProjectExperimentList } from './pages/ProjectExperiment/ProjectExperimentList';
 
 function App() {
@@ -81,6 +82,14 @@ function App() {
           element={
             <ProtectedRoute>
               <ProjectExperimentDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/content-plan-detail"
+          element={
+            <ProtectedRoute>
+              <ContentPlanDetail />
             </ProtectedRoute>
           }
         />

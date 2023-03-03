@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -45,7 +45,7 @@ function createData(
 
 function Row(props) {
   const { row } = props;
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <React.Fragment>
@@ -73,7 +73,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          // onClick={() => navigate('/project-detail', { state: { row } })}
+          onClick={() => navigate('/content-plan-detail', { state: { row } })}
         >
           {row.topic}
         </TableCell>

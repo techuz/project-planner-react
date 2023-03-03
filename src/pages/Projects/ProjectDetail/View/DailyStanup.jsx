@@ -111,9 +111,9 @@ export default function DailyStanup(props) {
             color="primary"
             aria-label="medium secondary button group"
           >
-            <Button key="one">Last 2 months</Button>
-            <Button key="two">Last months</Button>
-            <Button key="three">Last week</Button>
+            <Button key="one">Last 3 months</Button>
+            <Button key="two">Last 2 months</Button>
+            <Button key="three">Last months</Button>
           </ButtonGroup>
           <Divider />
           <Timeline
