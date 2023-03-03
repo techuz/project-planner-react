@@ -17,8 +17,7 @@ export default function Summary(props) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
-            }}
-          >
+            }}>
             <Avatar src={xcel} alt="name" sx={{ width: 20, height: 20, mr: 1 }} variant="square" />
             <Link href={data.docs[0].link} target="_blank">
               {data.docs[0].name}

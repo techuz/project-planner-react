@@ -75,8 +75,7 @@ export default function CreateEmployee() {
               '& .MuiTextField-root': { m: 1, width: '25ch' }
             }}
             noValidate
-            autoComplete="off"
-          >
+            autoComplete="off">
             <Box sx={{ display: 'flex' }}>
               <TextField
                 label="Employee name"
@@ -92,8 +91,7 @@ export default function CreateEmployee() {
                 label="Position"
                 value={position}
                 variant="filled"
-                onChange={(e) => setPosition(e.target.value)}
-              >
+                onChange={(e) => setPosition(e.target.value)}>
                 {positions.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -117,8 +115,7 @@ export default function CreateEmployee() {
                         <Chip key={value} label={value} />
                       ))}
                     </Box>
-                  )}
-                >
+                  )}>
                   {projectAllocated.map((option) => (
                     <MenuItem key={option.name} value={option.name}>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>

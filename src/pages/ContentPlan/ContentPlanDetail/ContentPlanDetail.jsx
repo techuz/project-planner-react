@@ -29,8 +29,7 @@ export default function ContentPlanDetail() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
-          }}
-        >
+          }}>
           <Typography>No record found!</Typography>
         </Box>
       )}

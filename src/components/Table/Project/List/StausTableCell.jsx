@@ -21,8 +21,7 @@ const StatusTableCell = (props) => {
             setAnchorEl(event.currentTarget);
             setHoveredUser(status);
           }}
-          onMouseLeave={() => setAnchorEl(null)}
-        >
+          onMouseLeave={() => setAnchorEl(null)}>
           {status.initial}
         </Avatar>
       ))}
@@ -40,8 +39,7 @@ const StatusTableCell = (props) => {
         transformOrigin={{
           vertical: 'top',
           horizontal: 'left'
-        }}
-      >
+        }}>
         <Card sx={{ minWidth: 275 }}>
           <CardContent>
             <Typography variant="button" fontWeight="medium" ml={1} lineHeight={1}>

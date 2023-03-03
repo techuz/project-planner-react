@@ -22,8 +22,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
+      {...other}>
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
@@ -109,8 +108,7 @@ export default function ProjectExperimentDetail() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
-          }}
-        >
+          }}>
           <Typography>No record found!</Typography>
         </Box>
       )}

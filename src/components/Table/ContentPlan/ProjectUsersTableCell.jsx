@@ -48,8 +48,7 @@ const ProjectUsersTableCell = (props) => {
             transformOrigin={{
               vertical: 'top',
               horizontal: 'left'
-            }}
-          >
+            }}>
             <Card sx={{ minWidth: 275 }}>
               <CardHeader
                 avatar={<Avatar src={hoveredUser?.image} alt="name" size="xs" />}

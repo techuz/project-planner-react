@@ -51,8 +51,7 @@ export default function Summary(props) {
               '& .MuiTextField-root': { m: 1, width: '25ch' }
             }}
             noValidate
-            autoComplete="off"
-          >
+            autoComplete="off">
             <Box sx={{ display: 'flex' }}>
               <TextField
                 label="Employee name"
@@ -68,8 +67,7 @@ export default function Summary(props) {
                 label="Position"
                 value={position}
                 variant="filled"
-                onChange={(e) => setPosition(e.target.value)}
-              >
+                onChange={(e) => setPosition(e.target.value)}>
                 {positions.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
