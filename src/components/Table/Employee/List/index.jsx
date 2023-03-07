@@ -29,7 +29,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/employee-detail/${row.id}`)}>
+          onClick={() => navigate(`/employee-list/detail/${row.id}`)}>
           <EmployeeNameCell employee={row.employee_name} />
         </TableCell>
         <TableCell align="center">
