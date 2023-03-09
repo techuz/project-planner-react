@@ -4,7 +4,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { AuthProvider } from './providers/AuthProvider';
 
 import Auth from './pages/Auth/routes';
-// import Profile from './pages/Profile/Profile';
+import Profile from './pages/Profile/Profile';
 import GlobalDailyStandups from './pages/GlobalDailyStandups/routes';
 import ProjectList from './pages/Projects/routes';
 import EmployeeList from './pages/Employee/routes';
@@ -16,14 +16,14 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path="/*" element={<Auth />} />
-        {/* <Route
+        <Route
           path="/profile"
           element={
             <ProtectedRoute>
               <Profile />
             </ProtectedRoute>
           }
-        /> */}
+        />
         <Route
           path="/projects/*"
           element={
