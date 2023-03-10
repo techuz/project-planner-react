@@ -28,8 +28,8 @@ export default function ResetPassword() {
     },
     validationSchema: resetPasswordValidationSchema,
     onSubmit: (values) => {
-      navigate('/');
       resetPassword(values);
+      navigate('/');
     }
   });
 
