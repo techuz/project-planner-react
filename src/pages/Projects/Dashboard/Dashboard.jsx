@@ -1,6 +1,6 @@
 import React from 'react';
-import ProjectListTable from '../../../components/Table/Project/List';
-import { useFeatureFlags } from "../../../providers/FeatureFlagsProvider";
+import ProjectListTable from 'components/Table/Project/List';
+import { useFeatureFlags } from "providers/FeatureFlagsProvider";
 
 const Dashboard = () => {
   const { getIsFeatureEnabled } = useFeatureFlags();
