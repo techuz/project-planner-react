@@ -1,8 +1,8 @@
 import React from 'react';
 import ProjectListTable from '../../../components/Table/Project/List';
 
-const Dashboard = () => {
+const ProjectList = () => {
   return <ProjectListTable />;
 };
 
-export default Dashboard;
+export default ProjectList;

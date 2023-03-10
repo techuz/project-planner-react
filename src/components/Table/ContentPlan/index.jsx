@@ -43,7 +43,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/content-plan-detail/${row.id}`)}>
+          onClick={() => navigate(`/content-plan/detail/${row.id}`)}>
           {row.topic}
         </TableCell>
         <TableCell align="center">{row.category}</TableCell>
@@ -109,7 +109,7 @@ export default function Index() {
     <>
       <Box sx={{ float: 'right', paddingBottom: 2 }} color="primary" px={2}>
         <Button
-          // onClick={() => navigate('/dashboard/create-new-project')}
+          // onClick={() => navigate('/projects/create')}
           variant="contained"
           startIcon={<AddIcon />}
           color="primary">

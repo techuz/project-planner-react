@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const login = useCallback(
     async (data) => {
       setUser(data);
-      navigate('/dashboard');
+      navigate('/projects');
     },
     [setUser, navigate]
   );

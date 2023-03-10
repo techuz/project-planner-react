@@ -94,11 +94,11 @@ export default function MiniDrawer({ children }) {
     () => [
       {
         name: 'Project list',
-        path: '/dashboard'
+        path: '/projects'
       },
       {
         name: 'Employee list',
-        path: '/employee-list'
+        path: '/employees'
       },
       {
         name: 'Global Daily standups',
