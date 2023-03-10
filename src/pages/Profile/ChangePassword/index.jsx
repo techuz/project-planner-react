@@ -28,8 +28,8 @@ export default function ChangePassword(props) {
     },
     validationSchema: ChangePasswordValidationSchema,
     onSubmit: (values) => {
-      navigate('/');
       resetPassword(values);
+      navigate('/');
     }
   });
 
