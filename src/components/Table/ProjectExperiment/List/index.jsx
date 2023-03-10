@@ -170,7 +170,7 @@ export default function Index() {
     <>
       <Box sx={{ float: 'right', paddingBottom: 2 }} color="primary" px={2}>
         <Button
-          onClick={() => navigate('/project-list/create-new-project')}
+          onClick={() => navigate('/projects/create-new-project')}
           variant="contained"
           startIcon={<AddIcon />}
           color="primary">

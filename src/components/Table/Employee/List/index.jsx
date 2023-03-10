@@ -29,7 +29,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/employee-list/detail/${row.id}`)}>
+          onClick={() => navigate(`/employees/detail/${row.id}`)}>
           <EmployeeNameCell employee={row.employee_name} />
         </TableCell>
         <TableCell align="center">
@@ -99,7 +99,7 @@ export default function Index() {
     <>
       <Box sx={{ float: 'right', paddingBottom: 2 }} color="primary" px={2}>
         <Button
-          onClick={() => navigate('/employee-list/create-new-employee')}
+          onClick={() => navigate('/employees/create-new-employee')}
           variant="contained"
           startIcon={<AddIcon />}
           color="primary">
