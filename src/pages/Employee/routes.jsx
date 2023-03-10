@@ -8,7 +8,7 @@ function Index() {
     <Routes>
       <Route path="/" element={<EmployeeList />} />
       <Route path="/detail/:id" element={<EmployeeDetail />} />
-      <Route path="/create-new-employee" element={<CreateEmployee />} />
+      <Route path="/create" element={<CreateEmployee />} />
     </Routes>
   );
 }

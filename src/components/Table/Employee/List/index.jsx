@@ -99,7 +99,7 @@ export default function Index() {
     <>
       <Box sx={{ float: 'right', paddingBottom: 2 }} color="primary" px={2}>
         <Button
-          onClick={() => navigate('/employees/create-new-employee')}
+          onClick={() => navigate('/employees/create')}
           variant="contained"
           startIcon={<AddIcon />}
           color="primary">
