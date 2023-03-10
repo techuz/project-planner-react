@@ -16,8 +16,9 @@ const StatusTableCell = (props) => {
     <Box
       sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
     >
-      {statuses.map((status) => (
+      {statuses.map((status, index) => (
         <Avatar
+          key={index}
           sx={{
             ml: 1,
             width: 30,

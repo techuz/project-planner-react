@@ -1,11 +1,11 @@
-import { Box, Button, Collapse } from '@mui/material';
 import React, { useState } from 'react';
-
-import EmployeeListTable from '../../../components/Table/Employee/List';
 import AddIcon from '@mui/icons-material/Add';
-import CreateEmployee from '../../../components/Form/Employee/CreateEmployee';
+import { Box, Button, Collapse } from '@mui/material';
 
-const EmployeeList = () => {
+import ContentPlanTableList from '../../../components/Table/ContentPlan';
+import CreateContent from '../../../components/Form/ContentPlan/CreateContent';
+
+const ContentPlanList = () => {
   const [openForm, setOpenForm] = useState(false);
 
   return (
@@ -18,17 +18,16 @@ const EmployeeList = () => {
             startIcon={<AddIcon />}
             color="primary"
           >
-            add new employee
+            add new content
           </Button>
         )}
         <Collapse in={openForm} timeout="auto" unmountOnExit>
-          <CreateEmployee closeForm={() => setOpenForm(false)} />
+          <CreateContent closeForm={() => setOpenForm(false)} />
         </Collapse>
       </Box>
-
-      <EmployeeListTable />
+      <ContentPlanTableList />
     </>
   );
 };
 
-export default EmployeeList;
+export default ContentPlanList;

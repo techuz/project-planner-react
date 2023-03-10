@@ -1,11 +1,11 @@
-import { Box, Button, Collapse } from '@mui/material';
 import React, { useState } from 'react';
-
-import EmployeeListTable from '../../../components/Table/Employee/List';
+import { Box, Button, Collapse } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import CreateEmployee from '../../../components/Form/Employee/CreateEmployee';
 
-const EmployeeList = () => {
+import ProjectListTable from '../../../components/Table/Project/List';
+import CreateProject from '../../../components/Form/Project/CreateProject';
+
+const ProjectList = () => {
   const [openForm, setOpenForm] = useState(false);
 
   return (
@@ -18,17 +18,16 @@ const EmployeeList = () => {
             startIcon={<AddIcon />}
             color="primary"
           >
-            add new employee
+            add new project
           </Button>
         )}
         <Collapse in={openForm} timeout="auto" unmountOnExit>
-          <CreateEmployee closeForm={() => setOpenForm(false)} />
+          <CreateProject closeForm={() => setOpenForm(false)} />
         </Collapse>
       </Box>
-
-      <EmployeeListTable />
+      <ProjectListTable />
     </>
   );
 };
 
-export default EmployeeList;
+export default ProjectList;

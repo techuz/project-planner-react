@@ -36,7 +36,7 @@ export default function GlobalDailyStandups() {
             }}
           >
             {dailyStanups.map((item, index) => (
-              <TimelineItem>
+              <TimelineItem key={index}>
                 <TimelineOppositeContent
                   sx={{ m: 'auto 0' }}
                   align={index % 2 === 0 ? 'right' : 'left'}

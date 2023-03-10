@@ -11,10 +11,18 @@ export const AuthProvider = ({ children }) => {
   const login = useCallback(
     async (data) => {
       setUser(data);
-      navigate('/dashboard');
+      navigate('/project-list');
     },
     [setUser, navigate]
   );
+
+  // call this function when you forgot the password
+  const forgotPassword = useCallback(async () => {}, []);
+
+  // call this function when you want to reset the password
+  const resetPassword = useCallback(async () => {
+    navigate('/');
+  }, [navigate]);
 
   // call this function to sign out logged in user
   const logout = useCallback(() => {
@@ -27,8 +35,10 @@ export const AuthProvider = ({ children }) => {
       user,
       login,
       logout,
+      forgotPassword,
+      resetPassword,
     }),
-    [user, login, logout]
+    [user, login, logout, forgotPassword, resetPassword]
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

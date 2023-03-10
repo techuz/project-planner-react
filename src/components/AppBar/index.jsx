@@ -16,9 +16,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+// import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useAuth } from '../../providers/AuthProvider';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Avatar, Menu, MenuItem, Tooltip } from '@mui/material';
+import profileDetail from '../../StaticData/profile.json';
 
 const drawerWidth = 240;
 
@@ -90,11 +92,13 @@ const Drawer = styled(MuiDrawer, {
 export default function MiniDrawer({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const usersDetails = profileDetail;
+
   const paths = useMemo(
     () => [
       {
         name: 'Project list',
-        path: '/dashboard',
+        path: '/project-list',
       },
       {
         name: 'Employee list',
@@ -115,6 +119,7 @@ export default function MiniDrawer({ children }) {
     ],
     []
   );
+  const settings = ['Profile', 'Logout'];
 
   const { logout } = useAuth();
   const [open, setOpen] = useState(false);
@@ -137,25 +142,92 @@ export default function MiniDrawer({ children }) {
     }
   }, [location, paths]);
 
+  const [anchorElUser, setAnchorElUser] = useState(null);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleUsersMenuItem = (setting) => {
+    switch (setting) {
+      case 'Profile':
+        navigate('/profile');
+        return;
+
+      case 'Logout':
+        logout();
+        return;
+
+      default:
+        return;
+    }
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar position="fixed" open={open}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
+          <Box
             sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex', alignItems: 'center' },
             }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            {currentPage}
-          </Typography>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: 5,
+                ...(open && { display: 'none' }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              {currentPage}
+            </Typography>
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar
+                  alt={usersDetails.users_name}
+                  src={usersDetails.profile_url}
+                />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem
+                  key={setting}
+                  onClick={() => handleUsersMenuItem(setting)}
+                >
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -203,29 +275,27 @@ export default function MiniDrawer({ children }) {
             </ListItem>
           ))}
         </List>
-        <Divider />
+        {/* <Divider />
         <List sx={{ position: 'absolute', bottom: 0 }} onClick={() => logout()}>
           <ListItem key={'Logout'} disablePadding sx={{ display: 'block' }}>
             <ListItemButton
               sx={{
                 minHeight: 48,
                 justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
+                px: 2.5
+              }}>
               <ListItemIcon
                 sx={{
                   minWidth: 0,
                   mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-                }}
-              >
+                  justifyContent: 'center'
+                }}>
                 <AccountCircle />
               </ListItemIcon>
               <ListItemText primary={'Logout'} sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
-        </List>
+        </List> */}
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />

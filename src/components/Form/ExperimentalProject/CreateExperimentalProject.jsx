@@ -21,7 +21,7 @@ import team3 from '../../../assets/images/team-3.jpg';
 import team4 from '../../../assets/images/team-4.jpg';
 import team5 from '../../../assets/images/team-5.jpg';
 
-export default function CreateProject(props) {
+export default function CreateExperimentalProject(props) {
   const { closeForm } = props;
   const [name, setName] = useState('');
   const [isActive, setActive] = useState(false);

@@ -11,10 +11,7 @@ import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import ActionTableCell from './ActionTableCell';
 import ProjectListCell from './ProjectListCell';
-import AddIcon from '@mui/icons-material/Add';
-
 import EmployeeNameCell from './EmployeeNameCell';
-import { Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import TechSkillsListCell from './TechSkillsListCell';
 import employeeList from '../../../../StaticData/employeeList.json';
@@ -29,7 +26,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/employee-detail/${row.id}`)}
+          onClick={() => navigate(`/employee-list/detail/${row.id}`)}
         >
           <EmployeeNameCell employee={row.employee_name} />
         </TableCell>
@@ -87,7 +84,6 @@ Row.propTypes = {
 const rows = employeeList;
 
 export default function Index() {
-  const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -101,16 +97,6 @@ export default function Index() {
   };
   return (
     <>
-      <Box sx={{ float: 'right', paddingBottom: 2 }} color="primary" px={2}>
-        <Button
-          onClick={() => navigate('/employee-list/create-new-employee')}
-          variant="contained"
-          startIcon={<AddIcon />}
-          color="primary"
-        >
-          add new employee
-        </Button>
-      </Box>
       <TableContainer component={Paper} elevation={4}>
         <Table aria-label="collapsible table">
           <TableHead>

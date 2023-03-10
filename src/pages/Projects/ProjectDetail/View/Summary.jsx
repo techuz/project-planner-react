@@ -24,8 +24,8 @@ export default function Summary(props) {
         <Typography sx={{ display: 'flex' }}>
           <Typography sx={{ marginRight: 1 }}>Project lead: </Typography>
 
-          {data.project_lead.map((item) => (
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          {data.project_lead.map((item, index) => (
+            <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
               <Avatar
                 src={item?.image}
                 alt="name"

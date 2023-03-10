@@ -1,1 +1,1 @@
-export { default as ContentPlan } from './ContentPlan';
+export { default as ContentPlanList } from './ContentPlanList';

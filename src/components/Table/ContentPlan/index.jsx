@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import { Avatar, Button } from '@mui/material';
+import { Avatar } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,7 +12,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
-import AddIcon from '@mui/icons-material/Add';
 
 import xcel from '../../../assets/images/xcel.jpeg';
 import Link from '@mui/material/Link';
@@ -49,7 +48,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/content-plan-detail/${row.id}`)}
+          onClick={() => navigate(`/content-plan/detail/${row.id}`)}
         >
           {row.topic}
         </TableCell>
@@ -120,16 +119,6 @@ export default function Index() {
   };
   return (
     <>
-      <Box sx={{ float: 'right', paddingBottom: 2 }} color="primary" px={2}>
-        <Button
-          // onClick={() => navigate('/dashboard/create-new-project')}
-          variant="contained"
-          startIcon={<AddIcon />}
-          color="primary"
-        >
-          add new content
-        </Button>
-      </Box>
       <TableContainer component={Paper} elevation={4}>
         <Table aria-label="collapsible table">
           <TableHead>

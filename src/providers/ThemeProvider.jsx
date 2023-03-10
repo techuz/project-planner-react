@@ -24,6 +24,15 @@ export const defaultTheme = createTheme({
         },
       },
     },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none !important',
+          border: '1px solid rgba(224, 224, 224, 1)',
+          // borderRadius: 8
+        },
+      },
+    },
   },
 });
 

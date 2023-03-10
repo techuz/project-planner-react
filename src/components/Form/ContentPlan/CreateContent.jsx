@@ -21,15 +21,16 @@ import team3 from '../../../assets/images/team-3.jpg';
 import team4 from '../../../assets/images/team-4.jpg';
 import team5 from '../../../assets/images/team-5.jpg';
 
-export default function CreateProject(props) {
+export default function CreateContent(props) {
   const { closeForm } = props;
-  const [name, setName] = useState('');
+  const [documentLink, setDocumentLink] = useState('');
+  const [topic, setTopic] = useState('');
+  const [category, setCategory] = useState('');
   const [isActive, setActive] = useState(false);
-  const [projectLead, setProjectLead] = useState('');
   const [date, setDate] = useState('');
-  const [projectsType, setProjectsType] = useState('');
+  const [allocatedBy, setAllocatedBy] = useState('');
 
-  const projectLeads = [
+  const developers = [
     {
       name: 'Ryan Tompson',
       value: 'Ryan Tompson',
@@ -56,24 +57,28 @@ export default function CreateProject(props) {
       image: team5,
     },
   ];
-  const projectType = [
+  const categories = [
     {
-      name: 'FIX',
-      value: 'FIX',
+      name: 'Category1',
+      value: 'Category1',
     },
     {
-      name: 'TM',
-      value: 'TM',
+      name: 'Category2',
+      value: 'Category2',
+    },
+    {
+      name: 'Category3',
+      value: 'Category3',
     },
   ];
 
-  const [members, setMembers] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const handleMemberChange = (event) => {
     const {
       target: { value },
     } = event;
-    setMembers(
+    setUsers(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     );
@@ -103,44 +108,57 @@ export default function CreateProject(props) {
           >
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <TextField
-                label="Project name"
+                label="Document link"
                 variant="filled"
                 // fullWidth
                 margin="normal"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
+                value={documentLink}
+                onChange={(event) => setDocumentLink(event.target.value)}
+              />
+              <TextField
+                label="Topic"
+                variant="filled"
+                // fullWidth
+                margin="normal"
+                value={topic}
+                onChange={(event) => setTopic(event.target.value)}
               />
               <TextField
                 id="filled-select-currency"
                 select
-                label="Project lead"
-                value={projectLead}
+                label="Category"
+                value={category}
                 variant="filled"
-                onChange={(e) => setProjectLead(e.target.value)}
+                fullWidth
+                onChange={(e) => setCategory(e.target.value)}
               >
-                {projectLeads.map((option) => (
+                {categories.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Avatar
-                        src={option?.image}
-                        alt="name"
-                        sx={{ width: 20, height: 20 }}
-                      />
                       <Typography ml={1}>{option?.name}</Typography>
                     </Box>
                   </MenuItem>
                 ))}
               </TextField>
+              <TextField
+                id="date"
+                label="Deadline"
+                type="date"
+                variant="filled"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
               <FormControl sx={{ m: 1 }}>
-                <InputLabel id="demo-multiple-chip-label">
-                  Project members
-                </InputLabel>
+                <InputLabel id="demo-multiple-chip-label">Users</InputLabel>
                 <Select
                   labelId="demo-multiple-chip-label"
                   id="demo-multiple-chip"
                   multiple
                   input={<FilledInput />}
-                  value={members}
+                  value={users}
                   onChange={handleMemberChange}
                   renderValue={(selected) => (
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -150,7 +168,7 @@ export default function CreateProject(props) {
                     </Box>
                   )}
                 >
-                  {projectLeads.map((option) => (
+                  {developers.map((option) => (
                     <MenuItem key={option.name} value={option.name}>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <Avatar
@@ -165,28 +183,21 @@ export default function CreateProject(props) {
                 </Select>
               </FormControl>
               <TextField
-                id="date"
-                label="Project Deadline"
-                type="date"
-                variant="filled"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-              <TextField
                 id="filled-select-currency"
                 select
-                label="Project Type"
-                value={projectsType}
+                label="Allocated by"
+                value={allocatedBy}
                 variant="filled"
-                fullWidth
-                onChange={(e) => setProjectsType(e.target.value)}
+                onChange={(e) => setAllocatedBy(e.target.value)}
               >
-                {projectType.map((option) => (
+                {developers.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Avatar
+                        src={option?.image}
+                        alt="name"
+                        sx={{ width: 20, height: 20 }}
+                      />
                       <Typography ml={1}>{option?.name}</Typography>
                     </Box>
                   </MenuItem>
