@@ -1,11 +1,4 @@
-import {
-  Box,
-  Avatar,
-  Card,
-  Popover,
-  CardContent,
-  Typography,
-} from '@mui/material';
+import { Box, Avatar, Card, Popover, CardContent, Typography } from '@mui/material';
 import { useState } from 'react';
 
 const StatusTableCell = (props) => {
@@ -13,24 +6,22 @@ const StatusTableCell = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [hoveredUser, setHoveredUser] = useState(null);
   return (
-    <Box
-      sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
-    >
-      {statuses.map((status) => (
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+      {statuses.map((status, index) => (
         <Avatar
+          key={index}
           sx={{
             ml: 1,
             width: 30,
             height: 30,
             backgroundColor: status.flag ? 'red' : 'green',
-            fontSize: '14px',
+            fontSize: '14px'
           }}
           onMouseEnter={(event) => {
             setAnchorEl(event.currentTarget);
             setHoveredUser(status);
           }}
-          onMouseLeave={() => setAnchorEl(null)}
-        >
+          onMouseLeave={() => setAnchorEl(null)}>
           {status.initial}
         </Avatar>
       ))}
@@ -39,25 +30,19 @@ const StatusTableCell = (props) => {
         anchorEl={anchorEl}
         id="mouse-over-popover"
         sx={{
-          pointerEvents: 'none',
+          pointerEvents: 'none'
         }}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'left'
         }}
         transformOrigin={{
           vertical: 'top',
-          horizontal: 'left',
-        }}
-      >
+          horizontal: 'left'
+        }}>
         <Card sx={{ minWidth: 275 }}>
           <CardContent>
-            <Typography
-              variant="button"
-              fontWeight="medium"
-              ml={1}
-              lineHeight={1}
-            >
+            <Typography variant="button" fontWeight="medium" ml={1} lineHeight={1}>
               {hoveredUser?.name}
             </Typography>
           </CardContent>

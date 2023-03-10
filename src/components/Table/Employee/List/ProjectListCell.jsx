@@ -1,11 +1,4 @@
-import {
-  Box,
-  Popover,
-  Card,
-  Chip,
-  ListItem,
-  ListItemText,
-} from '@mui/material';
+import { Box, Popover, Card, Chip, ListItem, ListItemText } from '@mui/material';
 
 import { useState } from 'react';
 
@@ -13,9 +6,7 @@ const ProjectListCell = (props) => {
   const { projects, totalHours } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   return (
-    <Box
-      sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
       <Chip
         onMouseEnter={(event) => {
           setAnchorEl(event.currentTarget);
@@ -29,17 +20,16 @@ const ProjectListCell = (props) => {
         anchorEl={anchorEl}
         id="mouse-over-popover"
         sx={{
-          pointerEvents: 'none',
+          pointerEvents: 'none'
         }}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'left'
         }}
         transformOrigin={{
           vertical: 'top',
-          horizontal: 'left',
-        }}
-      >
+          horizontal: 'left'
+        }}>
         <Card sx={{ minWidth: 275 }}>
           {projects.map((project, index) => (
             <div key={index}>

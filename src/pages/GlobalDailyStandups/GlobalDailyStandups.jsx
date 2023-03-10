@@ -19,7 +19,7 @@ export default function GlobalDailyStandups() {
   useEffect(() => {
     setTimeout(() => {
       bottomElement.current.scrollIntoView({
-        behavior: 'smooth',
+        behavior: 'smooth'
       });
     }, 10);
   }, [dailyStanups]);
@@ -32,17 +32,15 @@ export default function GlobalDailyStandups() {
             position="alternate"
             sx={{
               maxHeight: 560,
-              overflowY: 'scroll',
-            }}
-          >
+              overflowY: 'scroll'
+            }}>
             {dailyStanups.map((item, index) => (
-              <TimelineItem>
+              <TimelineItem key={index}>
                 <TimelineOppositeContent
                   sx={{ m: 'auto 0' }}
                   align={index % 2 === 0 ? 'right' : 'left'}
                   variant="body2"
-                  color="text.secondary"
-                >
+                  color="text.secondary">
                   <Typography>{item.time}</Typography>
                   <Typography>{item.project}</Typography>
                 </TimelineOppositeContent>

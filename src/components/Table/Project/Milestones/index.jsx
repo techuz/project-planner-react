@@ -20,10 +20,7 @@ function Row(props) {
         <TableCell align="center">{row.startDate}</TableCell>
         <TableCell align="center">{row.endDate}</TableCell>
         <TableCell align="center">
-          <Chip
-            label={row.status}
-            color={row.status === 'completed' ? 'success' : 'error'}
-          />
+          <Chip label={row.status} color={row.status === 'completed' ? 'success' : 'error'} />
         </TableCell>
         <TableCell align="center">{row.checklist}</TableCell>
       </TableRow>
@@ -58,11 +55,9 @@ export default function Index(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <Row key={row.name} row={row} />
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <Row key={row.name} row={row} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

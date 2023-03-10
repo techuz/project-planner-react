@@ -1,12 +1,4 @@
-import {
-  Box,
-  Popover,
-  Card,
-  CardContent,
-  CardHeader,
-  Avatar,
-  Typography,
-} from '@mui/material';
+import { Box, Popover, Card, CardContent, CardHeader, Avatar, Typography } from '@mui/material';
 
 import { useState } from 'react';
 
@@ -15,9 +7,7 @@ const ProjectUsersTableCell = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [hoveredUser, setHoveredUser] = useState(null);
   return (
-    <Box
-      sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
       {members.map((member, index) => (
         <div key={index}>
           <Avatar
@@ -36,12 +26,12 @@ const ProjectUsersTableCell = (props) => {
               ml: -1.25,
 
               '&:not(:first-of-type)': {
-                ml: -1.25,
+                ml: -1.25
               },
 
               '&:hover, &:focus': {
-                zIndex: '10',
-              },
+                zIndex: '10'
+              }
             }}
           />
           <Popover
@@ -49,32 +39,24 @@ const ProjectUsersTableCell = (props) => {
             anchorEl={anchorEl}
             id="mouse-over-popover"
             sx={{
-              pointerEvents: 'none',
+              pointerEvents: 'none'
             }}
             anchorOrigin={{
               vertical: 'bottom',
-              horizontal: 'left',
+              horizontal: 'left'
             }}
             transformOrigin={{
               vertical: 'top',
-              horizontal: 'left',
-            }}
-          >
+              horizontal: 'left'
+            }}>
             <Card sx={{ minWidth: 275 }}>
               <CardHeader
-                avatar={
-                  <Avatar src={hoveredUser?.image} alt="name" size="xs" />
-                }
+                avatar={<Avatar src={hoveredUser?.image} alt="name" size="xs" />}
                 title={hoveredUser?.name}
               />
               {hoveredUser?.hours && (
                 <CardContent>
-                  <Typography
-                    variant="button"
-                    fontWeight="medium"
-                    ml={1}
-                    lineHeight={1}
-                  >
+                  <Typography variant="button" fontWeight="medium" ml={1} lineHeight={1}>
                     {hoveredUser?.hours}
                   </Typography>
                 </CardContent>

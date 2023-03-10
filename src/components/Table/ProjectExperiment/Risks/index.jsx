@@ -9,14 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import EmployeeNameCell from './EmployeeNameCell';
-import {
-  Box,
-  Button,
-  Collapse,
-  MenuItem,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Collapse, MenuItem, TextField, Typography } from '@mui/material';
 import ActionTableCell from './ActionTableCell';
 import SaveIcon from '@mui/icons-material/Save';
 
@@ -29,10 +22,7 @@ function Row(props) {
           {row.risk}
         </TableCell>
         <TableCell align="center">
-          <Chip
-            label={row.status}
-            color={row.status === 'resolved' ? 'success' : 'error'}
-          />
+          <Chip label={row.status} color={row.status === 'resolved' ? 'success' : 'error'} />
         </TableCell>
         <TableCell align="center">
           <EmployeeNameCell employee={row.raisedBy} />
@@ -58,12 +48,12 @@ export default function Index(props) {
   const statuses = [
     {
       name: 'pending',
-      value: 'pending',
+      value: 'pending'
     },
     {
       name: 'resolved',
-      value: 'resolved',
-    },
+      value: 'resolved'
+    }
   ];
 
   const handleChangePage = (_event, newPage) => {
@@ -87,11 +77,10 @@ export default function Index(props) {
             component="form"
             sx={{
               mb: 2,
-              '& .MuiTextField-root': { m: 1, width: '25ch' },
+              '& .MuiTextField-root': { m: 1, width: '25ch' }
             }}
             noValidate
-            autoComplete="off"
-          >
+            autoComplete="off">
             <Box sx={{ display: 'flex' }}>
               <TextField
                 id="filled-select-currency"
@@ -99,8 +88,7 @@ export default function Index(props) {
                 label="Stutus"
                 value={status}
                 variant="filled"
-                onChange={(e) => setStatus(e.target.value)}
-              >
+                onChange={(e) => setStatus(e.target.value)}>
                 {statuses.map((option) => (
                   <MenuItem key={option.name} value={option.value}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -134,15 +122,9 @@ export default function Index(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <Row
-                  key={row.risk}
-                  row={row}
-                  shouldEdit={() => setOpen(true)}
-                />
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <Row key={row.risk} row={row} shouldEdit={() => setOpen(true)} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

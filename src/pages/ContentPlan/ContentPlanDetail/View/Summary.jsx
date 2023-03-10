@@ -16,15 +16,9 @@ export default function Summary(props) {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Avatar
-              src={xcel}
-              alt="name"
-              sx={{ width: 20, height: 20, mr: 1 }}
-              variant="square"
-            />
+              justifyContent: 'center'
+            }}>
+            <Avatar src={xcel} alt="name" sx={{ width: 20, height: 20, mr: 1 }} variant="square" />
             <Link href={data.docs[0].link} target="_blank">
               {data.docs[0].name}
             </Link>
@@ -64,10 +58,7 @@ export default function Summary(props) {
       <Box sx={{ margin: 1 }}>
         <Typography sx={{ display: 'flex', alignItems: 'center' }}>
           Status: &nbsp;
-          <Chip
-            label={data.status}
-            color={data.status === 'completed' ? 'success' : 'warning'}
-          />
+          <Chip label={data.status} color={data.status === 'completed' ? 'success' : 'warning'} />
         </Typography>
       </Box>
     </Box>

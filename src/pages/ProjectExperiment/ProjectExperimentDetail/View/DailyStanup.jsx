@@ -22,7 +22,7 @@ export default function DailyStanup(props) {
     const obj = {
       createdBy: 'Ryan thompsan',
       description: message,
-      date: '27-02-2023',
+      date: '27-02-2023'
     };
     let fk = dailyStanups;
     fk.push(obj);
@@ -33,7 +33,7 @@ export default function DailyStanup(props) {
   useEffect(() => {
     setTimeout(() => {
       bottomElement.current.scrollIntoView({
-        behavior: 'smooth',
+        behavior: 'smooth'
       });
     }, 10);
   }, [dailyStanups]);
@@ -46,11 +46,7 @@ export default function DailyStanup(props) {
     <Box>
       <Paper elevation={4}>
         <Box>
-          <ButtonGroup
-            variant="text"
-            color="primary"
-            aria-label="medium secondary button group"
-          >
+          <ButtonGroup variant="text" color="primary" aria-label="medium secondary button group">
             <Button key="one">Last 3 months</Button>
             <Button key="two">Last 2 months</Button>
             <Button key="three">Last months</Button>
@@ -60,17 +56,15 @@ export default function DailyStanup(props) {
             position="alternate"
             sx={{
               maxHeight: 410,
-              overflowY: 'scroll',
-            }}
-          >
+              overflowY: 'scroll'
+            }}>
             {dailyStanups.map((item, index) => (
-              <TimelineItem>
+              <TimelineItem key={index}>
                 <TimelineOppositeContent
                   sx={{ m: 'auto 0' }}
                   align={index % 2 === 0 ? 'right' : 'left'}
                   variant="body2"
-                  color="text.secondary"
-                >
+                  color="text.secondary">
                   {item.date}
                 </TimelineOppositeContent>
                 <TimelineSeparator>
@@ -100,9 +94,8 @@ export default function DailyStanup(props) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-around',
-            padding: '8px 16px 8px 16px',
-          }}
-        >
+            padding: '8px 16px 8px 16px'
+          }}>
           <TextField
             sx={{ width: '90%' }}
             id="outlined-multiline-flexible"
@@ -112,11 +105,7 @@ export default function DailyStanup(props) {
             multiline
             maxRows={4}
           />
-          <Button
-            variant="contained"
-            endIcon={<SendIcon />}
-            onClick={handleSubmit}
-          >
+          <Button variant="contained" endIcon={<SendIcon />} onClick={handleSubmit}>
             Send
           </Button>
         </Paper>

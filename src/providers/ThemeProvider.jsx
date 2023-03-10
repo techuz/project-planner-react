@@ -6,25 +6,25 @@ export const defaultTheme = createTheme({
     MuiInput: {
       styleOverrides: {
         root: {
-          background: 'red',
-        },
-      },
+          background: 'red'
+        }
+      }
     },
     MuiFilledInput: {
       styleOverrides: {
         root: {
-          background: 'transparent !important',
-        },
-      },
+          background: 'transparent !important'
+        }
+      }
     },
     MuiTimelineItem: {
       styleOverrides: {
         root: {
-          minHeight: 'initial !important',
-        },
-      },
-    },
-  },
+          minHeight: 'initial !important'
+        }
+      }
+    }
+  }
 });
 
 const Provider = ({ children, ...props }) => {
