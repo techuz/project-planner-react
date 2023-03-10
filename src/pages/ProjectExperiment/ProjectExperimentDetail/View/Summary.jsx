@@ -1,6 +1,6 @@
 import { Box, Avatar, FormLabel, Typography, Chip } from '@mui/material';
 
-import ProjectLeadTableCell from '../../../../components/Table/Project/List/ProjectLeadTableCell';
+import ProjectLeadTableCell from '../../../../components/Table/ProjectExperiment/List/ProjectLeadTableCell';
 
 export default function Summary(props) {
   const { data } = props;

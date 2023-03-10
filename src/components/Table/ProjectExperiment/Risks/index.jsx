@@ -9,9 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import EmployeeNameCell from './EmployeeNameCell';
-import { Box, Button, Collapse, MenuItem, TextField, Typography } from '@mui/material';
 import ActionTableCell from './ActionTableCell';
-import SaveIcon from '@mui/icons-material/Save';
 
 function Row(props) {
   const { row, shouldEdit } = props;
@@ -39,22 +37,9 @@ function Row(props) {
 }
 
 export default function Index(props) {
-  const { rows } = props;
+  const { rows, shouldOpenEditForm } = props;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [open, setOpen] = useState(false);
-  const [status, setStatus] = useState('');
-
-  const statuses = [
-    {
-      name: 'pending',
-      value: 'pending'
-    },
-    {
-      name: 'resolved',
-      value: 'resolved'
-    }
-  ];
 
   const handleChangePage = (_event, newPage) => {
     setPage(newPage);
@@ -65,51 +50,8 @@ export default function Index(props) {
     setPage(0);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
   return (
     <>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <form onSubmit={handleSubmit}>
-          <Box
-            component="form"
-            sx={{
-              mb: 2,
-              '& .MuiTextField-root': { m: 1, width: '25ch' }
-            }}
-            noValidate
-            autoComplete="off">
-            <Box sx={{ display: 'flex' }}>
-              <TextField
-                id="filled-select-currency"
-                select
-                label="Stutus"
-                value={status}
-                variant="filled"
-                onChange={(e) => setStatus(e.target.value)}>
-                {statuses.map((option) => (
-                  <MenuItem key={option.name} value={option.value}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Typography ml={1}>{option?.name}</Typography>
-                    </Box>
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Box>
-            <Box sx={{ display: 'flex', padding: 2 }}>
-              <Button variant="outlined" startIcon={<SaveIcon />}>
-                Save
-              </Button>
-              &nbsp;
-              <Button variant="outlined" onClick={() => setOpen(false)}>
-                close
-              </Button>
-            </Box>
-          </Box>
-        </form>
-      </Collapse>
       <TableContainer component={Paper} elevation={4}>
         <Table aria-label="collapsible table">
           <TableHead>
@@ -123,7 +65,7 @@ export default function Index(props) {
           </TableHead>
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <Row key={row.risk} row={row} shouldEdit={() => setOpen(true)} />
+              <Row key={row.risk} row={row} shouldEdit={shouldOpenEditForm} />
             ))}
           </TableBody>
         </Table>

@@ -3,7 +3,7 @@ import { Box, Button, Collapse } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 import ProjectExperimentListTable from '../../../components/Table/ProjectExperiment/List';
-import CreateExperimentalProject from '../../../components/Form/ExperimentalProject/CreateExperimentalProject';
+import CreateExperimentalProject from '../../../components/Form/ProjectExperiment/CreateExperimentalProject';
 
 const ProjectExperimentList = () => {
   const [openForm, setOpenForm] = useState(false);

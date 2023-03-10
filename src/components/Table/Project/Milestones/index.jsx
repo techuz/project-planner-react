@@ -8,9 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
+import ActionTableCell from './ActionTableCell';
 
 function Row(props) {
-  const { row } = props;
+  const { row, shouldEdit } = props;
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -23,13 +24,16 @@ function Row(props) {
           <Chip label={row.status} color={row.status === 'completed' ? 'success' : 'error'} />
         </TableCell>
         <TableCell align="center">{row.checklist}</TableCell>
+        <TableCell align="center">
+          <ActionTableCell shouldEdit={shouldEdit} />
+        </TableCell>
       </TableRow>
     </React.Fragment>
   );
 }
 
 export default function Index(props) {
-  const { rows } = props;
+  const { rows, shouldOpenEditForm } = props;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -52,11 +56,12 @@ export default function Index(props) {
               <TableCell align="center">End date</TableCell>
               <TableCell align="center">Status</TableCell>
               <TableCell align="center">Checklists</TableCell>
+              <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <Row key={row.name} row={row} />
+              <Row key={row.name} row={row} shouldEdit={shouldOpenEditForm} />
             ))}
           </TableBody>
         </Table>
