@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 
 import { ProtectedRoute } from './components/ProtectedRoute';
-
-import { Login } from './pages/Login';
 import { AuthProvider } from './providers/AuthProvider';
+
+import Auth from './pages/Auth/routes';
+// import Profile from './pages/Profile/Profile';
 import GlobalDailyStandups from './pages/GlobalDailyStandups/routes';
 import ProjectList from './pages/Projects/routes';
 import EmployeeList from './pages/Employee/routes';
@@ -14,7 +15,15 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/*" element={<Auth />} />
+        {/* <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        /> */}
         <Route
           path="/projects/*"
           element={
