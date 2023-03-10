@@ -19,8 +19,8 @@ axios.interceptors.response.use(
 const getHeaders = (isAuthorized, authToken, isFormWithImg) => {
   let config = {
     headers: {
-      Accept: 'application/json',
-    },
+      Accept: 'application/json'
+    }
   };
   if (isAuthorized) {
     config.headers.Authorization = `Bearer ${authToken}`;

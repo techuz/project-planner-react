@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const login = useCallback(
     async (data) => {
       setUser(data);
-      navigate('/project-list');
+      navigate('/projects');
     },
     [setUser, navigate]
   );
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
       login,
       logout,
       forgotPassword,
-      resetPassword,
+      resetPassword
     }),
     [user, login, logout, forgotPassword, resetPassword]
   );

@@ -6,9 +6,7 @@ const ActionTableCell = (props) => {
   const { row, editAllocation } = props;
 
   return (
-    <Box
-      sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
       <ButtonGroup variant="text" aria-label="text button group">
         <Button onClick={() => editAllocation(row)}>
           <EditIcon />

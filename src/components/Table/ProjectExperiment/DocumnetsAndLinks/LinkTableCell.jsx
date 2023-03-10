@@ -7,9 +7,7 @@ const LinkTableCell = (props) => {
     return;
   }
   return (
-    <Box
-      sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
       <Typography sx={{ display: 'flex', alignItems: 'center' }}>
         <Avatar
           src={xcel}
@@ -20,14 +18,13 @@ const LinkTableCell = (props) => {
             position: 'relative',
             mr: 1,
             width: 20,
-            height: 20,
+            height: 20
           }}
           variant="square"
         />
         <Link
           href="https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing"
-          target="_blank"
-        >
+          target="_blank">
           {link.name}
         </Link>
       </Typography>

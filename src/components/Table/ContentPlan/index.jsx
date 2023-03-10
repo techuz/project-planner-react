@@ -30,15 +30,9 @@ function Row(props) {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Avatar
-              src={xcel}
-              alt="name"
-              sx={{ width: 20, height: 20, mr: 1 }}
-              variant="square"
-            />
+              justifyContent: 'center'
+            }}>
+            <Avatar src={xcel} alt="name" sx={{ width: 20, height: 20, mr: 1 }} variant="square" />
             <Link href={row.docs[0].link} target="_blank">
               {row.docs[0].name}
             </Link>
@@ -48,16 +42,12 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/content-plan/detail/${row.id}`)}
-        >
+          onClick={() => navigate(`/content-plan/detail/${row.id}`)}>
           {row.topic}
         </TableCell>
         <TableCell align="center">{row.category}</TableCell>
         <TableCell align="center">
-          <Chip
-            label={row.deadline}
-            color={row.deadline === 'completed' ? 'success' : 'warning'}
-          />
+          <Chip label={row.deadline} color={row.deadline === 'completed' ? 'success' : 'warning'} />
         </TableCell>
         <TableCell align="center">
           <ProjectUsersTableCell members={row.users} />
@@ -66,10 +56,7 @@ function Row(props) {
           <ProjectUsersTableCell members={row.allocatedBy} />
         </TableCell>
         <TableCell align="center">
-          <Chip
-            label={row.status}
-            color={row.status === 'completed' ? 'success' : 'warning'}
-          />
+          <Chip label={row.status} color={row.status === 'completed' ? 'success' : 'warning'} />
         </TableCell>
       </TableRow>
     </React.Fragment>
@@ -81,7 +68,7 @@ Row.propTypes = {
     docs: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired,
+        link: PropTypes.string.isRequired
       })
     ).isRequired,
     topic: PropTypes.string.isRequired,
@@ -91,15 +78,15 @@ Row.propTypes = {
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-        hours: PropTypes.string.isRequired,
+        hours: PropTypes.string.isRequired
       })
     ).isRequired,
     allocatedBy: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired
     }).isRequired,
-    status: PropTypes.string.isRequired,
-  }).isRequired,
+    status: PropTypes.string.isRequired
+  }).isRequired
 };
 
 const rows = contentPlanList;
@@ -133,11 +120,9 @@ export default function Index() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <Row key={row.topic} row={row} />
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <Row key={row.topic} row={row} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

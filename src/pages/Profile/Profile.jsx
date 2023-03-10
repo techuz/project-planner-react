@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Link,
-  Typography,
-} from '@mui/material';
+import { Avatar, Box, Button, Card, CardContent, Link, Typography } from '@mui/material';
 import profileDetail from '../../StaticData/profile.json';
 import ChangePassword from './ChangePassword';
 
@@ -22,22 +14,20 @@ const UserProfile = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
+            justifyContent: 'center'
+          }}>
           <Box
             sx={{
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               width: '100%',
-              height: '200px',
-            }}
-          >
+              height: '200px'
+            }}>
             <Avatar
               sx={{
                 width: '200px',
-                height: '200px',
+                height: '200px'
               }}
               src={usersDetails.profile_url}
               aria-label="user-avatar"
@@ -47,9 +37,8 @@ const UserProfile = () => {
             sx={{
               margin: 3,
               display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
+              justifyContent: 'center'
+            }}>
             <Box mt={3} sx={{ display: 'flex', flexDirection: 'column' }}>
               <Box sx={{ display: 'flex' }}>
                 <Typography variant="subtitle1">Full Name</Typography>
@@ -61,26 +50,18 @@ const UserProfile = () => {
                 <Typography variant="subtitle1">Position</Typography>
               </Box>
               <Box sx={{ display: 'flex' }}>
-                <Link onClick={() => setShouldChangePassword(true)}>
-                  Change password
-                </Link>
+                <Link onClick={() => setShouldChangePassword(true)}>Change password</Link>
               </Box>
             </Box>
             <Box m={3} sx={{ display: 'flex', flexDirection: 'column' }}>
               <Box sx={{ display: 'flex' }}>
-                <Typography variant="subtitle1">
-                  {usersDetails.users_name}{' '}
-                </Typography>
+                <Typography variant="subtitle1">{usersDetails.users_name} </Typography>
               </Box>
               <Box sx={{ display: 'flex' }}>
-                <Typography variant="subtitle1">
-                  {usersDetails.email}
-                </Typography>
+                <Typography variant="subtitle1">{usersDetails.email}</Typography>
               </Box>
               <Box sx={{ display: 'flex' }}>
-                <Typography variant="subtitle1">
-                  {usersDetails.position}
-                </Typography>
+                <Typography variant="subtitle1">{usersDetails.position}</Typography>
               </Box>
             </Box>
           </Box>
@@ -98,12 +79,9 @@ const UserProfile = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <ChangePassword
-            cancleChangePassword={() => setShouldChangePassword(false)}
-          />
+            justifyContent: 'center'
+          }}>
+          <ChangePassword cancleChangePassword={() => setShouldChangePassword(false)} />
         </CardContent>
       )}
     </Card>

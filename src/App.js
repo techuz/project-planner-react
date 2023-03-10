@@ -25,7 +25,7 @@ function App() {
           }
         />
         <Route
-          path="/project-list/*"
+          path="/projects/*"
           element={
             <ProtectedRoute>
               <ProjectList />
@@ -33,7 +33,7 @@ function App() {
           }
         />
         <Route
-          path="/employee-list/*"
+          path="/employees/*"
           element={
             <ProtectedRoute>
               <EmployeeList />

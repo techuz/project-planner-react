@@ -16,8 +16,7 @@ const ProjectExperimentList = () => {
             onClick={() => setOpenForm(!openForm)}
             variant="contained"
             startIcon={<AddIcon />}
-            color="primary"
-          >
+            color="primary">
             add new project
           </Button>
         )}

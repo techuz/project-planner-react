@@ -6,34 +6,34 @@ export const defaultTheme = createTheme({
     MuiInput: {
       styleOverrides: {
         root: {
-          background: 'red',
-        },
-      },
+          background: 'red'
+        }
+      }
     },
     MuiFilledInput: {
       styleOverrides: {
         root: {
-          background: 'transparent !important',
-        },
-      },
+          background: 'transparent !important'
+        }
+      }
     },
     MuiTimelineItem: {
       styleOverrides: {
         root: {
-          minHeight: 'initial !important',
-        },
-      },
+          minHeight: 'initial !important'
+        }
+      }
     },
     MuiPaper: {
       styleOverrides: {
         root: {
           boxShadow: 'none !important',
-          border: '1px solid rgba(224, 224, 224, 1)',
+          border: '1px solid rgba(224, 224, 224, 1)'
           // borderRadius: 8
-        },
-      },
-    },
-  },
+        }
+      }
+    }
+  }
 });
 
 const Provider = ({ children, ...props }) => {

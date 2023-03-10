@@ -33,26 +33,16 @@ function Row(props) {
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
+          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
         <TableCell align="center" component="th" scope="row">
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Avatar
-              src={xcel}
-              alt="name"
-              sx={{ width: 20, height: 20, mr: 1 }}
-              variant="square"
-            />
+            <Avatar src={xcel} alt="name" sx={{ width: 20, height: 20, mr: 1 }} variant="square" />
             <Link
               href="https://docs.google.com/spreadsheets/d/1xuR8cD8QkTgqP07JkQqRVFYcGAFs0nsLyplk16Bq-Ps/edit?usp=sharing"
-              target="_blank"
-            >
+              target="_blank">
               {row.project_name}
             </Link>
           </Box>
@@ -61,8 +51,7 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/project-list/detail/${row.id}`)}
-        >
+          onClick={() => navigate(`/projects/detail/${row.id}`)}>
           {row.project_name}
         </TableCell>
         <TableCell align="center">
@@ -72,10 +61,7 @@ function Row(props) {
           <ProjectLeadTableCell members={row.developers} />
         </TableCell>
         <TableCell align="center">
-          <Chip
-            label={row.date}
-            color={row.date === 'completed' ? 'success' : 'warning'}
-          />
+          <Chip label={row.date} color={row.date === 'completed' ? 'success' : 'warning'} />
         </TableCell>
         <TableCell align="center">{row.budget}</TableCell>
         <TableCell align="center">
@@ -110,9 +96,7 @@ function Row(props) {
                       <TableCell align="center">
                         <Chip
                           label={mRow.status}
-                          color={
-                            mRow.status === 'completed' ? 'success' : 'warning'
-                          }
+                          color={mRow.status === 'completed' ? 'success' : 'warning'}
                         />
                       </TableCell>
                       <TableCell align="center">{mRow.checklist}</TableCell>
@@ -134,14 +118,14 @@ Row.propTypes = {
     project_lead: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired
       })
     ).isRequired,
     developers: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-        hours: PropTypes.string.isRequired,
+        hours: PropTypes.string.isRequired
       })
     ).isRequired,
     type: PropTypes.string.isRequired,
@@ -152,7 +136,7 @@ Row.propTypes = {
         startDate: PropTypes.string.isRequired,
         endDate: PropTypes.string.isRequired,
         status: PropTypes.string.isRequired,
-        checklist: PropTypes.string.isRequired,
+        checklist: PropTypes.string.isRequired
       })
     ).isRequired,
     project_name: PropTypes.string.isRequired,
@@ -160,10 +144,10 @@ Row.propTypes = {
       PropTypes.shape({
         initial: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
-        flag: PropTypes.string.isRequired,
+        flag: PropTypes.string.isRequired
       })
-    ).isRequired,
-  }).isRequired,
+    ).isRequired
+  }).isRequired
 };
 
 const rows = projectList;
@@ -197,11 +181,9 @@ export default function Index() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <Row key={row.project_name} row={row} />
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <Row key={row.project_name} row={row} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

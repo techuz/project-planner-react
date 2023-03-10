@@ -16,8 +16,7 @@ const ContentPlanList = () => {
             onClick={() => setOpenForm(!openForm)}
             variant="contained"
             startIcon={<AddIcon />}
-            color="primary"
-          >
+            color="primary">
             add new content
           </Button>
         )}

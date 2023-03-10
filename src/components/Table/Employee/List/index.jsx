@@ -26,15 +26,11 @@ function Row(props) {
           align="center"
           component="th"
           scope="row"
-          onClick={() => navigate(`/employee-list/detail/${row.id}`)}
-        >
+          onClick={() => navigate(`/employees/detail/${row.id}`)}>
           <EmployeeNameCell employee={row.employee_name} />
         </TableCell>
         <TableCell align="center">
-          <ProjectListCell
-            projects={row.project_allocated}
-            totalHours={row.totalHours}
-          />
+          <ProjectListCell projects={row.project_allocated} totalHours={row.totalHours} />
         </TableCell>
         <TableCell align="center">
           <Chip
@@ -60,13 +56,13 @@ Row.propTypes = {
     employee_name: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired
       })
     ).isRequired,
     project_allocated: PropTypes.arrayOf(
       PropTypes.shape({
         project_name: PropTypes.string.isRequired,
-        hours: PropTypes.string.isRequired,
+        hours: PropTypes.string.isRequired
       })
     ).isRequired,
     availability: PropTypes.string.isRequired,
@@ -75,10 +71,10 @@ Row.propTypes = {
     tech_skills: PropTypes.arrayOf(
       PropTypes.shape({
         skill_name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired
       })
-    ).isRequired,
-  }).isRequired,
+    ).isRequired
+  }).isRequired
 };
 
 const rows = employeeList;
@@ -110,11 +106,9 @@ export default function Index() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <Row key={row.project_name} row={row} />
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <Row key={row.project_name} row={row} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

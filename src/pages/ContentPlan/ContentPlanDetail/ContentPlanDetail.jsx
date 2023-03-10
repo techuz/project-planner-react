@@ -28,9 +28,8 @@ export default function ContentPlanDetail() {
             minHeight: 500,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
+            justifyContent: 'center'
+          }}>
           <Typography>No record found!</Typography>
         </Box>
       )}
