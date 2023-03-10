@@ -16,8 +16,15 @@ export default function ChangePassword(props) {
 
   const ChangePasswordValidationSchema = Yup.object().shape({
     currentPassword: Yup.string().required('Current password is required'),
-    newPassword: Yup.string().required('New password is required'),
-    confirmPassword: Yup.string().required('Confirm password is required')
+    newPassword: Yup.string()
+      .notOneOf(
+        [Yup.ref('currentPassword'), null],
+        'Current password and new password cannot be the same'
+      )
+      .required('New password is required'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('newPassword'), null], 'New password and confirm password must match')
+      .required('Confirm password is required')
   });
 
   const cPFormik = useFormik({
