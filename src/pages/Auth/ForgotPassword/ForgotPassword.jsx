@@ -15,7 +15,7 @@ export default function ForgotPassword() {
   const { forgotPassword } = useAuth();
 
   const forgotPasswordValidationSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Email is Required')
+    email: Yup.string().email('Invalid email').required('Email is required')
   });
 
   const fPFormik = useFormik({

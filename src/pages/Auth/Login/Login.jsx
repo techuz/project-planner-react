@@ -17,7 +17,7 @@ export default function SignIn() {
   const { login } = useAuth();
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Email is Required'),
+    email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string().required('Password is required')
   });
 

@@ -96,8 +96,8 @@ export default function CreateEmployee(props) {
   });
 
   const validationSchema = Yup.object().shape({
-    employee_name: Yup.string().required('Employee name is Required'),
-    email: Yup.string().email('Invalid email').required('Email is Required'),
+    employee_name: Yup.string().required('Employee name is required'),
+    email: Yup.string().email('Invalid email').required('Email is required'),
     position: Yup.string().required('Position is required'),
     skills: Yup.array().min(1, 'Skills is required'),
     project_allocated: Yup.object().shape({

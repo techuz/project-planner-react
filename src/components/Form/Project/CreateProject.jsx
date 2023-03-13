@@ -65,7 +65,7 @@ export default function CreateProject(props) {
   ];
 
   const validationSchema = Yup.object().shape({
-    project_name: Yup.string().required('Project name is Required'),
+    project_name: Yup.string().required('Project name is required'),
     project_lead: Yup.string().required('Project lead is required'),
     is_active: Yup.boolean(),
     project_deadline: Yup.string(),

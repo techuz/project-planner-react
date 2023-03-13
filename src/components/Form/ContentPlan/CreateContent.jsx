@@ -68,9 +68,9 @@ export default function CreateContent(props) {
   ];
 
   const validationSchema = Yup.object().shape({
-    document_link: Yup.string().required('Document link is Required'),
-    topic: Yup.string().required('Topic name is Required'),
-    category: Yup.string().required('Category is Required'),
+    document_link: Yup.string().required('Document link is required'),
+    topic: Yup.string().required('Topic name is required'),
+    category: Yup.string().required('Category is required'),
     is_active: Yup.boolean(),
     deadline: Yup.string(),
     allocated_by: Yup.string(),
