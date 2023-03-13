@@ -11,8 +11,7 @@ import {
   InputLabel,
   FormControlLabel,
   Switch,
-  Avatar,
-  FormHelperText
+  Avatar
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import team1 from '../../../assets/images/team-1.jpg';
@@ -23,10 +22,10 @@ import team5 from '../../../assets/images/team-5.jpg';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-export default function CreateProject(props) {
+export default function CreateContent(props) {
   const { closeForm } = props;
 
-  const projectLeads = [
+  const developers = [
     {
       name: 'Ryan Tompson',
       value: 'Ryan Tompson',
@@ -53,34 +52,40 @@ export default function CreateProject(props) {
       image: team5
     }
   ];
-  const projectType = [
+  const categories = [
     {
-      name: 'FIX',
-      value: 'FIX'
+      name: 'Category1',
+      value: 'Category1'
     },
     {
-      name: 'TM',
-      value: 'TM'
+      name: 'Category2',
+      value: 'Category2'
+    },
+    {
+      name: 'Category3',
+      value: 'Category3'
     }
   ];
 
   const validationSchema = Yup.object().shape({
-    project_name: Yup.string().required('Project name is required'),
-    project_lead: Yup.string().required('Project lead is required'),
+    document_link: Yup.string().required('Document link is required'),
+    topic: Yup.string().required('Topic name is required'),
+    category: Yup.string().required('Category is required'),
     is_active: Yup.boolean(),
-    project_deadline: Yup.string(),
-    project_type: Yup.string(),
-    project_members: Yup.array()
+    deadline: Yup.string(),
+    allocated_by: Yup.string(),
+    users: Yup.array()
   });
 
   const formik = useFormik({
     initialValues: {
-      project_name: '',
-      project_lead: '',
+      document_link: '',
+      topic: '',
+      category: '',
       is_active: false,
-      project_deadline: '',
-      project_type: '',
-      project_members: []
+      deadline: '',
+      allocated_by: '',
+      users: []
     },
     validationSchema: validationSchema,
     onSubmit: () => {}
@@ -104,51 +109,67 @@ export default function CreateProject(props) {
           autoComplete="off">
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <TextField
-              label="Project name"
-              name="project_name"
+              label="Document link"
+              name="document_link"
               variant="filled"
               fullWidth
               margin="normal"
-              value={formik.values.project_name}
+              value={formik.values.document_link}
               onChange={formik.handleChange}
-              error={formik.touched.project_name && Boolean(formik.errors.project_name)}
-              helperText={formik.touched.project_name && formik.errors.project_name}
-              inputProps={{ maxLength: 50 }}
+              error={formik.touched.document_link && Boolean(formik.errors.document_link)}
+              helperText={formik.touched.document_link && formik.errors.document_link}
+            />
+            <TextField
+              label="Topic"
+              name="topic"
+              variant="filled"
+              fullWidth
+              margin="normal"
+              value={formik.values.topic}
+              onChange={formik.handleChange}
+              error={formik.touched.topic && Boolean(formik.errors.topic)}
+              helperText={formik.touched.topic && formik.errors.topic}
             />
             <TextField
               id="filled-select-currency"
               select
-              label="Project lead"
-              name="project_lead"
-              value={formik.values.project_lead}
+              label="Category"
+              name="category"
+              value={formik.values.category}
               onChange={formik.handleChange}
-              error={formik.touched.project_lead && Boolean(formik.errors.project_lead)}
-              helperText={formik.touched.project_lead && formik.errors.project_lead}
-              variant="filled">
-              {projectLeads.map((option) => (
+              error={formik.touched.category && Boolean(formik.errors.category)}
+              helperText={formik.touched.category && formik.errors.category}
+              variant="filled"
+              fullWidth>
+              {categories.map((option) => (
                 <MenuItem key={option.name} value={option.value}>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Avatar src={option?.image} alt="name" sx={{ width: 20, height: 20 }} />
                     <Typography ml={1}>{option?.name}</Typography>
                   </Box>
                 </MenuItem>
               ))}
             </TextField>
+            <TextField
+              id="date"
+              label="Deadline"
+              name="deadline"
+              type="date"
+              variant="filled"
+              value={formik.values.deadline}
+              onChange={formik.handleChange}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
             <FormControl sx={{ m: 1 }}>
-              <InputLabel
-                className={
-                  formik.touched.project_members && formik.errors.project_members ? 'Mui-error' : ''
-                }
-                id="demo-multiple-chip-label">
-                Project members
-              </InputLabel>
+              <InputLabel id="demo-multiple-chip-label">Users</InputLabel>
               <Select
-                name="project_members"
                 labelId="demo-multiple-chip-label"
                 id="demo-multiple-chip"
                 multiple
+                name="users"
                 input={<FilledInput />}
-                value={formik.values.project_members}
+                value={formik.values.users}
                 onChange={formik.handleChange}
                 renderValue={(selected) => (
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -157,7 +178,7 @@ export default function CreateProject(props) {
                     ))}
                   </Box>
                 )}>
-                {projectLeads.map((option) => (
+                {developers.map((option) => (
                   <MenuItem key={option.name} value={option.name}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar src={option?.image} alt="name" sx={{ width: 20, height: 20 }} />
@@ -166,34 +187,19 @@ export default function CreateProject(props) {
                   </MenuItem>
                 ))}
               </Select>
-              <FormHelperText className="Mui-error">
-                {formik.touched.project_members && formik.errors.project_members}
-              </FormHelperText>
             </FormControl>
-            <TextField
-              id="date"
-              label="Project Deadline"
-              name="project_deadline"
-              type="date"
-              variant="filled"
-              value={formik.values.project_deadline}
-              onChange={formik.handleChange}
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
             <TextField
               id="filled-select-currency"
               select
-              label="Project Type"
-              name="project_type"
-              value={formik.values.project_type}
+              label="Allocated by"
+              name="allocated_by"
+              value={formik.values.allocated_by}
               variant="filled"
-              fullWidth
               onChange={formik.handleChange}>
-              {projectType.map((option) => (
+              {developers.map((option) => (
                 <MenuItem key={option.name} value={option.value}>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Avatar src={option?.image} alt="name" sx={{ width: 20, height: 20 }} />
                     <Typography ml={1}>{option?.name}</Typography>
                   </Box>
                 </MenuItem>

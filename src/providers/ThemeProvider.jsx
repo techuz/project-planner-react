@@ -23,6 +23,15 @@ export const defaultTheme = createTheme({
           minHeight: 'initial !important'
         }
       }
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none !important',
+          border: '1px solid rgba(224, 224, 224, 1)'
+          // borderRadius: 8
+        }
+      }
     }
   }
 });

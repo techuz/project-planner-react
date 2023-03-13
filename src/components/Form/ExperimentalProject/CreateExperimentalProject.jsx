@@ -23,7 +23,7 @@ import team5 from '../../../assets/images/team-5.jpg';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-export default function CreateProject(props) {
+export default function CreateExperimentalProject(props) {
   const { closeForm } = props;
 
   const projectLeads = [
