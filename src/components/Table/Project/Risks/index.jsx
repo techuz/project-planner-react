@@ -85,7 +85,7 @@ export default function Index(props) {
               <TextField
                 id="filled-select-currency"
                 select
-                label="Stutus"
+                label="Status"
                 value={status}
                 variant="filled"
                 onChange={(e) => setStatus(e.target.value)}>

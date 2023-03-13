@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Box,
   Button,
@@ -20,15 +19,11 @@ import team2 from '../../../assets/images/team-2.jpg';
 import team3 from '../../../assets/images/team-3.jpg';
 import team4 from '../../../assets/images/team-4.jpg';
 import team5 from '../../../assets/images/team-5.jpg';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 export default function CreateContent(props) {
   const { closeForm } = props;
-  const [documentLink, setDocumentLink] = useState('');
-  const [topic, setTopic] = useState('');
-  const [category, setCategory] = useState('');
-  const [isActive, setActive] = useState(false);
-  const [date, setDate] = useState('');
-  const [allocatedBy, setAllocatedBy] = useState('');
 
   const developers = [
     {
@@ -72,21 +67,29 @@ export default function CreateContent(props) {
     }
   ];
 
-  const [users, setUsers] = useState([]);
+  const validationSchema = Yup.object().shape({
+    document_link: Yup.string().required('Document link is Required'),
+    topic: Yup.string().required('Topic name is Required'),
+    category: Yup.string().required('Category is Required'),
+    is_active: Yup.boolean(),
+    deadline: Yup.string(),
+    allocated_by: Yup.string(),
+    users: Yup.array()
+  });
 
-  const handleMemberChange = (event) => {
-    const {
-      target: { value }
-    } = event;
-    setUsers(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
+  const formik = useFormik({
+    initialValues: {
+      document_link: '',
+      topic: '',
+      category: '',
+      is_active: false,
+      deadline: '',
+      allocated_by: '',
+      users: []
+    },
+    validationSchema: validationSchema,
+    onSubmit: () => {}
+  });
 
   return (
     <Box
@@ -96,117 +99,129 @@ export default function CreateContent(props) {
         borderRadius: 2
       }}>
       <Box>
-        <form onSubmit={handleSubmit}>
-          <Box
-            component="form"
-            sx={{
-              '& .MuiTextField-root': { m: 1, width: 500 }
-            }}
-            noValidate
-            autoComplete="off">
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <TextField
-                label="Document link"
-                variant="filled"
-                // fullWidth
-                margin="normal"
-                value={documentLink}
-                onChange={(event) => setDocumentLink(event.target.value)}
-              />
-              <TextField
-                label="Topic"
-                variant="filled"
-                // fullWidth
-                margin="normal"
-                value={topic}
-                onChange={(event) => setTopic(event.target.value)}
-              />
-              <TextField
-                id="filled-select-currency"
-                select
-                label="Category"
-                value={category}
-                variant="filled"
-                fullWidth
-                onChange={(e) => setCategory(e.target.value)}>
-                {categories.map((option) => (
-                  <MenuItem key={option.name} value={option.value}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Typography ml={1}>{option?.name}</Typography>
-                    </Box>
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                id="date"
-                label="Deadline"
-                type="date"
-                variant="filled"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                InputLabelProps={{
-                  shrink: true
-                }}
-              />
-              <FormControl sx={{ m: 1 }}>
-                <InputLabel id="demo-multiple-chip-label">Users</InputLabel>
-                <Select
-                  labelId="demo-multiple-chip-label"
-                  id="demo-multiple-chip"
-                  multiple
-                  input={<FilledInput />}
-                  value={users}
-                  onChange={handleMemberChange}
-                  renderValue={(selected) => (
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      {selected.map((value) => (
-                        <Chip key={value} label={value} />
-                      ))}
-                    </Box>
-                  )}>
-                  {developers.map((option) => (
-                    <MenuItem key={option.name} value={option.name}>
-                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Avatar src={option?.image} alt="name" sx={{ width: 20, height: 20 }} />
-                        <Typography ml={1}>{option?.name}</Typography>
-                      </Box>
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <TextField
-                id="filled-select-currency"
-                select
-                label="Allocated by"
-                value={allocatedBy}
-                variant="filled"
-                onChange={(e) => setAllocatedBy(e.target.value)}>
+        <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: 500 }
+          }}
+          noValidate
+          onSubmit={formik.handleSubmit}
+          autoComplete="off">
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <TextField
+              label="Document link"
+              name="document_link"
+              variant="filled"
+              fullWidth
+              margin="normal"
+              value={formik.values.document_link}
+              onChange={formik.handleChange}
+              error={formik.touched.document_link && Boolean(formik.errors.document_link)}
+              helperText={formik.touched.document_link && formik.errors.document_link}
+            />
+            <TextField
+              label="Topic"
+              name="topic"
+              variant="filled"
+              fullWidth
+              margin="normal"
+              value={formik.values.topic}
+              onChange={formik.handleChange}
+              error={formik.touched.topic && Boolean(formik.errors.topic)}
+              helperText={formik.touched.topic && formik.errors.topic}
+            />
+            <TextField
+              id="filled-select-currency"
+              select
+              label="Category"
+              name="category"
+              value={formik.values.category}
+              onChange={formik.handleChange}
+              error={formik.touched.category && Boolean(formik.errors.category)}
+              helperText={formik.touched.category && formik.errors.category}
+              variant="filled"
+              fullWidth>
+              {categories.map((option) => (
+                <MenuItem key={option.name} value={option.value}>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Typography ml={1}>{option?.name}</Typography>
+                  </Box>
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              id="date"
+              label="Deadline"
+              name="deadline"
+              type="date"
+              variant="filled"
+              value={formik.values.deadline}
+              onChange={formik.handleChange}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+            <FormControl sx={{ m: 1 }}>
+              <InputLabel id="demo-multiple-chip-label">Users</InputLabel>
+              <Select
+                labelId="demo-multiple-chip-label"
+                id="demo-multiple-chip"
+                multiple
+                name="users"
+                input={<FilledInput />}
+                value={formik.values.users}
+                onChange={formik.handleChange}
+                renderValue={(selected) => (
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </Box>
+                )}>
                 {developers.map((option) => (
-                  <MenuItem key={option.name} value={option.value}>
+                  <MenuItem key={option.name} value={option.name}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar src={option?.image} alt="name" sx={{ width: 20, height: 20 }} />
                       <Typography ml={1}>{option?.name}</Typography>
                     </Box>
                   </MenuItem>
                 ))}
-              </TextField>
-              <FormControl sx={{ m: 2 }}>
-                <FormControlLabel
-                  control={<Switch checked={isActive} />}
-                  onChange={(e) => setActive(e.target.checked)}
-                  label={isActive ? 'Active' : 'Inactive'}
-                />
-              </FormControl>
-            </Box>
-            <Button variant="outlined" startIcon={<SaveIcon />}>
-              Save
-            </Button>
-            &nbsp;
-            <Button variant="outlined" onClick={closeForm}>
-              Close
-            </Button>
+              </Select>
+            </FormControl>
+            <TextField
+              id="filled-select-currency"
+              select
+              label="Allocated by"
+              name="allocated_by"
+              value={formik.values.allocated_by}
+              variant="filled"
+              onChange={formik.handleChange}>
+              {developers.map((option) => (
+                <MenuItem key={option.name} value={option.value}>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Avatar src={option?.image} alt="name" sx={{ width: 20, height: 20 }} />
+                    <Typography ml={1}>{option?.name}</Typography>
+                  </Box>
+                </MenuItem>
+              ))}
+            </TextField>
+            <FormControl sx={{ m: 2 }}>
+              <FormControlLabel
+                name="is_active"
+                control={<Switch checked={formik.values.is_active} />}
+                onChange={formik.handleChange}
+                label={formik.values.is_active ? 'Active' : 'Inactive'}
+              />
+            </FormControl>
           </Box>
-        </form>
+          <Button type="submit" variant="outlined" startIcon={<SaveIcon />}>
+            Save
+          </Button>
+          &nbsp;
+          <Button variant="outlined" onClick={closeForm}>
+            Close
+          </Button>
+        </Box>
       </Box>
     </Box>
   );

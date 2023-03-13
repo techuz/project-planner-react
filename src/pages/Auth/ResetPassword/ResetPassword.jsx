@@ -17,8 +17,13 @@ export default function ResetPassword() {
   const navigate = useNavigate();
 
   const resetPasswordValidationSchema = Yup.object().shape({
-    newPassword: Yup.string().required('New password is required'),
-    confirmPassword: Yup.string().required('Confirm password is required')
+    newPassword: Yup.string()
+      .required('New password is required')
+      .min(6, 'Password must be longer than 6 characters')
+      .max(99, 'Password must be shorter than 100 characters'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('newPassword'), null], 'Password do not match')
+      .required('Confirm password is required')
   });
 
   const rPFormik = useFormik({

@@ -23,7 +23,7 @@ export default function ChangePassword(props) {
       )
       .required('New password is required'),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('newPassword'), null], 'New password and confirm password must match')
+      .oneOf([Yup.ref('newPassword'), null], 'Password do not match')
       .required('Confirm password is required')
   });
 

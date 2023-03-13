@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Box,
   Button,
@@ -12,7 +11,8 @@ import {
   InputLabel,
   FormControlLabel,
   Switch,
-  Avatar
+  Avatar,
+  FormHelperText
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import team1 from '../../../assets/images/team-1.jpg';
@@ -20,14 +20,11 @@ import team2 from '../../../assets/images/team-2.jpg';
 import team3 from '../../../assets/images/team-3.jpg';
 import team4 from '../../../assets/images/team-4.jpg';
 import team5 from '../../../assets/images/team-5.jpg';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 export default function CreateExperimentalProject(props) {
   const { closeForm } = props;
-  const [name, setName] = useState('');
-  const [isActive, setActive] = useState(false);
-  const [projectLead, setProjectLead] = useState('');
-  const [date, setDate] = useState('');
-  const [projectsType, setProjectsType] = useState('');
 
   const projectLeads = [
     {
@@ -67,21 +64,27 @@ export default function CreateExperimentalProject(props) {
     }
   ];
 
-  const [members, setMembers] = useState([]);
+  const validationSchema = Yup.object().shape({
+    project_name: Yup.string().required('Project name is Required'),
+    project_lead: Yup.string().required('Project lead is required'),
+    is_active: Yup.boolean(),
+    project_deadline: Yup.string(),
+    project_type: Yup.string(),
+    project_members: Yup.array()
+  });
 
-  const handleMemberChange = (event) => {
-    const {
-      target: { value }
-    } = event;
-    setMembers(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
+  const formik = useFormik({
+    initialValues: {
+      project_name: '',
+      project_lead: '',
+      is_active: false,
+      project_deadline: '',
+      project_type: '',
+      project_members: []
+    },
+    validationSchema: validationSchema,
+    onSubmit: () => {}
+  });
 
   return (
     <Box
@@ -91,109 +94,128 @@ export default function CreateExperimentalProject(props) {
         borderRadius: 2
       }}>
       <Box>
-        <form onSubmit={handleSubmit}>
-          <Box
-            component="form"
-            sx={{
-              '& .MuiTextField-root': { m: 1, width: 500 }
-            }}
-            noValidate
-            autoComplete="off">
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <TextField
-                label="Project name"
-                variant="filled"
-                // fullWidth
-                margin="normal"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-              />
-              <TextField
-                id="filled-select-currency"
-                select
-                label="Project lead"
-                value={projectLead}
-                variant="filled"
-                onChange={(e) => setProjectLead(e.target.value)}>
+        <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: 500 }
+          }}
+          noValidate
+          onSubmit={formik.handleSubmit}
+          autoComplete="off">
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <TextField
+              label="Project name"
+              name="project_name"
+              variant="filled"
+              fullWidth
+              margin="normal"
+              value={formik.values.project_name}
+              onChange={formik.handleChange}
+              error={formik.touched.project_name && Boolean(formik.errors.project_name)}
+              helperText={formik.touched.project_name && formik.errors.project_name}
+              inputProps={{ maxLength: 50 }}
+            />
+            <TextField
+              id="filled-select-currency"
+              select
+              label="Project lead"
+              name="project_lead"
+              value={formik.values.project_lead}
+              onChange={formik.handleChange}
+              error={formik.touched.project_lead && Boolean(formik.errors.project_lead)}
+              helperText={formik.touched.project_lead && formik.errors.project_lead}
+              variant="filled">
+              {projectLeads.map((option) => (
+                <MenuItem key={option.name} value={option.value}>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Avatar src={option?.image} alt="name" sx={{ width: 20, height: 20 }} />
+                    <Typography ml={1}>{option?.name}</Typography>
+                  </Box>
+                </MenuItem>
+              ))}
+            </TextField>
+            <FormControl sx={{ m: 1 }}>
+              <InputLabel
+                className={
+                  formik.touched.project_members && formik.errors.project_members ? 'Mui-error' : ''
+                }
+                id="demo-multiple-chip-label">
+                Project members
+              </InputLabel>
+              <Select
+                name="project_members"
+                labelId="demo-multiple-chip-label"
+                id="demo-multiple-chip"
+                multiple
+                input={<FilledInput />}
+                value={formik.values.project_members}
+                onChange={formik.handleChange}
+                renderValue={(selected) => (
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </Box>
+                )}>
                 {projectLeads.map((option) => (
-                  <MenuItem key={option.name} value={option.value}>
+                  <MenuItem key={option.name} value={option.name}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar src={option?.image} alt="name" sx={{ width: 20, height: 20 }} />
                       <Typography ml={1}>{option?.name}</Typography>
                     </Box>
                   </MenuItem>
                 ))}
-              </TextField>
-              <FormControl sx={{ m: 1 }}>
-                <InputLabel id="demo-multiple-chip-label">Project members</InputLabel>
-                <Select
-                  labelId="demo-multiple-chip-label"
-                  id="demo-multiple-chip"
-                  multiple
-                  input={<FilledInput />}
-                  value={members}
-                  onChange={handleMemberChange}
-                  renderValue={(selected) => (
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      {selected.map((value) => (
-                        <Chip key={value} label={value} />
-                      ))}
-                    </Box>
-                  )}>
-                  {projectLeads.map((option) => (
-                    <MenuItem key={option.name} value={option.name}>
-                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Avatar src={option?.image} alt="name" sx={{ width: 20, height: 20 }} />
-                        <Typography ml={1}>{option?.name}</Typography>
-                      </Box>
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <TextField
-                id="date"
-                label="Project Deadline"
-                type="date"
-                variant="filled"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                InputLabelProps={{
-                  shrink: true
-                }}
+              </Select>
+              <FormHelperText className="Mui-error">
+                {formik.touched.project_members && formik.errors.project_members}
+              </FormHelperText>
+            </FormControl>
+            <TextField
+              id="date"
+              label="Project Deadline"
+              name="project_deadline"
+              type="date"
+              variant="filled"
+              value={formik.values.project_deadline}
+              onChange={formik.handleChange}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+            <TextField
+              id="filled-select-currency"
+              select
+              label="Project Type"
+              name="project_type"
+              value={formik.values.project_type}
+              variant="filled"
+              fullWidth
+              onChange={formik.handleChange}>
+              {projectType.map((option) => (
+                <MenuItem key={option.name} value={option.value}>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Typography ml={1}>{option?.name}</Typography>
+                  </Box>
+                </MenuItem>
+              ))}
+            </TextField>
+            <FormControl sx={{ m: 2 }}>
+              <FormControlLabel
+                name="is_active"
+                control={<Switch checked={formik.values.is_active} />}
+                onChange={formik.handleChange}
+                label={formik.values.is_active ? 'Active' : 'Inactive'}
               />
-              <TextField
-                id="filled-select-currency"
-                select
-                label="Project Type"
-                value={projectsType}
-                variant="filled"
-                fullWidth
-                onChange={(e) => setProjectsType(e.target.value)}>
-                {projectType.map((option) => (
-                  <MenuItem key={option.name} value={option.value}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Typography ml={1}>{option?.name}</Typography>
-                    </Box>
-                  </MenuItem>
-                ))}
-              </TextField>
-              <FormControl sx={{ m: 2 }}>
-                <FormControlLabel
-                  control={<Switch checked={isActive} />}
-                  onChange={(e) => setActive(e.target.checked)}
-                  label={isActive ? 'Active' : 'Inactive'}
-                />
-              </FormControl>
-            </Box>
-            <Button variant="outlined" startIcon={<SaveIcon />}>
-              Save
-            </Button>
-            &nbsp;
-            <Button variant="outlined" onClick={closeForm}>
-              Close
-            </Button>
+            </FormControl>
           </Box>
-        </form>
+          <Button type="submit" variant="outlined" startIcon={<SaveIcon />}>
+            Save
+          </Button>
+          &nbsp;
+          <Button variant="outlined" onClick={closeForm}>
+            Close
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
