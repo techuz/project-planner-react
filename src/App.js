@@ -10,61 +10,64 @@ import ProjectList from './pages/Projects/routes';
 import EmployeeList from './pages/Employee/routes';
 import ContentPlan from './pages/ContentPlan/routes';
 import ProjectExperimentList from './pages/ProjectExperiment/routes';
+import { FeatureFlagsProvider } from './providers/FeatureFlagsProvider';
 
 function App() {
   return (
     <AuthProvider>
-      <Routes>
-        <Route path="/*" element={<Auth />} />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/projects/*"
-          element={
-            <ProtectedRoute>
-              <ProjectList />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/employees/*"
-          element={
-            <ProtectedRoute>
-              <EmployeeList />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/global-daily-standups/*"
-          element={
-            <ProtectedRoute>
-              <GlobalDailyStandups />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/content-plan/*"
-          element={
-            <ProtectedRoute>
-              <ContentPlan />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/project-experiment/*"
-          element={
-            <ProtectedRoute>
-              <ProjectExperimentList />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <FeatureFlagsProvider>
+        <Routes>
+          <Route path="/*" element={<Auth />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/projects/*"
+            element={
+              <ProtectedRoute>
+                <ProjectList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/employees/*"
+            element={
+              <ProtectedRoute>
+                <EmployeeList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/global-daily-standups/*"
+            element={
+              <ProtectedRoute>
+                <GlobalDailyStandups />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/content-plan/*"
+            element={
+              <ProtectedRoute>
+                <ContentPlan />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/project-experiment/*"
+            element={
+              <ProtectedRoute>
+                <ProjectExperimentList />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </FeatureFlagsProvider>
     </AuthProvider>
   );
 }
