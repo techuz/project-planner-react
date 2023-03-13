@@ -4,6 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 import ProjectListTable from '../../../components/Table/Project/List';
 import CreateProject from '../../../components/Form/Project/CreateProject';
+import { useFeatureFlags } from '../../../providers/FeatureFlagsProvider';
 
 const ProjectList = () => {
   const [openForm, setOpenForm] = useState(false);
@@ -11,10 +12,8 @@ const ProjectList = () => {
   const { getIsFeatureEnabled } = useFeatureFlags();
   //Below code added just for reference, it'll be always true for now
   const isEnabled = getIsFeatureEnabled('DASHBOARD');
-  
 
-  return (
-    isEnabled ? 
+  return isEnabled ? (
     <>
       <Box sx={{ float: 'right', paddingBottom: 2 }} color="primary" px={2}>
         {!openForm && (
@@ -32,7 +31,8 @@ const ProjectList = () => {
       </Box>
       <ProjectListTable />
     </>
-    : 'Permission Not Granted'
+  ) : (
+    'Permission Not Granted'
   );
 };
 
